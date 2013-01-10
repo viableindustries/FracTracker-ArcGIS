@@ -12,4 +12,39 @@
  *
  */
  
- 
+dojo.require('shackleton.map');
+
+var __init__ = function () {
+  
+  /**
+   * Check for ArcGIS Online Server Availibility
+   *
+   * Make sure we have loaded our classes/libraries
+   * properly and that we have access to the Esri
+   * mapping object and associated functions.
+   *
+   */
+  if (typeof esri == 'undefined') {
+      console.error('[Map] Could not connect to server');
+      return false;
+  };
+  
+  var defaults = {
+    
+    /**
+     * Webmap
+     *
+     * The Webmap ID of the map we want to load from our
+     * ArcGIS Online Organization account.
+     */
+    webmap: '4e21676b1c00414ba14edf654c7f7fe3'
+    
+  };
+  
+  var map = new shackleton.map(defaults);
+  
+  console.log('Bootstrap complete');
+        
+};
+
+dojo.ready(__init__);
