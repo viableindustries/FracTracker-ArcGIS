@@ -1,0 +1,53 @@
+/**
+ * Developed Simple ArcGIS Web Application (c) 2013
+ *
+ *
+ * This application was built by the folks at Viable for
+ * use by it's clients. Any code herein is property of Developed
+ * Simple unless where otherwise noted property of ESRI.
+ *
+ * To find out how you can use this software or have your
+ * own version of this software built to fit your custom
+ * needs, contact us by visiting www.developedsimple.com.
+ *
+ */
+
+
+/**
+ * Variables and repeating functions
+ */
+$typeSansSerif = Helvetica, Arial, sans-serif
+
+
+/**
+ * Multi-browser mixins
+ */
+borderRadius(rValue)
+  -webkit-border-radius rValue
+  -moz-border-radius rValue
+  -khtml-border-radius rValue
+  -o-border-radius rValue
+  border-radius rValue
+ 
+boxShadow(sValues)
+  box-shadow sValues
+  -moz-box-shadow sValues
+  -webkit-box-shadow sValues
+
+
+/**
+ * Normalize our CSS across browsers
+ */
+@import "lib/normalize"
+
+/**
+ * Import Application Style dependecies
+ */
+@import "lib/layout"
+@import "lib/toolbar"
+
+/**
+ * ArcGIS Style dependencies
+ */
+@import "lib/scalebar"
+@import "lib/zoomslider"
