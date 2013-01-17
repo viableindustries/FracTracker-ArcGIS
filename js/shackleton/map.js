@@ -1,60 +1,53 @@
-define([ 'dojo/_base/declare', 'dijit/_WidgetBase', 'dijit/_TemplatedMixin', 'esri/arcgis/utils'], function(declare, _WidgetBase, _TemplatedMixin, esriArcgisUtils){
+define([ 'dojo/_base/declare', 'esri/arcgis/utils', 'esri/dijit/Scalebar', 'shackleton/scalebar' ], function( declare, esriArcgisUtils, esriDijitScalebar ){
 
   var map = declare('shackleton.map', null, {
+
+    _extentOptions: {
+      "xmin": -79.935073,
+      "ymin": 40.464668,
+      "xmax": -79.935073,
+      "ymax": 40.464668,
+      "spatialReference": {
+          "wkid": 102100
+      }
+    },
+
+    _extent: new esri.geometry.Extent(this._extentOptions),
+
+    _options: {
+      wrapAround180: true,
+      extent: esri.geometry.geographicToWebMercator(this._extent),
+      sliderStyle: "large"
+    },
+
     constructor: function ( defaults ) {
-      if (typeof esri == 'undefined') {
-          console.error('[Shackleton] Could not connect to server');
-          return false;
-      } else {
-        console.log('Shackleton');
-      };
-      
-      /**
-       * Define the initial map extent
-       *
-       * This example uses 5440 Penn Ave Pittsburgh PA 15206
-       * as the default map extent
-       *
-       */
-      var initialExtentOptions = {
-          "xmin": -79.935073,
-          "ymin": 40.464668,
-          "xmax": -79.935073,
-          "ymax": 40.464668,
-          "spatialReference": {
-              "wkid": 102100
-          }
-      };
-      var initialExtent = new esri.geometry.Extent(initialExtentOptions);
 
-      /**
-       * Define the Maps basic options
-       */
-      var mapOptions = {
-          wrapAround180: true,
-          extent: esri.geometry.geographicToWebMercator(initialExtent),
-          slider: true,
-          sliderStyle: 'default',
-          fadeOnZoom: false,
-          force3DTransforms: false,
-          navigationMode: "css-transforms"
-      };
+      mapDeferred = new esri.arcgis.utils.createMap(defaults.webmap, 'map', this._options);
 
-      /**
-       * Using the 'esri' object, create the map with it's options
-       */
-      map = new esri.arcgis.utils.createMap(defaults.webmap, 'map', mapOptions);
-    
-      /**
-       * Resize the map, when the window is resized
-       */
-      dojo.connect(map, "onLoad", function(map) {
-          dojo.connect(window, "resize", map, map.resize);
+      mapDeferred.then( function ( response ) {
+
+        map = response.map;    
+
+        if (map.loaded) {
+          var thisScalebar = new shackleton.scalebar( map );
+          document.getElementById('progress').style.display = 'none';
+        }
+        else {
+          dojo.connect(map, "onLoad", function() {
+            var thisScalebar = new shackleton.scalebar( map );
+            dojo.connect(window, "resize", map, map.resize);
+            document.getElementById('progress').style.display = 'none';
+          });      
+        }
+
+      },function(error){
+        console.log("Map creation failed: ", dojo.toJson(error));        
       });
 
     }
+
   });
 
   return map;
-  
+
 });

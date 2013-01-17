@@ -34,20 +34,46 @@ boxShadow(sValues)
   -moz-box-shadow sValues
   -webkit-box-shadow sValues
 
+backgroundClip(cType)
+  -webkit-background-clip cType
+  -moz-background-clip cType
+  background-clip cType
 
-/**
- * Normalize our CSS across browsers
- */
-@import "lib/normalize"
+
+sprite(sPosition)
+    background-color transparent
+    background-image url("../../images/sprite.png")
+    background-position sPosition
+    background-repeat no-repeat
+    text-indent -999999px
+
+placement(pTop, pRight, pBottom, pLeft)
+  position absolute
+  top pTop
+  right pRight
+  bottom pBottom
+  left pLeft
+
+.hide
+  display none
+  
+.show
+  display block
 
 /**
  * Import Application Style dependecies
  */
-@import "lib/layout"
-@import "lib/toolbar"
+@import 'lib/bootstrap.min.css'
+@import 'lib/bootstrap-responsive.min.css'
+
+@import 'lib/layout'
+@import 'lib/toolbar'
+@import 'lib/icons'
+
+@import 'lib/modal.css'
 
 /**
  * ArcGIS Style dependencies
  */
-@import "lib/scalebar"
-@import "lib/zoomslider"
+@import 'lib/scalebar'
+@import 'lib/zoomslider'
