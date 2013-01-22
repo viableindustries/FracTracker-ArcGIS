@@ -11,7 +11,8 @@
  * needs, contact us by visiting www.developedsimple.com.
  *
  */
- 
+var defaults = {}, requestHandle;
+
 dojo.require('shackleton.map');
 
 var __init__ = function () {
@@ -29,22 +30,56 @@ var __init__ = function () {
       return false;
   };
   
-  var defaults = {
-    
-    /**
-     * Webmap
-     *
-     * The Webmap ID of the map we want to load from our
-     * ArcGIS Online Organization account.
-     */
-    webmap: '4e21676b1c00414ba14edf654c7f7fe3'
-    
+  /**
+   * Check to see what parameters exist in the URL
+   *
+   * Make sure that we are capable of loading an application
+   * from ArcGIS Online. In order to do so we need either an
+   * appid or Application Idenitification Key, or we need
+   * a straight Webmap Identification Key.
+   *
+   */
+  defaults.query = esri.urlToObject(document.location.href).query;
+  
+  /**
+   * Check to see how we should load our map
+   *
+   * If a WebMap ID is available through the URL object, then
+   * we should just go ahead and load the map.
+   *
+   */
+  if ( defaults.query.webmap ) {
+    defaults.webmap = defaults.query.webmap;
+    var map = new shackleton.map(defaults);
+    return false;
   };
   
-  var map = new shackleton.map(defaults);
-  
-  console.log('Bootstrap complete');
-        
+  /**
+   * Check to see how we should load our map
+   *
+   * If an Application ID is available through the URL object, then
+   * we should use the Application ID or appid and load the WebMap ID
+   * through the ArcGIS Online Content/Data API to find out the rest 
+   * of the information about our Web Map.
+   *
+   */
+  if ( defaults.query.appid ) {
+    requestHandle = esri.request({
+        url: esri.arcgis.utils.arcgisUrl + "/" + defaults.query.appid + "/data",
+        content: {
+            f: "json"
+         },
+        callbackParamName: "callback",
+        load: function (response) {
+          for ( var key in response.values ) {
+            defaults[key] = response.values[key];          
+          }
+          var map = new shackleton.map(defaults);
+        }, 
+    });
+    return false;
+  };
+              
 };
 
 dojo.ready(__init__);

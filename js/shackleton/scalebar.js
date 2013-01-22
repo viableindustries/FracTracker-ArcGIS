@@ -4,7 +4,9 @@ define([ 'dojo/_base/declare', 'esri/dijit/Scalebar', 'shackleton/map' ], functi
       
     constructor: function ( map ) {
       
-      var thisScalebar = new esri.dijit.Scalebar({ map: map });
+      var thisScalebar = new esri.dijit.Scalebar({
+        map: map
+      });
 
     }
   });

@@ -18,11 +18,17 @@
         <link media="(device-width: 768px) and (orientation: portrait)" rel="apple-touch-startup-image" href="images/ios/apple-touch-startup-image-portrait.png" />
         <link media="(device-width: 768px) and (orientation: landscape)" rel="apple-touch-startup-image" href="images/ios/apple-touch-startup-image-landscape.png" />
 
-        <title></title>
+        <title>FracMapper by FracTracker Alliance</title>
+
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
 
   </head>
 
-    <body class="tundra">
+    <body>
 
         <a class="logo" href="http://maps.fractracker.org/" target="_blank">FracTracker</a>
 
@@ -36,22 +42,22 @@
         <aside id="toolbox" class="toolbox-container">
             <div class="toolbox fullscreen-navigation">
                 <nav class="toolbox-inner">
-                    <ul class="nav">
-                        <li><a href="#details" title="Learn more about the contents of this map" data-toggle="modal" data-dynamic="true"><i class="icon icon-about"></i> <span>About</span></a></li>
-                        <li><a href="#modalSearch" title="Find a location or specific information on this map" data-toggle="modal"><i class="icon icon-search"></i> <span>Search</span></a></li>
+                    <ul>
+                        <li><a href="#details" role="button" title="Learn more about the contents of this map" data-toggle="modal" data-target="#details" data-dynamic="true"><i class="icon icon-about"></i> <span>About</span></a></li>
+                        <li><a href="#search" title="Find a location or specific information on this map" data-toggle="modal"><i class="icon icon-search"></i> <span>Search</span></a></li>
                         <li><a href="#layers" title="Toggle the layers of this map"><i class="icon icon-layers"></i> <span>Layers</span></a></li>
                         <li><a href="#legend" title=""><i class="icon icon-legend"></i> <span>Legend</span></a></li>
-                        <li><a href="#modalBasemaps" title="" data-toggle="modal"><i class="icon icon-basemap"></i> <span>Base Maps</span></a></li>
-                        <li><a href="#measure" title=""><i class="icon icon-measure"></i> <span>Measure</span></a></li>
+                        <li><a href="#basemaps" title="" data-toggle="modal" data-target="basemaps" data-dynamic="true"><i class="icon icon-basemap"></i> <span>Base Maps</span></a></li>
+                        <li><a href="#measurements" title=""><i class="icon icon-measure"></i> <span>Measure</span></a></li>
                         <li><a href="#notes" title=""><i class="icon icon-note"></i> <span>Notes</span></a></li>
-                        <li><a href="#modalExport" title="" data-toggle="modal"><i class="icon icon-export"></i> <span>Export</span></a></li>
+                        <li><a href="#export" title="" data-toggle="modal"><i class="icon icon-export"></i> <span>Export</span></a></li>
                     </ul>
                 </nav>
             </div>
         </aside>
         <!-- End:Toolbar -->
 
-        <div id="details" class="modal hide">
+        <!-- <div id="details" class="modal hide" role="dialog">
             <div class="modal-header">
                 <h3>About this map</h3>
                 <a href="#" data-dismiss="modal" >x</a>
@@ -59,10 +65,10 @@
             <div class="modal-body">
                 <p>Just a test...</p>
             </div>
-        </div>
+        </div> -->
           
         <!-- : Layers -->
-        <div id="overlay" class="toolbox-container draggable">
+        <!-- <div id="overlay" class="toolbox-container draggable">
           <div class="toolbox">
             <div class="toolbox-inner">
               <a data-toggle="modal" href="#modalOverlay" title="" target="" class="overlay-button titleButton modal-close-button close">close</a>
@@ -70,10 +76,10 @@
               <div id="overlay-content"></div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- : Bookmarks -->
-        <div id="bookmarks" class="toolbox-container draggable">
+        <!-- <div id="bookmarks" class="toolbox-container draggable">
           <div class="toolbox">
             <div class="toolbox-inner">
               <a data-toggle="modal" href="#modalBookmarks" title="" target="" class="bookmarks-button titleButton modal-close-button close">close</a>
@@ -81,10 +87,10 @@
               <div id="bookmarks-content"></div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- : Legend -->
-        <div id="legend" class="toolbox-container draggable">
+        <!-- <div id="legend" class="toolbox-container draggable">
           <div class="toolbox">
             <div class="toolbox-inner">
               <a data-toggle="modal" href="#modalLegend" title="" target="" class="legend-button titleButton modal-close-button close">close</a>
@@ -92,10 +98,10 @@
               <div id="legend-content" class="panel_content"></div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- : Measurement Tools -->
-        <div id="measurements" class="toolbox-container draggable measurements">
+        <!-- <div id="measurements" class="toolbox-container draggable measurements">
           <div class="toolbox">
             <div class="toolbox-inner">
               <a data-toggle="modal" href="#modalMeasurement" title="" target="" class="measurement-button titleButton modal-close-button close">close</a>
@@ -103,10 +109,10 @@
               <div id="measurement-content"></div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- Modal: Address Search Form -->
-        <div class="modal" id="modalSearch">
+        <div class="modal hide" id="search">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">×</button>
             <h3>Find an address</h3>
@@ -129,7 +135,7 @@
         </div>
 
         <!-- Modal: Basemaps -->
-        <div class="modal" id="modalBasemaps">
+        <div class="modal hide" id="basemaps">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">×</button>
             <h3>Base Map</h3>
@@ -155,40 +161,11 @@
           </div>
         </div>
 
-        <!-- Modal: User Login Form -->
-        <div class="modal" id="modalLogin">
-          <div class="modal-header">
-            <button class="close" data-dismiss="modal">×</button>
-            <h3>Member login</h3>
-          </div>
-
-          <div class="modal-body">
-            <form class="form-horizontal">
-                <div class="control-group">
-                  <label class="control-label" for="input01">Email address:</label>
-                  <div class="controls">
-                    <input type="text" class="input-xlarge" id="user">
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="input01">Password: </label>
-                  <div class="controls">
-                    <input type="password" class="input-xlarge" id="pass">
-                  </div>
-                </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary">Log in</button>
-          </div>
-        </div>
-
         <!-- Modal: Map Details -->
-        <div class="modal" id="modalDetails">
+        <div class="modal hide" id="details">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">×</button>
-            <h3>About this map</h3>
+            <h4>About this map</h4>
           </div>
 
           <div class="modal-body">
@@ -202,7 +179,7 @@
 
 
         <!-- Modal: Map Embed -->
-        <div class="modal" id="modalEmbed">
+        <div class="modal hide" id="export">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">×</button>
             <h3>Embed this map</h3>
@@ -239,9 +216,8 @@
         </script>
         <script src="//serverapi.arcgisonline.com/jsapi/arcgis/3.3/"></script>
         <script src="js/lib/jquery-1.8.1.min.js"></script>
-        <script src="js/lib/bootstrap.js"></script>
-        <script src="js/lib/bootstrap.scroll-modal.js"></script>
-        <script src="js/init.js"></script>
+        <script src="js/lib/bootstrap.min.js"></script>
+        <script src="js/init.js?<?php print date('U'); ?>"></script>
 
    </body>
 
