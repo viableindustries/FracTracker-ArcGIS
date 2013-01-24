@@ -20,6 +20,7 @@
 
         <title>FracMapper by FracTracker Alliance</title>
 
+        <!-- Make sure we aren't caching anything -->
         <meta http-equiv="cache-control" content="max-age=0" />
         <meta http-equiv="cache-control" content="no-cache" />
         <meta http-equiv="expires" content="0" />
@@ -30,16 +31,16 @@
 
     <body>
 
-        <a class="logo" href="http://maps.fractracker.org/" target="_blank">FracTracker</a>
+        <a id="logo" class="logo element-invisible" href="http://maps.fractracker.org/" target="_blank">FracTracker</a>
 
-        <section id="map"></section>
+        <section id="map" class="element-invisible"></section>
 
-        <div id="progress" class="progress progress-striped active">
-          <div class="bar">Loading map layers ...</div>
+        <div id="progress" class="progress progress-success progress-striped active">
+          <div class="bar" style="width: 100%;">Loading map layers ...</div>
         </div>
 
         <!-- Start:Toolbar -->
-        <aside id="toolbox" class="toolbox-container">
+        <aside id="toolbox" class="toolbox-container element-invisible">
             <div class="toolbox fullscreen-navigation">
                 <nav class="toolbox-inner">
                     <ul>
@@ -56,16 +57,6 @@
             </div>
         </aside>
         <!-- End:Toolbar -->
-
-        <!-- <div id="details" class="modal hide" role="dialog">
-            <div class="modal-header">
-                <h3>About this map</h3>
-                <a href="#" data-dismiss="modal" >x</a>
-            </div>
-            <div class="modal-body">
-                <p>Just a test...</p>
-            </div>
-        </div> -->
           
         <!-- : Layers -->
         <!-- <div id="overlay" class="toolbox-container draggable">
@@ -169,11 +160,11 @@
           </div>
 
           <div class="modal-body">
-            <div id="details">
-              <h1 class="title"></h1>
-              <div class="description">
-              </div>
-            </div>
+            <h3 id="details-title"></h3>
+            <div id="details-snippet"></div>
+            <div id="details-description"></div>
+            <div id="details-credit"></div>
+            <div id="details-typeKeywords"></div>
           </div>
         </div>
 
@@ -218,7 +209,7 @@
         <script src="js/lib/jquery-1.8.1.min.js"></script>
         <script src="js/lib/bootstrap.min.js"></script>
         <script src="js/init.js?<?php print date('U'); ?>"></script>
-
+    
    </body>
 
 </html>
