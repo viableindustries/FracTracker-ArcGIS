@@ -32,11 +32,11 @@ define(['dojo/_base/declare', 'esri/arcgis/utils', 'shackleton/features' ], func
           map = response.map;
             
           if (map.loaded) {
-            var thisFeatureLoader = new shackleton.features( map, defaults );
+            var thisFeatureLoader = new shackleton.features( map, defaults.details );
           }
           else {
             dojo.connect(map, "onLoad", function() {
-              var thisFeatureLoader = new shackleton.features( map, defaults );
+              var thisFeatureLoader = new shackleton.features( map, defaults.details );
             });      
           } 
           

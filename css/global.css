@@ -1,9 +1,12 @@
 @import 'lib/bootstrap.min.css';
 @import 'lib/bootstrap-responsive.min.css';
-html,body,.map,.map.container{height:100%;margin:0;padding:0;width:100%}
+html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%}
 .map .layerTile{position:absolute;border:none;margin:0;padding:0}
 .logo{background-color:transparent;background-image:url("../../images/sprite.png");background-position:-306px -426px;background-repeat:no-repeat;text-indent:-999999px;position:absolute;top:auto;right:20px;bottom:10px;left:auto;height:40px;width:114px;z-index:6}
+.progress{position:absolute;top:38%;right:25%;bottom:auto;left:25%;height:38px;line-height:38px;width:50%}
+.element-invisible{display:none}
 .toolbox-container,.toolbox,.toolbox-inner{display:block}
+.toolbox-container.element-invisible{display:none}
 .toolbox-container{position:absolute;top:20px;right:20px;bottom:auto;left:auto}
 .toolbox{background-color:#101010;background-color:rgba(16,16,16,0.3);-webkit-border-radius:3px;-moz-border-radius:3px;-khtml-border-radius:3px;-o-border-radius:3px;border-radius:3px;color:#f2f2f2;float:left;margin:0;padding:3px;position:relative}
 .toolbox-inner{background-color:#101010;background-color:rgba(16,16,16,0.8);-webkit-border-radius:3px;-moz-border-radius:3px;-khtml-border-radius:3px;-o-border-radius:3px;border-radius:3px;float:left;margin:0;padding:0;width:100%}

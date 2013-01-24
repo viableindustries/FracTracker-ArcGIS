@@ -31,13 +31,13 @@
 
     <body>
 
-        <a id="logo" class="logo element-invisible" href="http://maps.fractracker.org/" target="_blank">FracTracker</a>
-
-        <section id="map" class="element-invisible"></section>
-
         <div id="progress" class="progress progress-success progress-striped active">
           <div class="bar" style="width: 100%;">Loading map layers ...</div>
         </div>
+
+        <a id="logo" class="logo element-invisible" href="http://maps.fractracker.org/" target="_blank">FracTracker</a>
+
+        <section id="map"></section>
 
         <!-- Start:Toolbar -->
         <aside id="toolbox" class="toolbox-container element-invisible">
@@ -165,6 +165,7 @@
             <div id="details-description"></div>
             <div id="details-credit"></div>
             <div id="details-typeKeywords"></div>
+            <div id="details-tags"></div>
           </div>
         </div>
 

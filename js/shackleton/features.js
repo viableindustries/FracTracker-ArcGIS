@@ -29,12 +29,10 @@ define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta' ], funct
 
   var features = declare('shackleton.features', null, {
     
-    _UIElements = "
-      #progress,
-      #toolbox,
-      #logo,
-      #map
-    ",
+    /**
+     * If you would like to initially hide a feature, simply place it's ID in this list
+     */
+    _UIElements: "#progress,#toolbox,#logo",
       
     constructor: function ( thisMap, thisDefaults ) {
       
