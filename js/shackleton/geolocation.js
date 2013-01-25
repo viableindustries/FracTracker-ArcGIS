@@ -171,7 +171,13 @@ define([ 'dojo/_base/declare' ], function( declare ) {
    *
    * Checks the users browser for the existence of the HTML5 Geolocation API,
    * based on the response it will either put a symbol on the map or it will display
-   * useful developer error information. 
+   * useful developer error information.
+   *
+   * @todo
+   *   Read up on the necessity of the watchPosition method from the HTML5 Geolocation API
+   *   and if it is necessary or important the proper operation of the Geolocatio API, then
+   *   we should figure out a way to make this Geolocation module only display one sybmol
+   *   and not place a duplicate symbol on the map.
    *
    * @see Geolocation API Specification Level 2: Geolocation Interface
    *   http://dev.w3.org/geo/api/spec-source-v2#geolocation_interface
@@ -180,8 +186,17 @@ define([ 'dojo/_base/declare' ], function( declare ) {
   var SKGeolocationInitialize = declare(null, {
     constructor: function() {
       if (navigator.geolocation) {
+        
         navigator.geolocation.getCurrentPosition(SKGeolocationSuccess, SKGeolocationError);
-        navigator.geolocation.watchPosition(SKGeolocationSuccess, SKGeolocationError);
+        
+        /**
+         * For the time being we have commented this out, because it adds a second
+         * symbol to the map, right beside the original one. We are also not sure of
+         * the necessity of the .watchPosition call. If it proves that we need it, then
+         * we can readd this as necessary.
+         *
+         * navigator.geolocation.watchPosition(SKGeolocationSuccess, SKGeolocationError);
+         */
       }
     }
   });
