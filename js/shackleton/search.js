@@ -12,3 +12,22 @@
  *
  */
  
+define([ 'dojo/_base/declare' ], function( declare ) {
+
+  var search = declare('shackleton.search', null, {  
+    constructor: function () {
+      console.log( 'shackleton.search._constructor' );
+      this.pooGas( 'constructor pooGas' );
+    },
+    pooGas: function ( thisVar ) {
+      console.log( 'shackleton.search.pooGas', thisVar );
+      this.ohNo( 'ohNo pooGas' );
+    },
+    ohNo: function ( thisVar ) {
+      console.log( 'shackleton.search.ohNo', thisVar );
+    }
+  });
+
+  return true;
+
+});

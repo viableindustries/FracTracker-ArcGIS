@@ -14,7 +14,7 @@
 
 define(['dojo/_base/declare', 'esri/arcgis/utils', 'shackleton/features' ], function(declare, esriArcgisUtils, shackletonFeatures ){
 
-  var map = declare('shackleton.map', null, {
+  map = declare('shackleton.map', null, {
 
     _options: {
       wrapAround180: true,
@@ -32,11 +32,11 @@ define(['dojo/_base/declare', 'esri/arcgis/utils', 'shackleton/features' ], func
           map = response.map;
             
           if (map.loaded) {
-            var thisFeatureLoader = new shackleton.features( map, defaults.details );
+            var thisFeatureLoader = new shackleton.features();
           }
           else {
             dojo.connect(map, "onLoad", function() {
-              var thisFeatureLoader = new shackleton.features( map, defaults.details );
+              var thisFeatureLoader = new shackleton.features();
             });      
           } 
           

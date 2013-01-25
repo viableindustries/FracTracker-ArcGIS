@@ -11,3 +11,23 @@
  * needs, contact us by visiting www.developedsimple.com.
  *
  */
+ 
+define(['dojo/_base/declare', 'esri/dijit/BasemapGallery' ], function(declare, esriDijitBasemap ){
+
+  var basemaps = declare('shackleton.basemaps', null, {
+
+    constructor: function () {
+
+      var basemapsGallery = new esri.dijit.BasemapGallery({
+        showArcGISBasemaps: true,
+        map: map
+      }, 'basemaps-gallery');
+
+      basemapsGallery.startup();
+    }
+
+  });
+
+  return basemaps;
+
+});

@@ -16,21 +16,21 @@ define([ 'dojo/_base/declare' ], function( declare ) {
 
   var meta = declare('shackleton.meta', null, {
 
-    constructor: function ( thisMeta ) {
+    constructor: function () {
 
       if (jQuery) {
-        jQuery('#details-title').html(thisMeta.title);
-        jQuery('#details-credit').html(thisMeta.credit);
-        jQuery('#details-description').html(thisMeta.description);
+        jQuery('#details-title, title').html(defaults.details.title);
+        jQuery('#details-credit').html(defaults.details.credit);
+        jQuery('#details-description').html(defaults.details.description);
 
         /**
          * Break out tags into a comma separated list
          */
         var tags;
 
-        for (var keys in thisMeta.tags) {
-          if (thisMeta.tags[keys] !== 'undefined') {
-            tags += thisMeta.tags[keys] + ',';
+        for (var keys in defaults.details.tags) {
+          if (defaults.details.tags[keys] !== 'undefined') {
+            tags += defaults.details.tags[keys] + ',';
           };
         };
 

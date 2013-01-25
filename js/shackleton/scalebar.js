@@ -16,7 +16,7 @@ define([ 'dojo/_base/declare', 'esri/dijit/Scalebar', 'shackleton/map' ], functi
 
   var scalebar = declare('shackleton.scalebar', null, {
       
-    constructor: function ( map ) {
+    constructor: function () {
       
       var thisScalebar = new esri.dijit.Scalebar({
         map: map

@@ -48,7 +48,7 @@
                         <li><a href="#search" title="Find a location or specific information on this map" data-toggle="modal"><i class="icon icon-search"></i> <span>Search</span></a></li>
                         <li><a href="#layers" title="Toggle the layers of this map"><i class="icon icon-layers"></i> <span>Layers</span></a></li>
                         <li><a href="#legend" title=""><i class="icon icon-legend"></i> <span>Legend</span></a></li>
-                        <li><a href="#basemaps" title="" data-toggle="modal" data-target="basemaps" data-dynamic="true"><i class="icon icon-basemap"></i> <span>Base Maps</span></a></li>
+                        <li><a href="#basemaps" title="" data-toggle="modal" data-target="#basemaps" data-dynamic="true"><i class="icon icon-basemap"></i> <span>Base Maps</span></a></li>
                         <li><a href="#measurements" title=""><i class="icon icon-measure"></i> <span>Measure</span></a></li>
                         <li><a href="#notes" title=""><i class="icon icon-note"></i> <span>Notes</span></a></li>
                         <li><a href="#export" title="" data-toggle="modal"><i class="icon icon-export"></i> <span>Export</span></a></li>
@@ -115,7 +115,7 @@
                 <option value="address">an address</option>
                 <option value="data">data</option>
               </select> like 
-              <input type="text" class="input-xlarge" id="address" placeholder="e.g., Pittburgh, PA" value="" /><p id="address-description">or find my <a data-dismiss="modal" href="#event_findMe" alt="Find my current location" class="event_findMe">current location</a></p>
+              <input type="text" class="input-xlarge" id="address" placeholder="e.g., Pittburgh, PA" value="" /><p id="address-description">or find my <a data-dismiss="modal" href="#event_findMe" alt="Find my current location" class="event_findMe" id="geolocationBegin">current location</a></p>
               <input type="text" class="input-xlarge" id="data" placeholder="e.g., Well 1029384756" value="" />
             </form>
           </div>
@@ -129,26 +129,20 @@
         <div class="modal hide" id="basemaps">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">×</button>
-            <h3>Base Map</h3>
+            <h4>Change the base map</h4>
           </div>
           <div class="modal-body">
-            <form id="advanced-settings" class="form-vertical" action="#settings" method="POST">
 
-              <div id="BookmarksProvider_alert" class="alert alert-success alert-hidden">
+              <!-- <div id="BookmarksProvider_alert" class="alert alert-success alert-hidden">
                 <strong>The base map has been changed successfully</strong>
-              </div>
+              </div> -->
           
               <div class="control-group">
                 <div class="controls">
-                  <div id="basemap-gallery"></div>
+                  <div id="basemaps-gallery"></div>
                 </div>
               </div>
 
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal">Cancel</button>
-            <button type="submit" data-dismiss="modal" class="btn btn-primary">Update</button>
           </div>
         </div>
 

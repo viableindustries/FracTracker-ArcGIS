@@ -25,16 +25,16 @@
  *
  */
 
-define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta' ], function( declare, shackletonScalebar, shackletonMeta ) {
+define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta', 'shackleton/basemaps', 'shackleton/geolocation', 'shackleton/search' ], function( declare, shackletonScalebar, shackletonMeta, shackletonBasemaps, shackletonGeolocation, shackletonSearch ) {
+
+  var _UIElements = "#progress,#toolbox,#logo";
 
   var features = declare('shackleton.features', null, {
     
     /**
      * If you would like to initially hide a feature, simply place it's ID in this list
-     */
-    _UIElements: "#progress,#toolbox,#logo",
-      
-    constructor: function ( thisMap, thisDefaults ) {
+     */      
+    constructor: function () {
       
       /**
        * Add new mapping functionality via the ArcGIS Online Javascript API,
@@ -45,8 +45,11 @@ define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta' ], funct
        *   application on ArcGIS.com.
        *
        */
-      var thisScalebar = new shackleton.scalebar( thisMap );
-      var thisMeta = new shackleton.meta( thisDefaults );
+      var thisScalebar = new shackleton.scalebar();
+      var thisMeta = new shackleton.meta();
+      var thisBasemaps = new shackleton.basemaps();
+      var thisGeolocation = new shackleton.geolocation();
+      var thisSearch = new shackleton.search();
       
       /**
        * Make sure that the map resizes properly when the map is loaded on
@@ -60,7 +63,7 @@ define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta' ], funct
        * Hide the progress bar since the map is now loaded.
        *
        */
-      jQuery(this._UIElements).toggle();
+      jQuery(_UIElements).toggle();
       
     }
     

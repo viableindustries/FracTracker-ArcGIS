@@ -41,3 +41,7 @@ html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%
 .esriControlsBR{position:absolute;top:auto;right:138px;bottom:15px;left:auto;z-index:9999}
 .esriControlsBR span{font-size:11px;color:#101010;color:rgba(16,16,16,0.3)}
 .esriAttributionDelim{display:none}
+.esriBasemapGalleryNode{float:left;margin:5px 10px;text-align:center;width:150px}
+.esriBasemapGalleryLabelContainer{font-size:11px}
+.esriBasemapGalleryThumbnail{border:1px solid #fff;box-shadow:0 0 7px #000;-moz-box-shadow:0 0 7px #000;-webkit-box-shadow:0 0 7px #000;height:67px;margin:1px;width:100px}
+.esriBasemapGallerySelectedNode .esriBasemapGalleryThumbnail{border:2px solid #f99;margin:0}
