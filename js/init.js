@@ -30,6 +30,7 @@ var __init__ = function () {
       return false;
   };
   
+try {
   /**
    * Check to see what parameters exist in the URL
    *
@@ -40,7 +41,8 @@ var __init__ = function () {
    *
    */
   defaults.query = esri.urlToObject(document.location.href).query;
-  
+
+
   /**
    * Check to see how we should load our map
    *
@@ -51,7 +53,6 @@ var __init__ = function () {
   if ( defaults.query.webmap ) {
     defaults.webmap = defaults.query.webmap;
     var map = new shackleton.map(defaults);
-    return false;
   };
   
   /**
@@ -70,16 +71,40 @@ var __init__ = function () {
             f: "json"
          },
         callbackParamName: "callback",
-        load: function (response) {
+        load: function ( response ) {
           for ( var key in response.values ) {
             defaults[key] = response.values[key];          
           }
           var map = new shackleton.map(defaults);
-        }, 
+        },
+        error: function ( error ) {
+          var _UIElements = "#progress";
+    
+          console.error(error.message);
+          jQuery(_UIElements).toggle();
+        }
     });
-    return false;
   };
-              
+      
+      
+} catch (e) {
+
+  /**
+   * Check to see if we have any query parameters in our URL
+   *
+   * If we don't have anything (e.g., Web Map ID, Application ID)
+   * then there is no point in continuing, we should just stop
+   * everything and let the user know something is wrong.
+   *
+   */
+  var _UIElements = "#progress";
+    
+  console.log('stop the presses', e);
+  jQuery(_UIElements).toggle();
+
+}
+
+        
 };
 
 dojo.ready(__init__);

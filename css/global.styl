@@ -53,6 +53,15 @@ placement(pTop, pRight, pBottom, pLeft)
   bottom pBottom
   left pLeft
 
+animate-element(aDuration, aIteration, aName)
+  -webkit-animation-duration aDuration
+  -webkit-animation-iteration-count aIteration
+  -webkit-animation-name aName
+  -moz-animation-duration aDuration
+  -moz-animation-iteration-count aIteration
+  -moz-animation-name aName
+
+
 /**
  * Import Application Style dependecies
  */
@@ -62,6 +71,7 @@ placement(pTop, pRight, pBottom, pLeft)
 @import 'lib/layout'
 @import 'lib/toolbar'
 @import 'lib/icons'
+@import 'lib/animation'
 
 @import 'lib/modal.css'
 
