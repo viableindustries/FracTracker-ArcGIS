@@ -125,7 +125,7 @@ define([ 'dojo/_base/declare' ], function( declare ) {
   });
 
   /**
-   * Implements SKGeolocationSuccess
+   * Implements SKGeolocationError
    *
    * Handles any errors that we may come up against so that our application
    * doesn't crash and gives useful troubleshooting information to the developer.
@@ -166,6 +166,17 @@ define([ 'dojo/_base/declare' ], function( declare ) {
 
   });
   
+  /**
+   * Implements SKGeolocationInitialize
+   *
+   * Checks the users browser for the existence of the HTML5 Geolocation API,
+   * based on the response it will either put a symbol on the map or it will display
+   * useful developer error information. 
+   *
+   * @see Geolocation API Specification Level 2: Geolocation Interface
+   *   http://dev.w3.org/geo/api/spec-source-v2#geolocation_interface
+   *
+   */  
   var SKGeolocationInitialize = declare(null, {
     constructor: function() {
       if (navigator.geolocation) {
@@ -176,6 +187,15 @@ define([ 'dojo/_base/declare' ], function( declare ) {
   });
 
   
+  /**
+   * Implements SKGeolocation
+   *
+   * Listens via Dojo for when a geoLink is click. Once it is clicked, it will fire the
+   * initialization method that collects information from the users browser via the HTML5
+   * Geolocation API, based on the response it will either put a symbol on the map or it
+   * will display useful developer error information.
+   *
+   */ 
   var SKGeolocation = declare('shackleton.geolocation', null, {
                     
     constructor: function() {
