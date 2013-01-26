@@ -1,0 +1,78 @@
+<!DOCTYPE html>  <html> <head>   <title>init.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="init.html">                 init.js               </a>                                           <a class="source" href="basemaps.html">                 basemaps.js               </a>                                           <a class="source" href="cache.html">                 cache.js               </a>                                           <a class="source" href="features.html">                 features.js               </a>                                           <a class="source" href="geolocation.html">                 geolocation.js               </a>                                           <a class="source" href="layers.html">                 layers.js               </a>                                           <a class="source" href="map.html">                 map.js               </a>                                           <a class="source" href="meta.html">                 meta.js               </a>                                           <a class="source" href="scalebar.html">                 scalebar.js               </a>                                           <a class="source" href="search.html">                 search.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               init.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Setup the <code>defaults</code> object which sets options that will be
+use throughout our application.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="kd">var</span> <span class="nx">defaults</span> <span class="o">=</span> <span class="p">{};</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>Here we are going to load our primary map. We need to make sure
+that we include it here, so that we can use it when necessary.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">dojo</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;shackleton.map&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">__init__</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  </pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Setup our initialization variables</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="kd">var</span> <span class="nx">requestHandle</span><span class="p">,</span>
+      <span class="nx">_UIElements</span> <span class="o">=</span> <span class="s2">&quot;#progress&quot;</span><span class="p">;</span>
+
+  </pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>Make sure we have loaded our classes/libraries
+properly and that we have access to the Esri
+mapping object and associated functions. </p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">esri</span> <span class="o">==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;[Map] Could not connect to server&#39;</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">};</span>
+  
+<span class="k">try</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>Make sure that we are capable of loading an application
+from ArcGIS Online. In order to do so we need either an
+appid or Application Idenitification Key, or we need
+a straight Webmap Identification Key.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">defaults</span><span class="p">.</span><span class="nx">query</span> <span class="o">=</span> <span class="nx">esri</span><span class="p">.</span><span class="nx">urlToObject</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">).</span><span class="nx">query</span><span class="p">;</span></pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <p>If a WebMap ID is available through the URL object, then
+we should just go ahead and load the map.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="k">if</span> <span class="p">(</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">webmap</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">defaults</span><span class="p">.</span><span class="nx">webmap</span> <span class="o">=</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">webmap</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">defaults</span><span class="p">);</span>
+  <span class="p">};</span>
+  </pre></div>             </td>           </tr>                               <tr id="section-7">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-7">&#182;</a>               </div>               <p>If an Application ID is available through the URL object, then
+we should use the Application ID or appid and load the WebMap ID
+through the ArcGIS Online Content/Data API to find out the rest 
+of the information about our Web Map.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="k">if</span> <span class="p">(</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">appid</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">requestHandle</span> <span class="o">=</span> <span class="nx">esri</span><span class="p">.</span><span class="nx">request</span><span class="p">({</span>
+        <span class="nx">url</span><span class="o">:</span> <span class="nx">esri</span><span class="p">.</span><span class="nx">arcgis</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">arcgisUrl</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">appid</span> <span class="o">+</span> <span class="s2">&quot;/data&quot;</span><span class="p">,</span>
+        <span class="nx">content</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">f</span><span class="o">:</span> <span class="s2">&quot;json&quot;</span>
+         <span class="p">},</span>
+        <span class="nx">callbackParamName</span><span class="o">:</span> <span class="s2">&quot;callback&quot;</span><span class="p">,</span>
+        <span class="nx">load</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">response</span> <span class="p">)</span> <span class="p">{</span>
+          <span class="k">for</span> <span class="p">(</span> <span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">response</span><span class="p">.</span><span class="nx">values</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">defaults</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>          
+          <span class="p">}</span></pre></div>             </td>           </tr>                               <tr id="section-8">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-8">&#182;</a>               </div>               <p>Here we actually instantiate our map and pass any defaults we have
+collected either from the application or the URL object.</p>             </td>             <td class="code">               <div class="highlight"><pre>          <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">defaults</span><span class="p">);</span>
+        <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-9">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-9">&#182;</a>               </div>               <p>If we don't have anything (e.g., Web Map ID, Application ID) then there
+is no point in continuing, we should just stop everything, remove the
+"Loading map" progress bar and let the user know something is wrong.
+We'll display a message to them, giving them access to alternative maps
+or a way out of this broken page.</p>             </td>             <td class="code">               <div class="highlight"><pre>        <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">error</span> <span class="p">)</span> <span class="p">{</span>
+          <span class="nx">jQuery</span><span class="p">(</span><span class="nx">_UIElements</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+      
+      
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-10">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-10">&#182;</a>               </div>               <p>Again, same as the last comment, give the user something helpful to work with if
+there is nothing to display.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">jQuery</span><span class="p">(</span><span class="nx">_UIElements</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+
+<span class="p">}</span>
+
+        
+<span class="p">};</span></pre></div>             </td>           </tr>                               <tr id="section-11">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-11">&#182;</a>               </div>               <p>Let's go ahead and start the application when Dojo decides that the page
+is ready.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">dojo</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="nx">__init__</span><span class="p">);</span></pre></div>             </td>           </tr>                               <tr id="section-12">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-12">&#182;</a>               </div>               <pre><code>Shackleton 0.1.01
+
+Shackleton is a framework for building web map applications
+that are compatible with ArcGIS Online.
+
+It is named in honor of the famous and widely respected
+British Antarctic explorer Sir Ernest Henry Shackleton.
+
+Viable Industries, ArcGIS Compatible Web Application,
+where applicable. This application was built by the 
+folks at Viable Industries for use by it's clients only. 
+Any code herein is property of Viable Industries.
+unless where otherwise noted property of Esri/ArcGIS
+
+To find out how you can use this software or have your
+own version of this software, custom built to fit your
+organizations needs, contact us by visiting
+www.viableindustries.com or emailing us at joshua@viable.io
+
+Copyright (c) 2013 Viable Industries, All rights reserved.
+Unless otherwise noted.
+</code></pre>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>  <html> <head>   <title>features.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="init.html">                 init.js               </a>                                           <a class="source" href="basemaps.html">                 basemaps.js               </a>                                           <a class="source" href="cache.html">                 cache.js               </a>                                           <a class="source" href="features.html">                 features.js               </a>                                           <a class="source" href="geolocation.html">                 geolocation.js               </a>                                           <a class="source" href="layers.html">                 layers.js               </a>                                           <a class="source" href="map.html">                 map.js               </a>                                           <a class="source" href="meta.html">                 meta.js               </a>                                           <a class="source" href="scalebar.html">                 scalebar.js               </a>                                           <a class="source" href="search.html">                 search.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               features.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Developed Simple ArcGIS Web Application (c) 2013</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> * This application was built by the folks at Viable for</span>
+<span class="cm"> * use by it&#39;s clients. Any code herein is property of Developed</span>
+<span class="cm"> * Simple unless where otherwise noted property of ESRI.</span>
+<span class="cm"> *</span>
+<span class="cm"> * To find out how you can use this software or have your</span>
+<span class="cm"> * own version of this software built to fit your custom</span>
+<span class="cm"> * needs, contact us by visiting www.developedsimple.com.</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Each of our individual features (e.g., legend, layers, meta information, scalebar, search)</span>
+<span class="cm"> * is declare and instantiated in this &quot;Features Loader&quot; file.</span>
+<span class="cm"> *</span>
+<span class="cm"> * To add a new feature module to the map:</span>
+<span class="cm"> *</span>
+<span class="cm"> *   1. Add a new file and it&#39;s associated code in a new file, like &quot;js/shackleton/scalebar.js&quot;</span>
+<span class="cm"> *   2. Include the file in the declare statement below (e.g., &#39;shackleton/scalebar&#39;)</span>
+<span class="cm"> *   3. Add the approriate parameter to the function (e.g., shackletonScalebar)</span>
+<span class="cm"> *   4. In the constructor of the Feature Loader, instantiate the new Module (e.g.,  var thisScalebar = new shackleton.scalebar( thisMap );)</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+
+<span class="nx">define</span><span class="p">([</span> <span class="s1">&#39;dojo/_base/declare&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/scalebar&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/meta&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/basemaps&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/geolocation&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/search&#39;</span> <span class="p">],</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">declare</span><span class="p">,</span> <span class="nx">shackletonScalebar</span><span class="p">,</span> <span class="nx">shackletonMeta</span><span class="p">,</span> <span class="nx">shackletonBasemaps</span><span class="p">,</span> <span class="nx">shackletonGeolocation</span><span class="p">,</span> <span class="nx">shackletonSearch</span> <span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">_UIElements</span> <span class="o">=</span> <span class="s2">&quot;#progress,#toolbox,#logo&quot;</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">features</span> <span class="o">=</span> <span class="nx">declare</span><span class="p">(</span><span class="s1">&#39;shackleton.features&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
+    
+    <span class="cm">/**</span>
+<span class="cm">     * If you would like to initially hide a feature, simply place it&#39;s ID in this list</span>
+<span class="cm">     */</span>      
+    <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      
+      <span class="cm">/**</span>
+<span class="cm">       * Add new mapping functionality via the ArcGIS Online Javascript API,</span>
+<span class="cm">       * functionality like Scalebars, Meta Information, Legends, etc.</span>
+<span class="cm">       *</span>
+<span class="cm">       * @see http://help.arcgis.com/en/webapi/javascript/arcgis/jssamples/</span>
+<span class="cm">       *   For a list of more functionality available through to this web map</span>
+<span class="cm">       *   application on ArcGIS.com.</span>
+<span class="cm">       *</span>
+<span class="cm">       */</span>
+      <span class="kd">var</span> <span class="nx">thisScalebar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">scalebar</span><span class="p">();</span>
+      <span class="kd">var</span> <span class="nx">thisMeta</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">meta</span><span class="p">();</span>
+      <span class="kd">var</span> <span class="nx">thisBasemaps</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">basemaps</span><span class="p">();</span>
+      <span class="kd">var</span> <span class="nx">thisGeolocation</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">geolocation</span><span class="p">();</span>
+      <span class="kd">var</span> <span class="nx">thisSearch</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">search</span><span class="p">();</span>
+      
+      <span class="cm">/**</span>
+<span class="cm">       * Make sure that the map resizes properly when the map is loaded on</span>
+<span class="cm">       * various devices (e.g., desktop, tablet, smartphone) or when the</span>
+<span class="cm">       * browser window is resized.</span>
+<span class="cm">       *</span>
+<span class="cm">       */</span>
+      <span class="nx">dojo</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s2">&quot;resize&quot;</span><span class="p">,</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">map</span><span class="p">.</span><span class="nx">resize</span><span class="p">);</span>
+      
+      <span class="cm">/**</span>
+<span class="cm">       * Hide the progress bar since the map is now loaded.</span>
+<span class="cm">       *</span>
+<span class="cm">       */</span>
+      <span class="nx">jQuery</span><span class="p">(</span><span class="nx">_UIElements</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+      
+    <span class="p">}</span>
+    
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="nx">features</span><span class="p">;</span>
+  
+<span class="p">});</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

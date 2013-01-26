@@ -1,0 +1,57 @@
+<!DOCTYPE html>  <html> <head>   <title>map.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="init.html">                 init.js               </a>                                           <a class="source" href="basemaps.html">                 basemaps.js               </a>                                           <a class="source" href="cache.html">                 cache.js               </a>                                           <a class="source" href="features.html">                 features.js               </a>                                           <a class="source" href="geolocation.html">                 geolocation.js               </a>                                           <a class="source" href="layers.html">                 layers.js               </a>                                           <a class="source" href="map.html">                 map.js               </a>                                           <a class="source" href="meta.html">                 meta.js               </a>                                           <a class="source" href="scalebar.html">                 scalebar.js               </a>                                           <a class="source" href="search.html">                 search.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               map.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Developed Simple ArcGIS Web Application (c) 2013</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> * This application was built by the folks at Viable for</span>
+<span class="cm"> * use by it&#39;s clients. Any code herein is property of Developed</span>
+<span class="cm"> * Simple unless where otherwise noted property of ESRI.</span>
+<span class="cm"> *</span>
+<span class="cm"> * To find out how you can use this software or have your</span>
+<span class="cm"> * own version of this software built to fit your custom</span>
+<span class="cm"> * needs, contact us by visiting www.developedsimple.com.</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+
+<span class="nx">define</span><span class="p">([</span><span class="s1">&#39;dojo/_base/declare&#39;</span><span class="p">,</span> <span class="s1">&#39;esri/arcgis/utils&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/features&#39;</span> <span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">declare</span><span class="p">,</span> <span class="nx">esriArcgisUtils</span><span class="p">,</span> <span class="nx">shackletonFeatures</span> <span class="p">){</span>
+
+  <span class="nx">map</span> <span class="o">=</span> <span class="nx">declare</span><span class="p">(</span><span class="s1">&#39;shackleton.map&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
+
+    <span class="nx">_options</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">wrapAround180</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">extent</span><span class="o">:</span> <span class="nx">esri</span><span class="p">.</span><span class="nx">geometry</span><span class="p">.</span><span class="nx">geographicToWebMercator</span><span class="p">()</span>
+    <span class="p">},</span>
+    
+    <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">defaults</span> <span class="p">)</span> <span class="p">{</span>
+      
+      <span class="kd">var</span> <span class="nx">mapDeferred</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">esri</span><span class="p">.</span><span class="nx">arcgis</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">createMap</span><span class="p">(</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">webmap</span><span class="p">,</span> <span class="s1">&#39;map&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_options</span><span class="p">);</span>
+
+      <span class="nx">mapDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+        <span class="kd">function</span> <span class="p">(</span> <span class="nx">response</span> <span class="p">)</span> <span class="p">{</span>
+
+          <span class="nx">defaults</span><span class="p">.</span><span class="nx">details</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">itemInfo</span><span class="p">.</span><span class="nx">item</span><span class="p">;</span>
+          <span class="nx">map</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">map</span><span class="p">;</span>
+            
+          <span class="k">if</span> <span class="p">(</span><span class="nx">map</span><span class="p">.</span><span class="nx">loaded</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">thisFeatureLoader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">features</span><span class="p">();</span>
+          <span class="p">}</span>
+          <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">dojo</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="s2">&quot;onLoad&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+              <span class="kd">var</span> <span class="nx">thisFeatureLoader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">features</span><span class="p">();</span>
+            <span class="p">});</span>      
+          <span class="p">}</span> 
+          
+       <span class="p">},</span>
+        <span class="kd">function</span> <span class="p">(</span> <span class="nx">error</span> <span class="p">)</span> <span class="p">{</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Map creation failed: &quot;</span><span class="p">,</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">toJson</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>        
+        <span class="p">}</span>
+      <span class="p">);</span>
+          
+    <span class="p">}</span>
+
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="nx">map</span><span class="p">;</span>
+
+<span class="p">});</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
