@@ -1,3 +1,7 @@
+//
+// Initialize our application and get things moving
+//
+
 // Setup the ``defaults`` object which sets options that will be
 // use throughout our application.
 var defaults = {};
@@ -98,6 +102,7 @@ try {
 //
 dojo.ready(__init__);
 
+// * * *
 //     Shackleton 0.1.01
 //
 //     Shackleton is a framework for building web map applications

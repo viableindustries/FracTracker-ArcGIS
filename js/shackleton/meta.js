@@ -17,8 +17,9 @@ define([ 'dojo/_base/declare' ], function( declare ) {
   var meta = declare('shackleton.meta', null, {
 
     constructor: function () {
-
+    
       if (jQuery) {
+        
         jQuery('#details-title, title').html(defaults.details.title);
         jQuery('#details-credit').html(defaults.details.credit);
         jQuery('#details-description').html(defaults.details.description);

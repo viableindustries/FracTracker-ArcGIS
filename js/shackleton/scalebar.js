@@ -12,7 +12,7 @@
  *
  */
  
-define([ 'dojo/_base/declare', 'esri/dijit/Scalebar', 'shackleton/map' ], function( declare, esriDijitScalebar ) {
+define([ 'dojo/_base/declare', 'esri/dijit/Scalebar' ], function( declare, esriDijitScalebar ) {
 
   var scalebar = declare('shackleton.scalebar', null, {
       

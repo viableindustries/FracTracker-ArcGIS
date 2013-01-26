@@ -1,6 +1,5 @@
 //
-// Visit the <a target="_blank" href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#basemapgallery">ArcGIS Online API Documentation to learn more about
-// the Esri Basemaps Class and read further documentation</a>
+// Enable the user to switch to the Base Map of their choice
 // 
 
 // Make sure that we have ``declare`` and the ``BasemapGallery``
@@ -30,7 +29,14 @@ define('SKBasemaps', ['dojo/_base/declare', 'esri/dijit/BasemapGallery' ], funct
 
 });
 
+// * * *
+// #### External Documentation
+// To learn more about the ArcGIS Javascript API methods used to
+// create this module we have listed the most commonly used methods
+// below:
 //
+// - <a target="_blank" href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#basemapgallery">Class: BasemapGallery</a>
+// * * *
 //     Shackleton is a framework for building web map applications
 //     that are compatible with ArcGIS Online.
 //

@@ -1,33 +1,57 @@
-/**
- * Developed Simple ArcGIS Web Application (c) 2013
- *
- *
- * This application was built by the folks at Viable for
- * use by it's clients. Any code herein is property of Developed
- * Simple unless where otherwise noted property of ESRI.
- *
- * To find out how you can use this software or have your
- * own version of this software built to fit your custom
- * needs, contact us by visiting www.developedsimple.com.
- *
- */
- 
-define([ 'dojo/_base/declare' ], function( declare ) {
+//
+// Enable the user to search for specific addresses or locations on the map
+//
 
-  var search = declare('shackleton.search', null, {  
-    constructor: function () {
-      console.log( 'shackleton.search._constructor' );
-      this.pooGas( 'constructor pooGas' );
-    },
-    pooGas: function ( thisVar ) {
-      console.log( 'shackleton.search.pooGas', thisVar );
-      this.ohNo( 'ohNo pooGas' );
-    },
-    ohNo: function ( thisVar ) {
-      console.log( 'shackleton.search.ohNo', thisVar );
+define([ 'dojo/_base/declare', 'esri/dijit/Geocoder' ], function( declare, esriDijitGeocoder ) {
+
+   //
+   // Listens for when the "search-address" button is clicked. Once it has been clicked
+   // it will initialize the rest of the address search functionality.
+   //
+  var SKSearchAddress = declare('shackleton.search', null, {
+                    
+    constructor: function() {
+
+        var thisGeocoder = new esri.dijit.Geocoder({
+          map: map,
+          autoComplete: true
+        },"search-address-test");
+        
+        thisGeocoder.startup();
+        
     }
+        
   });
 
-  return true;
+  return SKSearchAddress;
 
 });
+
+// * * *
+// #### External Documentation
+// To learn more about the ArcGIS Javascript API methods used to
+// create this module we have listed the most commonly used methods
+// below:
+//
+// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#simplemarkersymbol" target=_blank">Class: SimpleMarkerSymbol</a>
+
+// * * *
+//     Shackleton is a framework for building web map applications
+//     that are compatible with ArcGIS Online.
+//
+//     It is named in honor of the famous and widely respected
+//     British Antarctic explorer Sir Ernest Henry Shackleton.
+//
+//     Viable Industries, ArcGIS Compatible Web Application,
+//     where applicable. This application was built by the 
+//     folks at Viable Industries for use by it's clients only. 
+//     Any code herein is property of Viable Industries.
+//     unless where otherwise noted property of Esri/ArcGIS
+//
+//     To find out how you can use this software or have your
+//     own version of this software, custom built to fit your
+//     organizations needs, contact us by visiting
+//     www.viableindustries.com or emailing us at joshua@viable.io
+//
+//     Copyright (c) 2013 Viable Industries, All rights reserved.
+//     Unless otherwise noted. 

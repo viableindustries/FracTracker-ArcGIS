@@ -26,6 +26,18 @@
         <meta http-equiv="expires" content="0" />
         <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
         <meta http-equiv="pragma" content="no-cache" />
+        
+        <style>
+        
+              #search-address-test {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        top: 20px;
+        left: 75px;
+      } 
+      
+      </style>
 
   </head>
 
@@ -115,13 +127,14 @@
                 <option value="address">an address</option>
                 <option value="data">data</option>
               </select> like 
-              <input type="text" class="input-xlarge" id="address" placeholder="e.g., Pittburgh, PA" value="" /><p id="address-description">or find my <a data-dismiss="modal" href="#event_findMe" alt="Find my current location" class="event_findMe" id="geolocationBegin">current location</a></p>
-              <input type="text" class="input-xlarge" id="data" placeholder="e.g., Well 1029384756" value="" />
+              <div id="search-address-test"></div>
+              <input type="text" class="input-xlarge" style="display:none;" id="search-address" placeholder="e.g., Pittburgh, PA" value="" /><p id="address-description">or find my <a data-dismiss="modal" href="#event_findMe" alt="Find my current location" class="event_findMe" id="geolocationBegin">current location</a></p>
+              <input type="text" class="input-xlarge" style="display:none;" id="search-data" placeholder="e.g., Well 1029384756" value="" />
             </form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary event_executeLocationSearch" data-dismiss="modal">Locate Address</button>
-            <button class="btn btn-primary event_executeDataSearch element-invisible" data-dismiss="modal">Search Data</button>
+            <button class="btn btn-primary"  style="display:none;"id="search-address-begin" data-dismiss="modal">Locate Address</button>
+            <button class="btn btn-primary" style="display:none;" id="search-data-begin" data-dismiss="modal">Search Data</button>
           </div>
         </div>
 

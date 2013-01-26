@@ -144,6 +144,7 @@ define('SKGeolocation', [ 'dojo/_base/declare' ], function( declare ) {
 });
 
 // * * *
+// #### External Documentation
 // To learn more about the ArcGIS Javascript API methods used to
 // create this module we have listed the most commonly used methods
 // below:
@@ -158,7 +159,7 @@ define('SKGeolocation', [ 'dojo/_base/declare' ], function( declare ) {
 // - <a href="http://dev.w3.org/geo/api/spec-source-v2#geolocation_interface" target="_blank">W3 Development Documentation: HTML5 Geolocation API</a>
 
 // * * *
-// #### Task List for this module
+// #### Task List
 // 1. Read up on the necessity of the watchPosition method from the HTML5 Geolocation API
 // and if it is necessary or important the proper operation of the Geolocatio API, then
 // we should figure out a way to make this Geolocation module only display one sybmol
