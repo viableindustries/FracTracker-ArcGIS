@@ -17,8 +17,9 @@
   <span class="kd">var</span> <span class="nx">meta</span> <span class="o">=</span> <span class="nx">declare</span><span class="p">(</span><span class="s1">&#39;shackleton.meta&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
 
     <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-
+    
       <span class="k">if</span> <span class="p">(</span><span class="nx">jQuery</span><span class="p">)</span> <span class="p">{</span>
+        
         <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#details-title, title&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">details</span><span class="p">.</span><span class="nx">title</span><span class="p">);</span>
         <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#details-credit&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">details</span><span class="p">.</span><span class="nx">credit</span><span class="p">);</span>
         <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#details-description&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">details</span><span class="p">.</span><span class="nx">description</span><span class="p">);</span>

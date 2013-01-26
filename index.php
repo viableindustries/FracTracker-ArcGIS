@@ -27,18 +27,6 @@
         <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
         <meta http-equiv="pragma" content="no-cache" />
         
-        <style>
-        
-              #search-address-test {
-        display: block;
-        position: absolute;
-        z-index: 2;
-        top: 20px;
-        left: 75px;
-      } 
-      
-      </style>
-
   </head>
 
     <body>

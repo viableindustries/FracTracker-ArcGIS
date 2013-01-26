@@ -30,10 +30,9 @@ define([ 'dojo/_base/declare', 'esri/dijit/Geocoder' ], function( declare, esriD
 // * * *
 // #### External Documentation
 // To learn more about the ArcGIS Javascript API methods used to
-// create this module we have listed the most commonly used methods
-// below:
+// create this module:
 //
-// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#simplemarkersymbol" target=_blank">Class: SimpleMarkerSymbol</a>
+// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#geocoder" target=_blank">Class: Geocoder</a>
 
 // * * *
 //     Shackleton is a framework for building web map applications
