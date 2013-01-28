@@ -31,10 +31,13 @@ var requestRemoteData = function ( dataKey, dataType ) {
         if (dataType == 'application') {
           requestRemoteData(defaults.webmap, 'webmap');
         }
-        
-        if (dataType == 'webmap' && defaults.webmap) {
+        else if (dataType == 'webmap' && defaults.webmap) {
             var thisMap = new shackleton.map( defaults );
+        }
+        else {
+          return true;
         };
+        
       },
       //
       // If we don't have anything (e.g., Web Map ID, Application ID) then there
