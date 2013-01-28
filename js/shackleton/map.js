@@ -1,15 +1,13 @@
 define(['dojo/_base/declare', 'esri/arcgis/utils', 'shackleton/features' ], function(declare, esriArcgisUtils, shackletonFeatures ){
 
   map = declare('shackleton.map', null, {
-
-    _options: {
-      wrapAround180: true,
-      extent: esri.geometry.geographicToWebMercator()
-    },
     
     constructor: function ( defaults ) {
       
-      var mapDeferred = new esri.arcgis.utils.createMap(defaults.webmap, 'map', this._options);
+      var mapDeferred = new esri.arcgis.utils.createMap(defaults.webmap, 'map', {
+        wrapAround180: true,
+        extent: esri.geometry.geographicToWebMercator()
+      });
 
       mapDeferred.then(
         function ( response ) {

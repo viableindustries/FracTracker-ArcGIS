@@ -4,31 +4,37 @@
 
 // Setup the ``defaults`` object which sets options that will be
 // use throughout our application.
-var defaults = {};
+var map, defaults = {};
 
 // Here we are going to load our primary map. We need to make sure
 // that we include it here, so that we can use it when necessary.
 dojo.require('shackleton.map');
 
-var requestRemoteData = function ( dataKey, dataType, _UIElements ) {
+var requestRemoteData = function ( dataKey, dataType ) {
+  
+  var thisURL = esri.arcgis.utils.arcgisUrl + "/" + dataKey + "/data";
+  
   requestHandle = esri.request({
-      url: esri.arcgis.utils.arcgisUrl + "/" + dataKey + "/data",
+      url: thisURL,
       content: {
           f: "json"
        },
       callbackParamName: "callback",
       load: function ( response ) {
                 
-        sharingContentItems = (dataType == 'application') ? response.values: response;
+        var sharingContentItems = (dataType == 'application') ? response.values: response;
           
         for ( var key in sharingContentItems ) {
           defaults[key] = sharingContentItems[key];
         }
-                
+
         if (dataType == 'application') {
-          requestArcGisOnlineData(defaults.webmap, 'webmap');
-          console.log('recursive');
+          requestRemoteData(defaults.webmap, 'webmap');
         }
+        
+        if (dataType == 'webmap' && defaults.webmap) {
+            var thisMap = new shackleton.map( defaults );
+        };
       },
       //
       // If we don't have anything (e.g., Web Map ID, Application ID) then there
@@ -39,8 +45,11 @@ var requestRemoteData = function ( dataKey, dataType, _UIElements ) {
       //
       error: function ( error ) {
         jQuery(_UIElements).toggle();
+        console.log(error);
       }
   });    
+  
+  return defaults;
 };
 
 var __init__ = function () {
@@ -59,7 +68,6 @@ var __init__ = function () {
       return false;
   };
   
-  try {
      // 
      // Make sure that we are capable of loading an application
      // from ArcGIS Online. In order to do so we need either an
@@ -74,23 +82,14 @@ var __init__ = function () {
      //
     if (typeof defaults.query.webmap != 'undefined' ) {
       defaults.webmap = defaults.query.webmap;
-      requestRemoteData(defaults.query.webmap, 'webmap');    
+      requestRemoteData(defaults.webmap, 'webmap');    
     } 
     else if (typeof defaults.query.appid != 'undefined' ) {
       requestRemoteData(defaults.query.appid, 'application');
+    }
+    else {
+      console.log('Please add an ID to the URL above to load an ArcGIS Online Entity');
     };
-
-    //
-    // Here we actually instantiate our map and pass any defaults we have
-    // collected either from the application or the URL object.
-    //
-    var thisMap = new shackleton.map(defaults);
-  }
-  catch (error) {
-  
-    jQuery(_UIElements).toggle();
-
-  }
 
 };
 
