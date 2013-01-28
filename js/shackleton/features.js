@@ -2,7 +2,7 @@
 // Adds all of our modules to the map. By adding them here, there is no need to add them
 // in the init and map files, because those files are more touchy.
 //
-define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta', 'shackleton/basemaps', 'shackleton/geolocation', 'shackleton/search', 'shackleton/legend' ], function( declare, shackletonScalebar, shackletonMeta, shackletonBasemaps, shackletonGeolocation, shackletonSearch, shackletonLegend ) {
+define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta', 'shackleton/basemaps', 'shackleton/geolocation', 'shackleton/search', 'shackleton/legend', 'shackleton/layers' ], function( declare, shackletonScalebar, shackletonMeta, shackletonBasemaps, shackletonGeolocation, shackletonSearch, shackletonLegend, shackletonLayers ) {
 
   var _UIElements = "#progress,.toolbox-container,#logo";
 
@@ -26,6 +26,7 @@ define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta', 'shackl
       var thisGeolocation = new shackleton.geolocation();
       var thisSearch = new shackleton.search();
       var thisLegend = new shackleton.legend();
+      var thisLayers = new shackleton.layers();
       
       //
       // Make sure that the map resizes properly when the map is loaded on

@@ -1,167 +1,103 @@
 //
 // Enable the user to search for specific addresses or locations on the map
 //
+var singleLayer, visible = [];
 
-var visible = [];
-
-define([ 'dojo/_base/declare', 'esri/dijit/Legend' ], function( declare, esriDijitLegend ) {
-  
-    var SKLayersAddToList = declare(null, {
-      
-      constructor: function (layers) {
-
-        /* Overlay: Toggle the visibility of the map overlays
-        ======================================================= */
-        $('.overlay-button').bind('click', function () {
-          $('#overlay').toggle();
-        });
-
-        var layerList = layersBuildListVisible(layers);
-    
-        if (layerList.length > 0) {
-      
-          //create a menu of layers
-          layerList.reverse();
-          var menu = new dijit.Menu({
-            id: 'overlay-content-menu'
-          });
-      
-          //console.log(layerList);
-      
-          dojo.forEach(layerList, function (layer) {
-            menu.addChild(new dijit.CheckedMenuItem({
-            // var menu = new dijit.CheckedMenuItem({
-              label: layer.title,
-              checked: layer.visible,
-              onChange: function () {
-                if (layer.layer.featureCollection) {
-                  //turn off all the layers in the feature collection even
-                  //though only the  main layer is listed in the layer list 
-                  dojo.forEach(layer.layer.featureCollection.layers, function (layer) {
-                    layer.layerObject.setVisibility(!layer.layerObject.visible);
-                  });
-                } else {
-                  layer.layer.setVisibility(!layer.layer.visible);
-                }
-
-              }
-            }, dojo.byId('overlay-content-div')));
-          });
-
-
-          // var button = new dijit.form.DropDownButton({
-          //   label: i18n.tools.layers.label,
-          //   id: "layerBtn",
-          //   iconClass: "esriLayerIcon",
-          //   title: i18n.tools.layers.title,
-          //   dropDown: menu
-          // });
-          // 
-          dojo.byId('overlay-content').appendChild(menu.domNode);
-        }
-      }
-  
-    });
-  
-    var SKLayersBuildListOfVisible = declare(null, {
-    
-    constructor: function (layers) {
-      var layerInfos = [];
-      dojo.forEach(layers, function (mapLayer, index) {
-        if (mapLayer.featureCollection && !mapLayer.layerObject) {
-          if (mapLayer.featureCollection.layers) {
-            //add the first layer in the layer collection... not all  - when we turn off the layers we'll 
-            //turn them all off 
-            if (mapLayer.featureCollection.layers) {
-              layerInfos.push({
-                "layer": mapLayer,
-                "visible": mapLayer.visibility,
-                "title": mapLayer.title
-              });
-            }
-          }
-        } else if (mapLayer.layerObject) {
-          layerInfos.push({
-            layer: mapLayer.layerObject,
-            visible: mapLayer.layerObject.visible,
-            title: mapLayer.title
-          });
-        }
-      });
-      return layerInfos;
-    }
-  });
-
+define([ 'dojo/_base/declare', 'dijit/dijit', "dijit/Menu", "dijit/MenuItem", "dijit/CheckedMenuItem", "dijit/MenuSeparator", "dijit/PopupMenuItem" ], function( declare, Menu, MenuItem, CheckedMenuItem, MenuSeparator, PopupMenuItem ) {
 
   var SKLayersBuildList = declare(null, {
-    
-    constructor: function (layers) {
-      var layerInfos = [];
-      dojo.forEach(layers, function (mapLayer, index) {
-        if (mapLayer.featureCollection && !mapLayer.layerObject) {
-          if (mapLayer.featureCollection.layers && mapLayer.featureCollection.showLegend) {
-            if (mapLayer.featureCollection.layers.length === 1) {
-              layerInfos.push({
-                "layer": mapLayer.featureCollection.layers[0].layerObject,
-                "title": mapLayer.title
-              });
-            } else {
-              dojo.forEach(mapLayer.featureCollection.layers, function (layer) {
-                layerInfos.push({
-                  layer: layer.layerObject,
-                  title: mapLayer.title
-                });
-              });
-            }
 
-          }
-        } else if (mapLayer.layerObject) {
-          layerInfos.push({
-            layer: mapLayer.layerObject,
-            title: mapLayer.title
-          });
+    constructor: function ( layer ) {
+      
+      layer.reverse();
+      
+      var items = dojo.map(layer, function ( thisLayer, index ) {
+        
+        if ( thisLayer.visibility ) {
+          visible.push( thisLayer.id );
+        };
+        
+        return '<label for="' + thisLayer.id + '" class="checkbox"><input type="checkbox" class="layer-item" data-layer="' + index + '" id="' + thisLayer.id + '"' + (thisLayer.visibility ? 'checked="checked"': '') + ' /> ' + thisLayer.title + '</label>';
+      
+      });
+      
+      dojo.byId("layers-content").innerHTML = items.join('');
+
+      
+    }
+
+  });
+
+  var SKUpdateLayerVisibility = declare(null, {
+
+    constructor: function ( layerItemId ) {
+      
+      var thisLayerItemId = '#' + layerItemId.srcElement.id;
+      
+      var thisLayerId = jQuery(thisLayerItemId).data('layer');
+      
+      if (layerItemId.toElement.checked == true) {
+
+        console.log(thisLayerId);
+        jQuery(thisLayerItemId + '_layer').css('display','block');
+        
+        layers[thisLayerId].visibility = true;
+ 
+      } else if (layerItemId.toElement.checked == false) {
+ 
+        console.log(thisLayerId);
+        jQuery(thisLayerItemId + '_layer').css('display','none');
+        
+        layers[thisLayerId].visibility = false;
+         
+      };
+      
+      
+            //       
+            //       
+            // //thisElement = 'jQuery("#' + layerItemId.srcElement.id + '_layer").toggle();';
+            // thisElement = 'svg g#' + layerItemId.srcElement.id + '_layer';            
+            // 
+            // //console.log(thisElement);
+            // 
+      // var inputs = dojo.query(".layer-item"), input;
+      // 
+      // visible = [];
+      // 
+      // dojo.forEach(inputs, function( input ){
+      //   if (input.checked) {
+      //       visible.push(input.id);
+      //   }
+      // });
+      // 
+      // console.log('The visible layers list after update', visible);
+      
+    }
+
+  });
+    
+  var SKLayers = declare('shackleton.layers', null, {
+                    
+    constructor: function() {
+      
+      layers = defaults.operationalLayers;
+      
+      dojo.forEach(layers, function ( thisLayer, index ) {
+        if (thisLayer.url) {
+          singleLayer[index] = new esri.layers.ArcGISDynamicMapServiceLayer(thisLayer.url);
         }
       });
-      return layerInfos;
-    }
-    
-  });
-
-
-  var SKLayersVisibility = declare(null, {
-    
-    constructor: function () {
       
-      var inputs = dojo.query('.list-item'), input;
+      SKLayersBuildList( layers );
       
-      for (var i = 0, il = inputs.length; i < il; i++) {
-        if (inputs[i].checked) {
-          visible.push(inputs[i].id);
-        }
-      }
-      
-      if(visible.length === 0){
-        visible.push(-1);
-      }
-  
-      layer.setVisibleLayers(visible);
-    }
-    
-  });
+      console.log(layers);
+                  
+      jQuery('.layer-item').click(SKUpdateLayerVisibility);
 
-   //
-   // Listens for when the "search-address" button is clicked. Once it has been clicked
-   // it will initialize the rest of the address search functionality.
-   //
-  var SKLayers = declare('shackleton.legend', null, {
-    
-    constructor: function() {
-
-        
-        
     }
         
   });
+
 
   return {
     SKLayers: SKLayers
