@@ -33,6 +33,11 @@ boxShadow(sValues)
   -moz-box-shadow sValues
   -webkit-box-shadow sValues
 
+textShadow(sValues)
+  box-shadow sValues
+  -moz-box-shadow sValues
+  -webkit-box-shadow sValues
+
 backgroundClip(cType)
   -webkit-background-clip cType
   -moz-background-clip cType
@@ -68,17 +73,19 @@ animate-element(aDuration, aIteration, aName)
 @import 'lib/bootstrap.min.css'
 @import 'lib/bootstrap-responsive.min.css'
 
-@import 'lib/layout'
-@import 'lib/toolbar'
-@import 'lib/icons'
 @import 'lib/animation'
-
+@import 'lib/icons'
+@import 'lib/layout'
 @import 'lib/modal.css'
+@import 'lib/toolbar'
 
 /**
  * ArcGIS Style dependencies
  */
-@import 'lib/scalebar'
-@import 'lib/zoomslider'
 @import 'lib/attribution'
 @import 'lib/basemaps'
+@import 'lib/geocoder'
+@import 'lib/layers'
+@import 'lib/legend'
+@import 'lib/scalebar'
+@import 'lib/zoomslider'

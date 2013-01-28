@@ -2,29 +2,28 @@
 // Enable the user to search for specific addresses or locations on the map
 //
 
-define([ 'dojo/_base/declare', 'esri/dijit/Geocoder' ], function( declare, esriDijitGeocoder ) {
+define([ 'dojo/_base/declare', 'esri/dijit/Legend' ], function( declare, esriDijitLegend ) {
 
    //
    // Listens for when the "search-address" button is clicked. Once it has been clicked
    // it will initialize the rest of the address search functionality.
    //
-  var SKSearchAddress = declare('shackleton.search', null, {
-                    
+  var SKLegend = declare('shackleton.legend', null, {
+    
     constructor: function() {
 
-        var thisGeocoder = new esri.dijit.Geocoder({
-          map: map,
-          autoComplete: true
-        }, "search-address-test");
-        
-        thisGeocoder.startup();
+        var thisLegend = new esri.dijit.Legend({
+          map: map
+        }, "legend-content");
+                
+        thisLegend.startup();
         
     }
         
   });
 
   return {
-    SKSearchAddress: SKSearchAddress
+    SKLegend: SKLegend
   };
 
 });
@@ -34,7 +33,7 @@ define([ 'dojo/_base/declare', 'esri/dijit/Geocoder' ], function( declare, esriD
 // To learn more about the ArcGIS Javascript API methods used to
 // create this module:
 //
-// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#geocoder" target=_blank">Class: Geocoder</a>
+// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#legend" target=_blank">Class: Legend</a>
 
 // * * *
 //     Shackleton is a framework for building web map applications

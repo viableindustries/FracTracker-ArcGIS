@@ -14,7 +14,7 @@
 
 define([ 'dojo/_base/declare' ], function( declare ) {
 
-  var meta = declare('shackleton.meta', null, {
+  var SKMeta = declare('shackleton.meta', null, {
 
     constructor: function () {
     
@@ -43,6 +43,8 @@ define([ 'dojo/_base/declare' ], function( declare ) {
 
   });
 
-  return meta;
+  return {
+    SKMeta: SKMeta
+  };
 
 });

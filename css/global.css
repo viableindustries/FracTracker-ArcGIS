@@ -1,20 +1,12 @@
 @import 'lib/bootstrap.min.css';
 @import 'lib/bootstrap-responsive.min.css';
-html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%}
-.map .layerTile{position:absolute;border:none;margin:0;padding:0}
-.logo{background-color:transparent;background-image:url("../../images/sprite.png");background-position:-306px -426px;background-repeat:no-repeat;text-indent:-999999px;position:absolute;top:auto;right:20px;bottom:10px;left:auto;height:40px;width:114px;z-index:6}
-.progress{position:absolute;top:38%;right:25%;bottom:auto;left:25%;height:38px;line-height:38px;width:50%}
-.element-invisible{display:none}
-.toolbox-container,.toolbox,.toolbox-inner{display:block}
-.toolbox-container.element-invisible{display:none}
-.toolbox-container{position:absolute;top:20px;right:20px;bottom:auto;left:auto}
-.toolbox{background-color:#101010;background-color:rgba(16,16,16,0.3);-webkit-border-radius:3px;-moz-border-radius:3px;-khtml-border-radius:3px;-o-border-radius:3px;border-radius:3px;color:#f2f2f2;float:left;margin:0;padding:3px;position:relative}
-.toolbox-inner{background-color:#101010;background-color:rgba(16,16,16,0.8);-webkit-border-radius:3px;-moz-border-radius:3px;-khtml-border-radius:3px;-o-border-radius:3px;border-radius:3px;float:left;margin:0;padding:0;width:100%}
-.toolbox ul,.toolbox li{list-style-type:none;margin:0;padding:0}
-.toolbox a{color:#f2f2f2;display:block;font-size:12px;padding:7px 22px 7px 7px;text-decoration:none}
-.toolbox a:hover{background-color:#101010;background-color:rgba(16,16,16,0.8)}
-.toolbox a i,.toolbox a span{display:inline;display:inline-block}
-.toolbox a span{padding:0 0 0 8px}
+@-webkit-keyframes markerPulse{0%{opacity:1}
+45%{opacity:.2}
+100%{opacity:1}
+}@-moz-keyframes markerPulse{0%{opacity:1}
+45%{opacity:.2}
+100%{opacity:1}
+}#map_graphics_layer circle{-webkit-animation-duration:3s;-webkit-animation-iteration-count:infinite;-webkit-animation-name:markerPulse;-moz-animation-duration:3s;-moz-animation-iteration-count:infinite;-moz-animation-name:markerPulse}
 .icon{display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
 .icon-about{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 0;background-repeat:no-repeat;text-indent:-999999px}
 .icon-search{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -18px;background-repeat:no-repeat;text-indent:-999999px}
@@ -24,14 +16,37 @@ html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%
 .icon-measure{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -90px;background-repeat:no-repeat;text-indent:-999999px}
 .icon-note{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -108px;background-repeat:no-repeat;text-indent:-999999px}
 .icon-export{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -126px;background-repeat:no-repeat;text-indent:-999999px}
-@-webkit-keyframes markerPulse{0%{opacity:1}
-45%{opacity:.2}
-100%{opacity:1}
-}@-moz-keyframes markerPulse{0%{opacity:1}
-45%{opacity:.2}
-100%{opacity:1}
-}#map_graphics_layer circle{-webkit-animation-duration:3s;-webkit-animation-iteration-count:infinite;-webkit-animation-name:markerPulse;-moz-animation-duration:3s;-moz-animation-iteration-count:infinite;-moz-animation-name:markerPulse}
+html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%}
+.map .layerTile{position:absolute;border:none;margin:0;padding:0}
+.logo{background-color:transparent;background-image:url("../../images/sprite.png");background-position:-306px -426px;background-repeat:no-repeat;text-indent:-999999px;position:absolute;top:auto;right:20px;bottom:10px;left:auto;height:40px;width:114px;z-index:6}
+.progress{position:absolute;top:38%;right:25%;bottom:auto;left:25%;height:38px;line-height:38px;width:50%}
+.element-invisible{display:none}
+.draggable h3{cursor:move}
 @import 'lib/modal.css';
+.toolbox-container,.toolbox,.toolbox-inner{display:block}
+.toolbox-container.element-invisible{display:none}
+.toolbox-container{position:absolute;top:20px;right:20px;bottom:auto;left:auto;display:none}
+.toolbox{background-color:#101010;background-color:rgba(16,16,16,0.3);-webkit-border-radius:3px;-moz-border-radius:3px;-khtml-border-radius:3px;-o-border-radius:3px;border-radius:3px;color:#f2f2f2;float:left;margin:0;padding:3px;position:relative}
+.toolbox-inner{background-color:#101010;background-color:rgba(16,16,16,0.8);-webkit-border-radius:3px;-moz-border-radius:3px;-khtml-border-radius:3px;-o-border-radius:3px;border-radius:3px;float:left;margin:0;padding:0;width:100%}
+.toolbox h3{border-bottom:1px solid #424242;color:#f2f2f2;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:16px;padding:0 0 8px;text-align:center}
+.toolbox ul,.toolbox li{list-style-type:none;margin:0;padding:0}
+.toolbox a{color:#f2f2f2;display:block;font-size:12px;padding:7px 22px 7px 7px;text-decoration:none}
+.toolbox a:hover{background-color:#101010;background-color:rgba(16,16,16,0.8)}
+.toolbox a i,.toolbox a span{display:inline;display:inline-block}
+.toolbox a span{padding:0 0 0 8px}
+.esriControlsBR{position:absolute;top:auto;right:138px;bottom:15px;left:auto;z-index:9999}
+.esriControlsBR span{font-size:11px;color:#101010;color:rgba(16,16,16,0.3)}
+.esriAttributionDelim{display:none}
+.esriBasemapGalleryNode{float:left;margin:5px 10px;text-align:center;width:150px}
+.esriBasemapGalleryLabelContainer{font-size:11px}
+.esriBasemapGalleryThumbnail{border:1px solid #fff;box-shadow:0 0 7px #000;-moz-box-shadow:0 0 7px #000;-webkit-box-shadow:0 0 7px #000;height:67px;margin:1px;width:100px}
+.esriBasemapGallerySelectedNode .esriBasemapGalleryThumbnail{border:2px solid #f99;margin:0}
+#layers{position:absolute;top:20px;right:auto;bottom:auto;left:311px;min-width:220px;z-index:9998}
+#layers-content{margin:0;min-width:220px}
+.esriLayersService{border-bottom:1px solid #424242;padding:2px 12px}
+#legend{position:absolute;top:20px;right:auto;bottom:auto;left:71px;min-width:220px;z-index:9998}
+#legend-content{margin:0;min-width:220px}
+.esriLegendService{border-bottom:1px solid #424242;padding:2px 12px}
 .esriScalebar{position:absolute;top:auto;right:auto;bottom:20px;left:20px !important;height:14px;min-width:144px;z-index:30}
 .esriScalebarRuler{background-color:#fff;border:none;height:6px;overflow:hidden;position:relative;width:100%}
 .esriScalebarRulerBlock{background-color:#101010;overflow:hidden;position:absolute;height:50%}
@@ -45,10 +60,3 @@ html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%
 .esriSimpleSlider{position:absolute;top:20px;right:auto;bottom:auto;left:20px;background-color:#101010;background-color:rgba(16,16,16,0.3);-webkit-border-radius:3px;-moz-border-radius:3px;-khtml-border-radius:3px;-o-border-radius:3px;border-radius:3px;margin:0;padding:3px}
 .esriSimpleSlider div{background-color:#101010;background-color:rgba(16,16,16,0.8);-webkit-border-radius:3px;-moz-border-radius:3px;-khtml-border-radius:3px;-o-border-radius:3px;border-radius:3px;color:#f2f2f2;cursor:pointer;display:block;font-family:Helvetica,Arial,sans-serif;font-size:18px;font-weight:bold;line-height:18px;margin:0;padding:3px 7px 5px;text-align:center}
 .esriSimpleSlider div:last-child{margin-top:3px}
-.esriControlsBR{position:absolute;top:auto;right:138px;bottom:15px;left:auto;z-index:9999}
-.esriControlsBR span{font-size:11px;color:#101010;color:rgba(16,16,16,0.3)}
-.esriAttributionDelim{display:none}
-.esriBasemapGalleryNode{float:left;margin:5px 10px;text-align:center;width:150px}
-.esriBasemapGalleryLabelContainer{font-size:11px}
-.esriBasemapGalleryThumbnail{border:1px solid #fff;box-shadow:0 0 7px #000;-moz-box-shadow:0 0 7px #000;-webkit-box-shadow:0 0 7px #000;height:67px;margin:1px;width:100px}
-.esriBasemapGallerySelectedNode .esriBasemapGalleryThumbnail{border:2px solid #f99;margin:0}

@@ -47,7 +47,7 @@
                         <li><a href="#details" role="button" title="Learn more about the contents of this map" data-toggle="modal" data-target="#details" data-dynamic="true"><i class="icon icon-about"></i> <span>About</span></a></li>
                         <li><a href="#search" title="Find a location or specific information on this map" data-toggle="modal"><i class="icon icon-search"></i> <span>Search</span></a></li>
                         <li><a href="#layers" title="Toggle the layers of this map"><i class="icon icon-layers"></i> <span>Layers</span></a></li>
-                        <li><a href="#legend" title=""><i class="icon icon-legend"></i> <span>Legend</span></a></li>
+                        <li><a href="#legend" title="" data-target="#legend"><i class="icon icon-legend"></i> <span>Legend</span></a></li>
                         <li><a href="#basemaps" title="" data-toggle="modal" data-target="#basemaps" data-dynamic="true"><i class="icon icon-basemap"></i> <span>Base Maps</span></a></li>
                         <li><a href="#measurements" title=""><i class="icon icon-measure"></i> <span>Measure</span></a></li>
                         <li><a href="#notes" title=""><i class="icon icon-note"></i> <span>Notes</span></a></li>
@@ -57,18 +57,31 @@
             </div>
         </aside>
         <!-- End:Toolbar -->
-          
-        <!-- : Layers -->
-        <!-- <div id="overlay" class="toolbox-container draggable">
-          <div class="toolbox">
-            <div class="toolbox-inner">
-              <a data-toggle="modal" href="#modalOverlay" title="" target="" class="overlay-button titleButton modal-close-button close">close</a>
-              <h3>Map Overlays</h3>
-              <div id="overlay-content"></div>
-            </div>
-          </div>
-        </div> -->
 
+        <!-- Start:Legend -->
+        <aside id="legend" class="toolbox-container draggable">
+            <div class="toolbox">
+                <div class="toolbox-inner">
+                    <button class="close" data-dismiss="modal">×</button>
+                    <h3>Legend</h3>
+                    <div id="legend-content"></div>
+                </div>
+            </div>
+        </aside>
+        <!-- End:Toolbar -->
+
+        <!-- Start:Layers -->
+        <aside id="layers" class="toolbox-container draggable">
+            <div class="toolbox">
+                <div class="toolbox-inner">
+                    <button class="close" data-dismiss="modal">×</button>
+                    <h3>Layer</h3>
+                    <div id="layers-content"></div>
+                </div>
+            </div>
+        </aside>
+        <!-- End:Layers -->
+          
         <!-- : Bookmarks -->
         <!-- <div id="bookmarks" class="toolbox-container draggable">
           <div class="toolbox">
@@ -202,7 +215,8 @@
            };
         </script>
         <script src="//serverapi.arcgisonline.com/jsapi/arcgis/3.3/"></script>
-        <script src="js/lib/jquery-1.8.1.min.js"></script>
+        <script src="js/lib/jquery-1.7.2.min.js"></script>
+        <script src="js/lib/jquery.draggable.min.js"></script>
         <script src="js/lib/bootstrap.min.js"></script>
         <script src="js/init.js?<?php print date('U'); ?>"></script>
     
