@@ -12,6 +12,7 @@ define('SKBasemaps', ['dojo/_base/declare', 'esri/dijit/BasemapGallery' ], funct
       //
       // Instantiate our Basemap Gallery and make sure that
       // we are using the basic set of ArcGIS Basemaps.
+      //
       var basemapsGallery = new esri.dijit.BasemapGallery({
         showArcGISBasemaps: true,
         map: map
