@@ -2,9 +2,31 @@
 // Adds all of our modules to the map. By adding them here, there is no need to add them
 // in the init and map files, because those files are more touchy.
 //
-define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta', 'shackleton/basemaps', 'shackleton/geolocation', 'shackleton/search', 'shackleton/legend', 'shackleton/layers', 'shackleton/print' ], function( declare, shackletonScalebar, shackletonMeta, shackletonBasemaps, shackletonGeolocation, shackletonSearch, shackletonLegend, shackletonLayers, shackletonPrint ) {
+define([
+  'dojo/_base/declare',
+  'shackleton/scalebar',
+  'shackleton/meta',
+  'shackleton/basemaps',
+  'shackleton/geolocation',
+  'shackleton/search',
+  'shackleton/legend',
+  'shackleton/layers',
+  'shackleton/print',
+  'shackleton/embed'
+], function(
+  declare,
+  shackletonScalebar,
+  shackletonMeta,
+  shackletonBasemaps,
+  shackletonGeolocation,
+  shackletonSearch,
+  shackletonLegend,
+  shackletonLayers,
+  shackletonPrint,
+  shackletonEmbed
+) {
 
-  var _UIElements = "#progress,.toolbox-container,#logo";
+  var _UIElements = "#progress,#toolbox,#logo";
 
   var SKFeatures = declare('shackleton.features', null, {
     
@@ -68,6 +90,12 @@ define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta', 'shackl
         console.error('shackleton.print', error.message);
       }
 
+      try {
+        var thisEmbed = new shackleton.embed();
+      } catch (error) {
+        console.error('shackleton.embed', error.message);
+      }
+
             
       //
       // Make sure that the map resizes properly when the map is loaded on
@@ -83,6 +111,18 @@ define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta', 'shackl
       // draggable element, so that the user can position wherever they like.
       jQuery( ".draggable" ).draggable({
         handle: 'h3'
+      });
+      
+
+      // Toggle all of our various toolboxes (i.e., Legend, Layers, Notes)
+      jQuery('.toolbox-toggle').click(function() {
+        
+        thisToggle = jQuery(this).attr('data-target');
+        
+        jQuery(thisToggle).toggle();
+        
+        return false;
+                
       });
       
     }

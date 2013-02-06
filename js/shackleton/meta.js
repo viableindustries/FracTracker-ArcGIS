@@ -21,8 +21,9 @@ define([ 'dojo/_base/declare' ], function( declare ) {
       if (jQuery) {
         
         jQuery('#details-title, title').html(defaults.details.title);
-        jQuery('#details-credit').html(defaults.details.credit);
         jQuery('#details-description').html(defaults.details.description);
+        jQuery('#details-usage').html('<hr />' + defaults.details.licenseInfo);
+        jQuery('#details-credit').html('<hr />' + defaults.details.accessInformation);
 
         /**
          * Break out tags into a comma separated list
@@ -30,12 +31,12 @@ define([ 'dojo/_base/declare' ], function( declare ) {
         var tags;
 
         for (var keys in defaults.details.tags) {
-          if (defaults.details.tags[keys] !== 'undefined') {
+          if (defaults.details.tags[keys] != 'undefined') {
             tags += defaults.details.tags[keys] + ',';
           };
         };
 
-        jQuery('#details-tags').html(tags.substring(0, tags.length-1));
+        jQuery('#details-tags').html('<hr /><p>' + tags.substring(0, tags.length-1) + '</p>');
 
       };
 

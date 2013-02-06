@@ -13,7 +13,7 @@ define('SKBasemaps', ['dojo/_base/declare', 'esri/dijit/BasemapGallery' ], funct
       // Instantiate our Basemap Gallery and make sure that
       // we are using the basic set of ArcGIS Basemaps.
       //
-      var basemapsGallery = new esri.dijit.BasemapGallery({
+      var thisBasemapGallery = new esri.dijit.BasemapGallery({
         showArcGISBasemaps: true,
         map: map
         // Add the Basemaps to the Basemaps modal
@@ -21,7 +21,16 @@ define('SKBasemaps', ['dojo/_base/declare', 'esri/dijit/BasemapGallery' ], funct
 
 
       // Startup the Basemap Gallery as soon as possible
-      basemapsGallery.startup();
+      thisBasemapGallery.startup();
+      
+      dojo.connect( thisBasemapGallery, "onSelectionChange", function() {
+
+          var newBasemap = thisBasemapGallery.getSelected();
+          
+          jQuery('#basemap-changed .title').text(newBasemap.title);          
+          jQuery('#basemap-changed').show().delay(3000).fadeOut();
+          
+      });
     }
 
   });

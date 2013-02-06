@@ -9,18 +9,37 @@ define([ 'dojo/_base/declare', 'esri/dijit/Geocoder' ], function( declare, esriD
    // it will initialize the rest of the address search functionality.
    //
   var SKSearchAddress = declare('shackleton.search', null, {
-                    
+
+    _updateSearchOptions: function ( layerObjectList ) {
+
+      layerObjectList.reverse();
+
+      var items = dojo.map(layerObjectList, function ( thisLayer, thisLayerIndex ) {
+
+        if (thisLayer.url) {
+          jQuery("#search-type").append('<option value="' + thisLayer.url + '">' + thisLayer.title + '</option>');
+        }
+
+      });
+
+      return items;
+
+    },
+
     constructor: function() {
 
         var thisGeocoder = new esri.dijit.Geocoder({
           map: map,
           autoComplete: true
         }, "search-address-test");
-        
+
         thisGeocoder.startup();
-        
+
+        layers = defaults.operationalLayers;
+        this._updateSearchOptions(layers);
+
     }
-        
+
   });
 
   return {
