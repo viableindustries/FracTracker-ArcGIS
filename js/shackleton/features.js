@@ -2,7 +2,7 @@
 // Adds all of our modules to the map. By adding them here, there is no need to add them
 // in the init and map files, because those files are more touchy.
 //
-define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta', 'shackleton/basemaps', 'shackleton/geolocation', 'shackleton/search', 'shackleton/legend', 'shackleton/layers' ], function( declare, shackletonScalebar, shackletonMeta, shackletonBasemaps, shackletonGeolocation, shackletonSearch, shackletonLegend, shackletonLayers ) {
+define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta', 'shackleton/basemaps', 'shackleton/geolocation', 'shackleton/search', 'shackleton/legend', 'shackleton/layers', 'shackleton/print' ], function( declare, shackletonScalebar, shackletonMeta, shackletonBasemaps, shackletonGeolocation, shackletonSearch, shackletonLegend, shackletonLayers, shackletonPrint ) {
 
   var _UIElements = "#progress,.toolbox-container,#logo";
 
@@ -20,14 +20,55 @@ define([ 'dojo/_base/declare', 'shackleton/scalebar', 'shackleton/meta', 'shackl
       //   For a list of more functionality available through to this web map
       //   application on ArcGIS.com.
       //
-      var thisScalebar = new shackleton.scalebar();
-      var thisMeta = new shackleton.meta();
-      var thisBasemaps = new shackleton.basemaps();
-      var thisGeolocation = new shackleton.geolocation();
-      var thisSearch = new shackleton.search();
-      var thisLegend = new shackleton.legend();
-      var thisLayers = new shackleton.layers();
-      
+      try {
+        var thisScalebar = new shackleton.scalebar();        
+      } catch (error) {
+        console.error(error);
+      }
+
+      try {
+        var thisMeta = new shackleton.meta();       
+      } catch (error) {
+        console.error(error);
+      }
+
+      try {
+        var thisBasemaps = new shackleton.basemaps();       
+      } catch (error) {
+        console.error(error);
+      }
+
+      try {
+        var thisGeolocation = new shackleton.geolocation();        
+      } catch (error) {
+        console.error(error);
+      }
+
+      try {
+        var thisSearch = new shackleton.search();        
+      } catch (error) {
+        console.error(error);
+      }
+
+      try {
+        var thisLegend = new shackleton.legend();
+      } catch (error) {
+        console.error(error);
+      }
+
+      try {
+        var thisLayers = new shackleton.layers();
+      } catch (error) {
+        console.error('shackleton.layers', error.message);
+      }
+
+      try {
+        var thisPrint = new shackleton.print();
+      } catch (error) {
+        console.error('shackleton.print', error.message);
+      }
+
+            
       //
       // Make sure that the map resizes properly when the map is loaded on
       // various devices (e.g., desktop, tablet, smartphone) or when the
