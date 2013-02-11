@@ -12,7 +12,8 @@ define([
   'shackleton/legend',
   'shackleton/layers',
   'shackleton/print',
-  'shackleton/embed'
+  'shackleton/embed',
+  'shackleton/dataexport'
 ], function(
   declare,
   shackletonScalebar,
@@ -23,16 +24,17 @@ define([
   shackletonLegend,
   shackletonLayers,
   shackletonPrint,
-  shackletonEmbed
+  shackletonEmbed,
+  shackletonDataExport
 ) {
 
   var _UIElements = "#progress,#toolbox,#logo";
+  
+  var SKSelectionToolbar, gp;
 
   var SKFeatures = declare('shackleton.features', null, {
     
-    /**
      // If you would like to initially hide a feature, simply place it's ID in this list
-     */      
     constructor: function () {
       
       //
@@ -94,6 +96,12 @@ define([
         var thisEmbed = new shackleton.embed();
       } catch (error) {
         console.error('shackleton.embed', error.message);
+      }
+
+      try {
+        var thisDataExport = new shackleton.dataexport();
+      } catch (error) {
+        console.error('shackleton.dataexport', error.message);
       }
 
             

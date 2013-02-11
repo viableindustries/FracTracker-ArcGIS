@@ -1,67 +1,116 @@
-<!DOCTYPE html>  <html> <head>   <title>features.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="init.html">                 init.js               </a>                                           <a class="source" href="basemaps.html">                 basemaps.js               </a>                                           <a class="source" href="cache.html">                 cache.js               </a>                                           <a class="source" href="features.html">                 features.js               </a>                                           <a class="source" href="geolocation.html">                 geolocation.js               </a>                                           <a class="source" href="layers.html">                 layers.js               </a>                                           <a class="source" href="legend.html">                 legend.js               </a>                                           <a class="source" href="map.html">                 map.js               </a>                                           <a class="source" href="meta.html">                 meta.js               </a>                                           <a class="source" href="scalebar.html">                 scalebar.js               </a>                                           <a class="source" href="search.html">                 search.js               </a>                                           <a class="source" href="utilities.html">                 utilities.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               features.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Adds all of our modules to the map. By adding them here, there is no need to add them
-in the init and map files, because those files are more touchy.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">define</span><span class="p">([</span> <span class="s1">&#39;dojo/_base/declare&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/scalebar&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/meta&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/basemaps&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/geolocation&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/search&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/legend&#39;</span><span class="p">,</span> <span class="s1">&#39;shackleton/layers&#39;</span> <span class="p">],</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">declare</span><span class="p">,</span> <span class="nx">shackletonScalebar</span><span class="p">,</span> <span class="nx">shackletonMeta</span><span class="p">,</span> <span class="nx">shackletonBasemaps</span><span class="p">,</span> <span class="nx">shackletonGeolocation</span><span class="p">,</span> <span class="nx">shackletonSearch</span><span class="p">,</span> <span class="nx">shackletonLegend</span><span class="p">,</span> <span class="nx">shackletonLayers</span> <span class="p">)</span> <span class="p">{</span>
+<!DOCTYPE html>  <html> <head>   <title>features.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="init.html">                 init.js               </a>                                           <a class="source" href="basemaps.html">                 basemaps.js               </a>                                           <a class="source" href="cache.html">                 cache.js               </a>                                           <a class="source" href="dataexport.html">                 dataexport.js               </a>                                           <a class="source" href="embed.html">                 embed.js               </a>                                           <a class="source" href="features.html">                 features.js               </a>                                           <a class="source" href="geolocation.html">                 geolocation.js               </a>                                           <a class="source" href="layers.html">                 layers.js               </a>                                           <a class="source" href="legend.html">                 legend.js               </a>                                           <a class="source" href="map.html">                 map.js               </a>                                           <a class="source" href="meta.html">                 meta.js               </a>                                           <a class="source" href="print.html">                 print.js               </a>                                           <a class="source" href="scalebar.html">                 scalebar.js               </a>                                           <a class="source" href="search.html">                 search.js               </a>                                           <a class="source" href="utilities.html">                 utilities.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               features.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Adds all of our modules to the map. By adding them here, there is no need to add them
+in the init and map files, because those files are more touchy.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">define</span><span class="p">([</span>
+  <span class="s1">&#39;dojo/_base/declare&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;shackleton/scalebar&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;shackleton/meta&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;shackleton/basemaps&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;shackleton/geolocation&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;shackleton/search&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;shackleton/legend&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;shackleton/layers&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;shackleton/print&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;shackleton/embed&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;shackleton/dataexport&#39;</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span>
+  <span class="nx">declare</span><span class="p">,</span>
+  <span class="nx">shackletonScalebar</span><span class="p">,</span>
+  <span class="nx">shackletonMeta</span><span class="p">,</span>
+  <span class="nx">shackletonBasemaps</span><span class="p">,</span>
+  <span class="nx">shackletonGeolocation</span><span class="p">,</span>
+  <span class="nx">shackletonSearch</span><span class="p">,</span>
+  <span class="nx">shackletonLegend</span><span class="p">,</span>
+  <span class="nx">shackletonLayers</span><span class="p">,</span>
+  <span class="nx">shackletonPrint</span><span class="p">,</span>
+  <span class="nx">shackletonEmbed</span><span class="p">,</span>
+  <span class="nx">shackletonDataExport</span>
+<span class="p">)</span> <span class="p">{</span>
 
-  <span class="kd">var</span> <span class="nx">_UIElements</span> <span class="o">=</span> <span class="s2">&quot;#progress,.toolbox-container,#logo&quot;</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">_UIElements</span> <span class="o">=</span> <span class="s2">&quot;#progress,#toolbox,#logo&quot;</span><span class="p">;</span>
+  
+  <span class="kd">var</span> <span class="nx">SKSelectionToolbar</span><span class="p">,</span> <span class="nx">gp</span><span class="p">;</span>
 
   <span class="kd">var</span> <span class="nx">SKFeatures</span> <span class="o">=</span> <span class="nx">declare</span><span class="p">(</span><span class="s1">&#39;shackleton.features&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
-    
-    <span class="cm">/**</span>
-
-<span class="cm">//DIVIDER</span>
-<span class="cm">     */</span>      
-    <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-      </pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>If you would like to initially hide a feature, simply place it's ID in this list</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="k">try</span> <span class="p">{</span>
+    </pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>If you would like to initially hide a feature, simply place it's ID in this list</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      </pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Add new mapping functionality via the ArcGIS Online Javascript API,
+functionality like Scalebars, Meta Information, Legends, etc.
+@see http://help.arcgis.com/en/webapi/javascript/arcgis/jssamples/
+  For a list of more functionality available through to this web map
+  application on ArcGIS.com.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="k">try</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">thisScalebar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">scalebar</span><span class="p">();</span>        
       <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
       <span class="p">}</span>
 
       <span class="k">try</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">thisMeta</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">meta</span><span class="p">();</span>       
       <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
       <span class="p">}</span>
 
       <span class="k">try</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">thisBasemaps</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">basemaps</span><span class="p">();</span>       
       <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
       <span class="p">}</span>
 
       <span class="k">try</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">thisGeolocation</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">geolocation</span><span class="p">();</span>        
       <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
       <span class="p">}</span>
 
       <span class="k">try</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">thisSearch</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">search</span><span class="p">();</span>        
       <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
       <span class="p">}</span>
 
       <span class="k">try</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">thisLegend</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">legend</span><span class="p">();</span>
       <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
       <span class="p">}</span>
 
       <span class="k">try</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">thisLayers</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">layers</span><span class="p">();</span>
       <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;shackleton.layers&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
       <span class="p">}</span>
 
-            </pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Add new mapping functionality via the ArcGIS Online Javascript API,
-functionality like Scalebars, Meta Information, Legends, etc.
-@see http://help.arcgis.com/en/webapi/javascript/arcgis/jssamples/
-  For a list of more functionality available through to this web map
-  application on ArcGIS.com.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="nx">dojo</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s2">&quot;resize&quot;</span><span class="p">,</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">map</span><span class="p">.</span><span class="nx">resize</span><span class="p">);</span>
-      </pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>Make sure that the map resizes properly when the map is loaded on
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">thisPrint</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;shackleton.print&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">thisEmbed</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">embed</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;shackleton.embed&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">thisDataExport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">shackleton</span><span class="p">.</span><span class="nx">dataexport</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;shackleton.dataexport&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+      <span class="p">}</span>
+
+            </pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>Make sure that the map resizes properly when the map is loaded on
 various devices (e.g., desktop, tablet, smartphone) or when the
-browser window is resized.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="nx">jQuery</span><span class="p">(</span><span class="nx">_UIElements</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
-      </pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>Hide the progress bar since the map is now loaded.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="nx">jQuery</span><span class="p">(</span> <span class="s2">&quot;.draggable&quot;</span> <span class="p">).</span><span class="nx">draggable</span><span class="p">({</span>
+browser window is resized.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="nx">dojo</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s2">&quot;resize&quot;</span><span class="p">,</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">map</span><span class="p">.</span><span class="nx">resize</span><span class="p">);</span>
+      </pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>Hide the progress bar since the map is now loaded.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="nx">jQuery</span><span class="p">(</span><span class="nx">_UIElements</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+      </pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <p>Makes any <code>id="toolbox"</code> that has a <code>class="draggable"</code> into a
+draggable element, so that the user can position wherever they like.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="nx">jQuery</span><span class="p">(</span> <span class="s2">&quot;.draggable&quot;</span> <span class="p">).</span><span class="nx">draggable</span><span class="p">({</span>
         <span class="nx">handle</span><span class="o">:</span> <span class="s1">&#39;h3&#39;</span>
+      <span class="p">});</span>
+      </pre></div>             </td>           </tr>                               <tr id="section-7">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-7">&#182;</a>               </div>               <p>Toggle all of our various toolboxes (i.e., Legend, Layers, Notes)</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;.toolbox-toggle&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        
+        <span class="nx">thisToggle</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;data-target&#39;</span><span class="p">);</span>
+        
+        <span class="nx">jQuery</span><span class="p">(</span><span class="nx">thisToggle</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+        
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+                
       <span class="p">});</span>
       
     <span class="p">}</span>
@@ -72,8 +121,7 @@ browser window is resized.</p>             </td>             <td class="code">  
     <span class="nx">SKFeatures</span><span class="o">:</span> <span class="nx">SKFeatures</span>
   <span class="p">};</span>
   
-<span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <p>Makes any <code>id="toolbox"</code> that has a <code>class="draggable"</code> into a
-draggable element, so that the user can position wherever they like.</p>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-7">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-7">&#182;</a>               </div>               <p>Each of our individual features (e.g., legend, layers, meta information, scalebar, search)
+<span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-8">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-8">&#182;</a>               </div>               <p>Each of our individual features (e.g., legend, layers, meta information, scalebar, search)
 is declare and instantiated in this "Features Loader" file.</p>
 
 <p>To add a new feature module to the map:</p>
@@ -106,4 +154,4 @@ www.viableindustries.com or emailing us at joshua@viable.io
 
 Copyright (c) 2013 Viable Industries, All rights reserved.
 Unless otherwise noted. 
-</code></pre>             </td>             <td class="code">               <div class="highlight"><pre>undefined</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
+</code></pre>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

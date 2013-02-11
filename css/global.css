@@ -52,7 +52,7 @@ html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%
 #legend-content{margin:0;min-width:220px}
 .esriLegendService{border-bottom:1px solid #424242;padding:2px 12px}
 .esriPrint a,.esriPrint a:active{outline:none}
-.esriScalebar{position:absolute;top:auto;right:auto;bottom:20px;left:20px !important;height:14px;min-width:144px;z-index:30}
+.esriScalebar{position:absolute;top:auto;right:auto;bottom:20px;left:20px !important;height:14px;z-index:30}
 .esriScalebarRuler{background-color:#fff;border:none;height:6px;overflow:hidden;position:relative;width:100%}
 .esriScalebarRulerBlock{background-color:#101010;overflow:hidden;position:absolute;height:50%}
 .esriScalebarRulerBlock.upper_firstpiece{top:0%;left:0%;width:25%}

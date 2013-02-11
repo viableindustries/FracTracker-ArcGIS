@@ -20,7 +20,7 @@ define([ 'dojo/_base/declare', 'esri/dijit/Print' ], function( declare, esriDiji
             scalebarUnit: "Miles",
           },
           exportOptions: {
-            dpi: 300
+            dpi: 150
           }
         }],
         url: "http://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
@@ -55,6 +55,13 @@ define([ 'dojo/_base/declare', 'esri/dijit/Print' ], function( declare, esriDiji
 // create this module:
 //
 // - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#print" target=_blank">Class: Print</a>
+
+// ### Tasks
+//
+// - See if it's possible to add to the date
+// - See if it's possible to print the popup in it's state
+// - See if we can print in landscape
+
 
 // * * *
 //     Shackleton is a framework for building web map applications
