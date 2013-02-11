@@ -35,9 +35,10 @@ define([ 'dojo/_base/declare', 'esri/dijit/Geocoder' ], function( declare, esriD
 
         thisGeocoder.startup();
 
+        /** ON HOLD
         layers = defaults.operationalLayers;
         this._updateSearchOptions(layers);
-
+        **/
     }
 
   });

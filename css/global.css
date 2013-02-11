@@ -51,6 +51,8 @@ html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%
 #legend{position:absolute;top:20px;right:auto;bottom:auto;left:71px;min-width:220px;z-index:1036}
 #legend-content{margin:0;min-width:220px}
 .esriLegendService{border-bottom:1px solid #424242;padding:2px 12px}
+#measurement{position:absolute;top:20px;right:auto;bottom:auto;left:551px;min-width:220px;z-index:1036}
+#measurement-content{margin:0;min-width:220px}
 .esriPrint a,.esriPrint a:active{outline:none}
 .esriScalebar{position:absolute;top:auto;right:auto;bottom:20px;left:20px !important;height:14px;z-index:30}
 .esriScalebarRuler{background-color:#fff;border:none;height:6px;overflow:hidden;position:relative;width:100%}

@@ -1,29 +1,29 @@
 //
-// Enable the user to search for specific addresses or locations on the map
+// Enable the user to draw shape(s) on the map and retrieve useful area and distance
+// information regarding their drawn shape(s).
 //
-
-define([ 'dojo/_base/declare', 'esri/dijit/Legend' ], function( declare, esriDijitLegend ) {
+define([ 'dojo/_base/declare', 'esri/dijit/Measurement' ], function( declare, esriDijitMeasurement ) {
 
    //
    // Listens for when the "search-address" button is clicked. Once it has been clicked
    // it will initialize the rest of the address search functionality.
    //
-  var SKLegend = declare('shackleton.legend', null, {
-    
+  var SKMeasurement = declare('shackleton.measurement', null, {
+
     constructor: function() {
 
-        var thisLegend = new esri.dijit.Legend({
+        var thisMeasurementTools = new esri.dijit.Measurement({
           map: map
-        }, 'legend-content');
-                
-        thisLegend.startup();
-        
+        }, 'measurement-content');
+
+        thisMeasurementTools.startup();
+
     }
-        
+
   });
 
   return {
-    SKLegend: SKLegend
+    SKMeasurement: SKMeasurement
   };
 
 });
@@ -33,7 +33,7 @@ define([ 'dojo/_base/declare', 'esri/dijit/Legend' ], function( declare, esriDij
 // To learn more about the ArcGIS Javascript API methods used to
 // create this module:
 //
-// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#legend" target=_blank">Class: Legend</a>
+// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#measurement" target=_blank">Class: Measurement</a>
 
 // * * *
 //     Shackleton is a framework for building web map applications

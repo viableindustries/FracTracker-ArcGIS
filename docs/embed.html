@@ -1,0 +1,63 @@
+<!DOCTYPE html>  <html> <head>   <title>embed.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="init.html">                 init.js               </a>                                           <a class="source" href="basemaps.html">                 basemaps.js               </a>                                           <a class="source" href="cache.html">                 cache.js               </a>                                           <a class="source" href="dataexport.html">                 dataexport.js               </a>                                           <a class="source" href="embed.html">                 embed.js               </a>                                           <a class="source" href="features.html">                 features.js               </a>                                           <a class="source" href="geolocation.html">                 geolocation.js               </a>                                           <a class="source" href="layers.html">                 layers.js               </a>                                           <a class="source" href="legend.html">                 legend.js               </a>                                           <a class="source" href="map.html">                 map.js               </a>                                           <a class="source" href="meta.html">                 meta.js               </a>                                           <a class="source" href="print.html">                 print.js               </a>                                           <a class="source" href="scalebar.html">                 scalebar.js               </a>                                           <a class="source" href="search.html">                 search.js               </a>                                           <a class="source" href="utilities.html">                 utilities.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               embed.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Enable the user to embed the map via an iFrame on any site</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">define</span><span class="p">([</span> <span class="s1">&#39;dojo/_base/declare&#39;</span> <span class="p">],</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">declare</span> <span class="p">)</span> <span class="p">{</span>
+    
+  <span class="kd">var</span> <span class="nx">SKEmbed</span> <span class="o">=</span> <span class="nx">declare</span><span class="p">(</span><span class="s1">&#39;shackleton.embed&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
+    
+    <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      
+      <span class="kd">var</span> <span class="nx">_embed</span>   <span class="o">=</span> <span class="s1">&#39;#embed-code textarea&#39;</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">_url</span>     <span class="o">=</span> <span class="s1">&#39;http://maps.fractracker.org/?embed=1&amp;appid=&#39;</span> <span class="o">+</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">appid</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">_code</span>    <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="nx">_embed</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&lt;iframe width=&quot;&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#embed-width&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="o">?</span> <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#embed-width&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span><span class="o">:</span> <span class="s1">&#39;640&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&quot; height=&quot;&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#embed-height&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="o">?</span> <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#embed-height&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span><span class="o">:</span> <span class="s1">&#39;360&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&quot; src=&quot;&#39;</span> <span class="o">+</span> <span class="nx">_url</span> <span class="o">+</span> <span class="s1">&#39;&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&#39;</span><span class="p">);</span>
+
+      <span class="cm">/**</span>
+<span class="cm">       * Change the width and height of the embed code</span>
+<span class="cm">       * as the user updates it to their desired dimensions.</span>
+<span class="cm">       */</span>
+      <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#embed-width, #embed-height&#39;</span><span class="p">).</span><span class="nx">keyup</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">jQuery</span><span class="p">(</span><span class="nx">_embed</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&lt;iframe width=&quot;&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#embed-width&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="o">?</span> <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#embed-width&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span><span class="o">:</span> <span class="s1">&#39;640&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&quot; height=&quot;&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#embed-height&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="o">?</span> <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#embed-height&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span><span class="o">:</span> <span class="s1">&#39;360&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&quot; src=&quot;&#39;</span> <span class="o">+</span> <span class="nx">_url</span> <span class="o">+</span> <span class="s1">&#39;&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&#39;</span><span class="p">);</span>
+      <span class="p">});</span>
+      
+      <span class="cm">/**</span>
+<span class="cm">       * Make sure that the textarea selects all</span>
+<span class="cm">       * text when the user clicks inside of the</span>
+<span class="cm">       * embed code textarea.</span>
+<span class="cm">       */</span>
+      <span class="nx">jQuery</span><span class="p">(</span><span class="nx">_embed</span><span class="p">).</span><span class="nx">focus</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        
+        <span class="k">this</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">onmouseup</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">onmouseup</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+          <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">};</span>
+        
+      <span class="p">});</span>
+      
+    <span class="p">}</span>
+
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">SKEmbed</span><span class="o">:</span> <span class="nx">SKEmbed</span>
+  <span class="p">};</span>
+
+<span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <hr />
+
+<pre><code>Shackleton is a framework for building web map applications
+that are compatible with ArcGIS Online.
+
+It is named in honor of the famous and widely respected
+British Antarctic explorer Sir Ernest Henry Shackleton.
+
+Viable Industries, ArcGIS Compatible Web Application,
+where applicable. This application was built by the 
+folks at Viable Industries for use by it's clients only. 
+Any code herein is property of Viable Industries.
+unless where otherwise noted property of Esri/ArcGIS
+
+To find out how you can use this software or have your
+own version of this software, custom built to fit your
+organizations needs, contact us by visiting
+www.viableindustries.com or emailing us at joshua@viable.io
+
+Copyright (c) 2013 Viable Industries, All rights reserved.
+Unless otherwise noted. 
+</code></pre>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

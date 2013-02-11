@@ -13,7 +13,8 @@ define([
   'shackleton/layers',
   'shackleton/print',
   'shackleton/embed',
-  'shackleton/dataexport'
+  'shackleton/dataexport',
+  'shackleton/measurement'
 ], function(
   declare,
   shackletonScalebar,
@@ -25,7 +26,8 @@ define([
   shackletonLayers,
   shackletonPrint,
   shackletonEmbed,
-  shackletonDataExport
+  shackletonDataExport,
+  shackletonMeasurement
 ) {
 
   var _UIElements = "#progress,#toolbox,#logo";
@@ -104,7 +106,13 @@ define([
         console.error('shackleton.dataexport', error.message);
       }
 
-            
+      try {
+        var thisMeasurement = new shackleton.measurement();
+      } catch (error) {
+        console.error('shackleton.measurement', error.message);
+      }
+
+
       //
       // Make sure that the map resizes properly when the map is loaded on
       // various devices (e.g., desktop, tablet, smartphone) or when the

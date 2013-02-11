@@ -42,7 +42,7 @@
                         <li><a href="#layers" title="Show/Hide the Map Layers" class="toolbox-toggle" data-target="#layers"><i class="icon icon-layers"></i> <span>Layers</span></a></li>
                         <li><a href="#legend" title="Show/Hide the Legend" class="toolbox-toggle" data-target="#legend"><i class="icon icon-legend"></i> <span>Legend</span></a></li>
                         <li><a href="#basemaps" title="" data-toggle="modal" data-target="#basemaps" data-dynamic="true"><i class="icon icon-basemap"></i> <span>Base Maps</span></a></li>
-                        <li><a href="#measurements" title="Show/Hide the Drawing Tools" class="toolbox-toggle"><i class="icon icon-measure"></i> <span>Measure</span></a></li>
+                        <li><a href="#measurement" title="Show/Hide the Drawing Tools" class="toolbox-toggle" data-target="#measurement"><i class="icon icon-measure"></i> <span>Measure</span></a></li>
                         <li><a href="#notes" title="Show/Hide the Notes" class="toolbox-toggle"><i class="icon icon-note"></i> <span>Notes</span></a></li>
                         <li><a href="#export" data-dynamic="true" data-toggle="modal"><i class="icon icon-export"></i> <span>Export</span></a></li>
                     </ul>
@@ -75,38 +75,18 @@
         </aside>
         <!-- End:Layers -->
           
-        <!-- : Bookmarks -->
-        <!-- <div id="bookmarks" class="toolbox-container draggable">
-          <div class="toolbox">
-            <div class="toolbox-inner">
-              <a data-toggle="modal" href="#modalBookmarks" title="" target="" class="bookmarks-button titleButton modal-close-button close">close</a>
-              <h3>Bookmarks</h3>
-              <div id="bookmarks-content"></div>
+        <!-- Start:Measurement Tools -->
+        <aside id="measurement" class="toolbox-container draggable element-invisbile">
+            <div class="toolbox">
+                <div class="toolbox-inner">
+                    <a href="#measurement" class="toolbox-toggle close-toolbox" data-target="#measurement">×</a>
+                    <h3>Measurement</h3>
+                    <div id="measurement-content"></div>
+                </div>
             </div>
-          </div>
-        </div> -->
+        </aside>
+        <!-- End:Measurement Tools -->
 
-        <!-- : Legend -->
-        <!-- <div id="legend" class="toolbox-container draggable">
-          <div class="toolbox">
-            <div class="toolbox-inner">
-              <a data-toggle="modal" href="#modalLegend" title="" target="" class="legend-button titleButton modal-close-button close">close</a>
-              <h3>Legend</h3>
-              <div id="legend-content" class="panel_content"></div>
-            </div>
-          </div>
-        </div> -->
-
-        <!-- : Measurement Tools -->
-        <!-- <div id="measurements" class="toolbox-container draggable measurements">
-          <div class="toolbox">
-            <div class="toolbox-inner">
-              <a data-toggle="modal" href="#modalMeasurement" title="" target="" class="measurement-button titleButton modal-close-button close">close</a>
-              <h3>Measurement Tools</h3>
-              <div id="measurement-content"></div>
-            </div>
-          </div>
-        </div> -->
 
         <!-- Modal: Address Search Form -->
         <div class="modal hide" id="search">
@@ -229,7 +209,7 @@
             
             <hr />
             
-            <h5>Download map data</h5>
+            <!-- <h5>Download map data</h5>
             <div class="row-fluid">               
                 <div class="span12">
                     <form>
@@ -269,13 +249,12 @@
                         </fieldset>
                     </form>
                 </div>
-            </div>
+            </div> -->
             
           </div>
         </div>
 
-     
-             <script type="text/javascript"> 
+        <script type="text/javascript"> 
             var dojoConfig = {
               parseOnLoad: true,
               packages: [
@@ -285,7 +264,7 @@
            };
         </script>
         <script src="//serverapi.arcgisonline.com/jsapi/arcgis/3.3/"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="js/lib/jquery-1.7.2.min.js"></script>
         <script src="js/lib/jquery.draggable.min.js"></script>
         <script src="js/lib/bootstrap.min.js"></script>
         <script src="js/init.js?<?php print date('U'); ?>"></script>
