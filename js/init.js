@@ -4,7 +4,7 @@
 
 // Setup the ``defaults`` object which sets options that will be
 // use throughout our application.
-var map, defaults = {};
+var map, defaults = {}, clickHandler, clickListener;
 
 // Here we are going to load our primary map. We need to make sure
 // that we include it here, so that we can use it when necessary.

@@ -7,15 +7,14 @@
 45%{opacity:.2}
 100%{opacity:1}
 }#map_graphics_layer circle{-webkit-animation-duration:3s;-webkit-animation-iteration-count:infinite;-webkit-animation-name:markerPulse;-moz-animation-duration:3s;-moz-animation-iteration-count:infinite;-moz-animation-name:markerPulse}
-.icon{display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
-.icon-about{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 0;background-repeat:no-repeat;text-indent:-999999px}
-.icon-search{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -18px;background-repeat:no-repeat;text-indent:-999999px}
-.icon-layers{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -36px;background-repeat:no-repeat;text-indent:-999999px}
-.icon-legend{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -36px;background-repeat:no-repeat;text-indent:-999999px}
-.icon-basemap{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -72px;background-repeat:no-repeat;text-indent:-999999px}
-.icon-measure{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -90px;background-repeat:no-repeat;text-indent:-999999px}
-.icon-note{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -108px;background-repeat:no-repeat;text-indent:-999999px}
-.icon-export{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -126px;background-repeat:no-repeat;text-indent:-999999px}
+.icon-about{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 0;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-search{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -18px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-layers{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -36px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-legend{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -36px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-basemap{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -72px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-measure{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -90px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-note{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -108px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-export{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -126px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
 html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%}
 .center{text-align:center}
 .map .layerTile{position:absolute;border:none;margin:0;padding:0}
@@ -24,7 +23,7 @@ html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%
 .element-invisible{display:none}
 .draggable h3{cursor:move}
 .dijitOffScreen{position:absolute;left:-999999px}
-.dijitToggleButtonIconChar{display:none}
+.dijitDisplayNone,.dijitToggleButtonIconChar{display:none}
 @import 'lib/modal.css';
 .toolbox-container,.toolbox,.toolbox-inner{display:block}
 .toolbox-container.element-invisible{display:none}
@@ -53,6 +52,12 @@ html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%
 .esriLegendService{border-bottom:1px solid #424242;padding:2px 12px}
 #measurement{position:absolute;top:20px;right:auto;bottom:auto;left:551px;min-width:220px;z-index:1036}
 #measurement-content{margin:0;min-width:220px}
+.areaIcon{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -144px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.distanceIcon{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -162px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.locationIcon{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -180px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.unitDropDown{margin:auto}
+.resultLabel{margin:auto}
+.result{margin:auto}
 .esriPrint a,.esriPrint a:active{outline:none}
 .esriScalebar{position:absolute;top:auto;right:auto;bottom:20px;left:20px !important;height:14px;z-index:30}
 .esriScalebarRuler{background-color:#fff;border:none;height:6px;overflow:hidden;position:relative;width:100%}
