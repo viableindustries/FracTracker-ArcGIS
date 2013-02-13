@@ -1,43 +1,76 @@
+/*jslint browser: true*/
+/*global $, jQuery, dojo, define, console, defaults, esri, layers:true, map, SKMapResponse*/
+
 //
 // Enable the user to search for specific addresses or locations on the map
 //
 var visible = [];
 
-define([ 'dojo/_base/declare', 'dijit/dijit', "dijit/Menu", "dijit/MenuItem", "dijit/CheckedMenuItem", "dijit/MenuSeparator", "dijit/PopupMenuItem" ], function( declare, Menu, MenuItem, CheckedMenuItem, MenuSeparator, PopupMenuItem ) {
-    
-  var SKLayers = declare('shackleton.layers', null, {
-    
-    layersBuildList: function ( layerObjectList ) {
-      
-      layerObjectList.reverse();
-      
-      var items = dojo.map(layerObjectList, function ( thisLayer, thisLayerIndex ) {
-        
-        if ( thisLayer.visibility ) {
-          visible.push( thisLayer.id );
-        };
-        
-        return '<label for="' + thisLayer.id + '" class="checkbox"><input type="checkbox" class="layer-item" data-layer="layer_index_' + thisLayerIndex + '" id="' + thisLayer.id + '"' + (thisLayer.visibility ? 'checked="checked"': '') + ' /> ' + thisLayer.title + '</label>';
-      
-      });
-            
-      dojo.byId("layers-content").innerHTML = items.join('');
+define([
+    'dojo/_base/declare'
+], function (
+    declare
+) {
 
-    },
+    var SKLayers,
+        SKLayersChangeVisibility;
 
-    constructor: function() {
+    SKLayersChangeVisibility = declare(null, {
 
-      layers = defaults.operationalLayers;
-      
-      this.layersBuildList(layers);
+        constructor: function (layerID) {
 
-    }
+            var thisLayerObject = map.getLayer(layerID);
 
-  });
+            if (thisLayerObject.visible === false) {
+                thisLayerObject.show();
+            } else {
+                thisLayerObject.hide();
+            }
 
-  return {
-    SKLayers: SKLayers
-  };
+        }
+
+    });
+
+    SKLayers = declare('shackleton.layers', null, {
+
+        layersBuildList: function (layerObjectList, thisLayerContainer) {
+
+            layerObjectList.reverse();
+
+            var items = dojo.map(layerObjectList, function (thisLayer, thisLayerIndex) {
+
+                if (thisLayer.visibility) {
+                    visible.push(thisLayer.id);
+                }
+
+                return '<label for="' + thisLayer.id + '" class="checkbox"><input type="checkbox" class="layer-item" data-layer="layer_index_' + thisLayerIndex + '" id="' + thisLayer.id + '"' + (thisLayer.visibility ? 'checked="checked"' : '') + ' value="1" /> ' + thisLayer.title + '</label>';
+
+            });
+
+            dojo.byId(thisLayerContainer).innerHTML = items.join('');
+
+        },
+
+    // For hiding and showing layers we simply use the .hide() and .show() operations for the Layer Class
+    // in ArcGIS Online's Javascript API.
+
+        constructor: function (thisLayerContainer) {
+
+            layers = defaults.operationalLayers;
+
+            this.layersBuildList(layers, thisLayerContainer);
+
+            jQuery('.layer-item').bind('click', function () {
+                SKLayersChangeVisibility(jQuery(this).attr('id'));
+            });
+
+        }
+
+    });
+
+    return {
+        SKLayers: SKLayers
+    };
 
 });
 
@@ -46,10 +79,28 @@ define([ 'dojo/_base/declare', 'dijit/dijit', "dijit/Menu", "dijit/MenuItem", "d
 // To learn more about the ArcGIS Javascript API methods used to
 // create this module:
 //
-// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#legend" target=_blank">Class: Legend</a>
-
-// Possibley look at this http://help.arcgis.com/en/webapi/javascript/arcgis/samples/widget_print/index.html
-
+// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#Layer" target=_blank">Class: Layer</a>
+//
+// Example:
+//
+//    The ID of the layer I want to take action on
+//    var thisLayerID = "PA_HUC08_clip_296";
+//
+//    The action I want to perform on a specific layer
+//    map.getLayer(thisLayerID).hide() 
+//
+// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#Map/getLayer" target="_blank">getLayer(id)</a>
+// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#Layer/show" target="_blank">show()</a>
+// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#Layer/hide" target="_blank">hide()</a>
+//
+// * * *
+// #### Task List
+//
+// Cannot "use strict" within this module, causes a "not_defined" Reference Error.
+// We should look into what causes this in the future.
+//
+//"use strict";
+//
 // * * *
 //     Shackleton is a framework for building web map applications
 //     that are compatible with ArcGIS Online.

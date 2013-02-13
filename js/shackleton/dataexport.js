@@ -144,6 +144,19 @@ define([ 'dojo/_base/declare', 'dijit/layout/BorderContainer', 'dojox/layout/Flo
 // - <a href="http://www.youtube.com/watch?v=HsMK9ZtYN5k" target=_blank">YouTube Tutorial: Data Extraction Services in ArcGIS Server</a>
 // - <a href="http://forums.arcgis.com/threads/46552-Extract-Data-Task-GP-Not-Extracting-Features-PLEASE-HELP!!!" target=_blank">Help topic regarding Data Extraction</a>
 
+// New idea for exporting data
+//
+// var myArray = SKMapResponse.itemInfo.itemData.operationalLayers[0].layerObject.graphics;
+// for (var theseAttrs in myArray) {
+// 
+//     var myAttrs = myArray[theseAttrs].attributes;
+// 
+//     for (var fieldValue in myAttrs) {
+//          console.log(fieldValue , myAttrs[fieldValue]);
+//     }
+// 
+// }
+// 
 // * * *
 //     Shackleton is a framework for building web map applications
 //     that are compatible with ArcGIS Online.

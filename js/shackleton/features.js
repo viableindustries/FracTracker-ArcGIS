@@ -63,7 +63,7 @@ define([
                     thisEmbed = new shackleton.embed(),
                     thisGeolocation = new shackleton.geolocation(),
                     thisLegend = new shackleton.legend(),
-                    thisLayers = new shackleton.layers(),
+                    thisLayers = new shackleton.layers('layers-content'),
                     thisMeasurement = new shackleton.measurement('measurement-content'),
                     thisMeta = new shackleton.meta(),
                     thisPrint = new shackleton.print('print-initialize'),
