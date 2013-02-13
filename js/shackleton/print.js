@@ -1,51 +1,64 @@
+/*jslint browser: true*/
+/*global $, jQuery, dojo, define, console, defaults, esri, map, SKMapResponse*/
+
 //
 // Enable the user print the map they see on their screen to a PDF
 //
-define([ 'dojo/_base/declare', 'esri/dijit/Print' ], function( declare, esriDijitPrint ) {
-    
-  var SKPrint = declare('shackleton.print', null, {
-    
-    constructor: function() {
-      
-      var thisPrinter = new esri.dijit.Print({
-        map: map,
-        templates: [{
-          label: "Layout",
-          format: "PDF",
-          layout: "A4 Portrait",
-          layoutOptions: {
-            titleText: defaults.details.title,
-            authorText: "FracTracker Alliance",
-            copyrightText: "FracTracker Alliance © 2013",
-            scalebarUnit: "Miles",
-          },
-          exportOptions: {
-            dpi: 150
-          }
-        }],
-        url: "http://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
-      }, dojo.byId('print-initialize'));
-      
-      thisPrinter.startup();
-      
-      jQuery('.print-initial .dijitButtonText').text('Create a PDF').addClass('btn');
-            
-      dojo.connect( thisPrinter,'onPrintStart', function() {
-        jQuery('.print-initial, .print-processing').toggle(); 
-      });
-      
-      dojo.connect( thisPrinter, 'onPrintComplete', function( value ) {
-        jQuery('.print-processing, .print-complete').toggle(); 
-        jQuery('.print-complete a').attr('href', value.url);
-      });  
-  
-    }
+define([
+    'dojo/_base/declare',
+    'esri/dijit/Print'
+], function (
+    declare
+) {
 
-  });
+    "use strict";
 
-  return {
-    SKPrint: SKPrint
-  };
+    var SKPrint,
+        thisPrinter;
+
+    SKPrint = declare('shackleton.print', null, {
+
+        constructor: function (SKPrintContainer) {
+
+            thisPrinter = new esri.dijit.Print({
+                map: map,
+                templates: [{
+                    label: "Layout",
+                    format: "PDF",
+                    preserveScale: false,
+                    layout: "A4 Landscape",
+                    layoutOptions: {
+                        titleText: defaults.details.title,
+                        authorText: "FracTracker Alliance",
+                        copyrightText: "FracTracker Alliance © 2013",
+                        scalebarUnit: "Miles"
+                    }
+                }],
+                url: "http://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+            }, dojo.byId(SKPrintContainer));
+
+            thisPrinter._printText = 'Create a PDF';
+
+            thisPrinter.startup();
+
+            jQuery('.print-initial .dijitButtonText').addClass('btn');
+
+            dojo.connect(thisPrinter, 'onPrintStart', function () {
+                jQuery('.print-initial, .print-processing').toggle();
+            });
+
+            dojo.connect(thisPrinter, 'onPrintComplete', function (value) {
+                jQuery('.print-processing, .print-complete').toggle();
+                jQuery('.print-complete a').attr('href', value.url);
+            });
+
+        }
+
+    });
+
+    return {
+        SKPrint: SKPrint
+    };
 
 });
 

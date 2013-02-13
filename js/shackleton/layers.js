@@ -48,6 +48,8 @@ define([ 'dojo/_base/declare', 'dijit/dijit', "dijit/Menu", "dijit/MenuItem", "d
 //
 // - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#legend" target=_blank">Class: Legend</a>
 
+// Possibley look at this http://help.arcgis.com/en/webapi/javascript/arcgis/samples/widget_print/index.html
+
 // * * *
 //     Shackleton is a framework for building web map applications
 //     that are compatible with ArcGIS Online.

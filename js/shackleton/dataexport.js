@@ -90,7 +90,7 @@ define([ 'dojo/_base/declare', 'dijit/layout/BorderContainer', 'dojox/layout/Flo
     _complete: function(thisJob) {
       
         if (thisJob.jobStatus !== "esriJobFailed"){
-          gp.getResultData(thisJob.jobId, "Output_Zip_File", downloadFile);
+          SKGeoProcessor.getResultData(thisJob.jobId, "Output_Zip_File", downloadFile);
         };
       
     },

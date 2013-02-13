@@ -1,154 +1,115 @@
+/*jslint browser: true*/
+/*global $, jQuery, dojo, define, console, esri, map, SKMapResponse*/
+
 //
 // Adds all of our modules to the map. By adding them here, there is no need to add them
 // in the init and map files, because those files are more touchy.
 //
 define([
-  'dojo/_base/declare',
-  'shackleton/scalebar',
-  'shackleton/meta',
-  'shackleton/basemaps',
-  'shackleton/geolocation',
-  'shackleton/search',
-  'shackleton/legend',
-  'shackleton/layers',
-  'shackleton/print',
-  'shackleton/embed',
-  'shackleton/dataexport',
-  'shackleton/measurement'
-], function(
-  declare,
-  shackletonScalebar,
-  shackletonMeta,
-  shackletonBasemaps,
-  shackletonGeolocation,
-  shackletonSearch,
-  shackletonLegend,
-  shackletonLayers,
-  shackletonPrint,
-  shackletonEmbed,
-  shackletonDataExport,
-  shackletonMeasurement
+    'dojo/_base/declare',
+    'shackleton/basemaps',
+    'shackleton/dataexport',
+    'shackleton/embed',
+    'shackleton/geolocation',
+    'shackleton/layers',
+    'shackleton/legend',
+    'shackleton/measurement',
+    'shackleton/meta',
+    'shackleton/print',
+    'shackleton/scalebar',
+    'shackleton/search'
+], function (
+    declare,
+    shackletonBasemaps,
+    shackletonDataExport,
+    shackletonEmbed,
+    shackletonGeolocation,
+    shackletonLayers,
+    shackletonLegend,
+    shackletonMeta,
+    shackletonMeasurement,
+    shackletonPrint,
+    shackletonScalebar,
+    shackletonSearch
 ) {
 
-  var _UIElements = "#progress,#toolbox,#logo";
-  
-  var SKSelectionToolbar, gp;
+    "use strict";
 
-  var SKFeatures = declare('shackleton.features', null, {
-    
-     // If you would like to initially hide a feature, simply place it's ID in this list
-    constructor: function () {
-      
-      //
-      // Add new mapping functionality via the ArcGIS Online Javascript API,
-      // functionality like Scalebars, Meta Information, Legends, etc.
-      // @see http://help.arcgis.com/en/webapi/javascript/arcgis/jssamples/
-      //   For a list of more functionality available through to this web map
-      //   application on ArcGIS.com.
-      //
-      try {
-        var thisScalebar = new shackleton.scalebar();        
-      } catch (error) {
-        console.error(error);
-      }
+    var SKUserInterface  = jQuery('#progress, #toolbox, #logo'),
+        SKDraggable      = jQuery('.draggable'),
+        SKToggleListener = jQuery('.toolbox-toggle'),
+        SKToggle,
+        SKSelectionToolbar,
+        SKGeoProcessor,
+        SKFeatures;
 
-      try {
-        var thisMeta = new shackleton.meta();       
-      } catch (error) {
-        console.error(error);
-      }
+    SKFeatures = declare('shackleton.features', null, {
 
-      try {
-        var thisBasemaps = new shackleton.basemaps();       
-      } catch (error) {
-        console.error(error);
-      }
+        //
+        // If you would like to initially hide a feature, simply place it's ID in this list
+        //
+        constructor: function () {
 
-      try {
-        var thisGeolocation = new shackleton.geolocation();        
-      } catch (error) {
-        console.error(error);
-      }
+            //
+            // Add new mapping functionality via the ArcGIS Online Javascript API,
+            // functionality like Scalebars, Meta Information, Legends, etc.
+            // @see http://help.arcgis.com/en/webapi/javascript/arcgis/jssamples/
+            //   For a list of more functionality available through to this web map
+            //   application on ArcGIS.com.
+            //
+            try {
+                var thisBasemaps = new shackleton.basemaps(),
+                    thisDataExport = new shackleton.dataexport(),
+                    thisEmbed = new shackleton.embed(),
+                    thisGeolocation = new shackleton.geolocation(),
+                    thisLegend = new shackleton.legend(),
+                    thisLayers = new shackleton.layers(),
+                    thisMeasurement = new shackleton.measurement('measurement-content'),
+                    thisMeta = new shackleton.meta(),
+                    thisPrint = new shackleton.print('print-initialize'),
+                    thisScalebar = new shackleton.scalebar(),
+                    thisSearch = new shackleton.search();
+            } catch (error) {
+                console.error(error);
+            }
 
-      try {
-        var thisSearch = new shackleton.search();        
-      } catch (error) {
-        console.error(error);
-      }
+            //
+            // Make sure that the map resizes properly when the map is loaded on
+            // various devices (e.g., desktop, tablet, smartphone) or when the
+            // browser window is resized.
+            //
+            dojo.connect(window, "resize", map, map.resize);
 
-      try {
-        var thisLegend = new shackleton.legend();
-      } catch (error) {
-        console.error(error);
-      }
+            //
+            // Hide the progress bar since the map is now loaded.
+            //
+            SKUserInterface.toggle();
 
-      try {
-        var thisLayers = new shackleton.layers();
-      } catch (error) {
-        console.error('shackleton.layers', error.message);
-      }
+            //
+            // Makes any toolbox that has a ``class="draggable"`` into a
+            // draggable element, so that the user can position wherever they like.
+            //
+            SKDraggable.draggable({
+                handle: 'h3'
+            });
 
-      try {
-        var thisPrint = new shackleton.print();
-      } catch (error) {
-        console.error('shackleton.print', error.message);
-      }
+            //
+            // Toggle all of our various toolboxes (i.e., Legend, Layers, Notes)
+            //
+            SKToggleListener.click(function () {
+                SKToggle = jQuery(this).attr('data-target');
+                jQuery(SKToggle).toggle();
+                return false;
+            });
 
-      try {
-        var thisEmbed = new shackleton.embed();
-      } catch (error) {
-        console.error('shackleton.embed', error.message);
-      }
+        }
 
-      try {
-        var thisDataExport = new shackleton.dataexport();
-      } catch (error) {
-        console.error('shackleton.dataexport', error.message);
-      }
+    });
 
-      try {
-        var thisMeasurement = new shackleton.measurement();
-      } catch (error) {
-        console.error('shackleton.measurement', error.message);
-      }
+    return {
+        SKFeatures: SKFeatures
+    };
 
-
-      //
-      // Make sure that the map resizes properly when the map is loaded on
-      // various devices (e.g., desktop, tablet, smartphone) or when the
-      // browser window is resized.
-      //
-      dojo.connect(window, "resize", map, map.resize);
-      
-      // Hide the progress bar since the map is now loaded.
-      jQuery(_UIElements).toggle();
-      
-      // Makes any ``id="toolbox"`` that has a ``class="draggable"`` into a
-      // draggable element, so that the user can position wherever they like.
-      jQuery( ".draggable" ).draggable({
-        handle: 'h3'
-      });
-      
-
-      // Toggle all of our various toolboxes (i.e., Legend, Layers, Notes)
-      jQuery('.toolbox-toggle').click(function() {
-        
-        thisToggle = jQuery(this).attr('data-target');
-        
-        jQuery(thisToggle).toggle();
-        
-        return false;
-                
-      });
-      
-    }
-    
-  });
-
-  return {
-    SKFeatures: SKFeatures
-  };
-  
 });
 
 

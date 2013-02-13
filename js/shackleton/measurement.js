@@ -1,30 +1,65 @@
+/*jslint browser: true*/
+/*global $, jQuery, dojo, define, console, esri, map, SKMapResponse*/
+
 //
 // Enable the user to draw shape(s) on the map and retrieve useful area and distance
 // information regarding their drawn shape(s).
 //
-define([ 'dojo/_base/declare', 'esri/dijit/Measurement' ], function( declare, esriDijitMeasurement ) {
+define([
+    'dojo/_base/declare',
+    'esri/dijit/Measurement'
+], function (
+    declare
+) {
+
+    "use strict";
+
+    var SKMeasurement,
+        thisMeasurementTools;
 
    //
    // Listens for when the "search-address" button is clicked. Once it has been clicked
    // it will initialize the rest of the address search functionality.
    //
-  var SKMeasurement = declare('shackleton.measurement', null, {
+    SKMeasurement = declare('shackleton.measurement', null, {
 
-    constructor: function() {
+        constructor: function (thisMeasurementContainer) {
 
-        var thisMeasurementTools = new esri.dijit.Measurement({
-          map: map
-        }, 'measurement-content');
+            thisMeasurementTools = new esri.dijit.Measurement({
+                map: map
+            }, thisMeasurementContainer);
 
-        thisMeasurementTools.startup();
+            thisMeasurementTools.startup();
 
-    }
+            this.popupHandler();
 
-  });
+            dojo.connect(thisMeasurementTools, "onMeasureEnd", function (activeTool) {
+                // Disable the active tool
+                this.setTool(activeTool, false);
 
-  return {
-    SKMeasurement: SKMeasurement
-  };
+                // Enable Popups
+                if (SKMapResponse.clickEventListener) {
+                    SKMapResponse.clickEventHandle = dojo.connect(map, 'onClick', SKMapResponse.clickEventListener);
+                }
+            });
+        },
+
+        popupHandler: function () {
+
+            jQuery('.esriMeasurement .esriButton').bind('click', function () {
+                // Disable Popups
+                if (SKMapResponse.clickEventHandle) {
+                    dojo.disconnect(SKMapResponse.clickEventHandle);
+                }
+            });
+
+        }
+
+    });
+
+    return {
+        SKMeasurement: SKMeasurement
+    };
 
 });
 
