@@ -4,7 +4,7 @@
 
 // Setup the ``defaults`` object which sets options that will be
 // use throughout our application.
-var map, defaults = {}, clickHandler, clickListener;
+var map, defaults = {}, SKEvent;
 
 // Here we are going to load our primary map. We need to make sure
 // that we include it here, so that we can use it when necessary.
@@ -22,7 +22,7 @@ var requestRemoteData = function ( dataKey, dataType ) {
        },
       callbackParamName: "callback",
       load: function ( response ) {
-                
+                          
         var sharingContentItems = (dataType == 'application') ? response.values: response;
           
         for ( var key in sharingContentItems ) {

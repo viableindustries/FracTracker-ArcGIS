@@ -12,6 +12,8 @@ define(['dojo/_base/declare', 'esri/arcgis/utils', 'shackleton/features' ], func
       mapDeferred.then(
         function ( response ) {
 
+          SKEvent = response;        
+
           defaults.details = response.itemInfo.item;
           map = response.map;
             

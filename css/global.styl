@@ -43,6 +43,15 @@ backgroundClip(cType)
   -moz-background-clip cType
   background-clip cType
 
+backgroundGradient(cStart, cEnd, cStartIE, cEndIE)
+  background-color cStart
+  background-image -moz-linear-gradient(top, cStart, cEnd)
+  background-image -webkit-gradient(linear, 0 0, 0 100%, from(cStart), to(cEnd))
+  background-image -webkit-linear-gradient(top, cStart, cEnd)
+  background-image -o-linear-gradient(top, cStart, cEnd)
+  background-image linear-gradient(to bottom, cStart, cEnd)
+  background-repeat repeat-x
+  /** filter progid:DXImageTransform.Microsoft.gradient(startColorstr='cStartIE', endColorstr='cEndIE', GradientType=0) **/
 
 sprite(sPosition)
     background-color transparent

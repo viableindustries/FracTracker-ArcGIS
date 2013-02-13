@@ -88,7 +88,7 @@
         <!-- End:Measurement Tools -->
 
 
-        <!-- Modal: Address Search Form -->
+        <!-- Start: Search Modal -->
         <div class="modal hide" id="search">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">×</button>
@@ -96,22 +96,18 @@
           </div>
           <div class="modal-body">
             <form id="search-location" class="form-inline search" method="POST">
-              <label class="control-label" for="search-type">Search for </label>
+              <label for="search-type">Search for </label>
               <select id="search-type">
                 <option value="address">an address</option>
               </select> like 
               <div id="search-address-test"></div>
-              <input type="text" class="input-xlarge" style="display:none;" id="search-address" placeholder="e.g., Pittburgh, PA" value="" /><p id="address-description">or find my <a data-dismiss="modal" href="#event_findMe" title="Find my current location" class="event_findMe" id="geolocationBegin">current location</a></p>
-              <input type="text" class="input-xlarge" style="display:none;" id="search-data" placeholder="e.g., Well 1029384756" value="" />
+              <p id="address-description">or find my <a data-dismiss="modal" href="#event_findMe" title="Find my current location" class="event_findMe" id="geolocationBegin">current location</a></p>
             </form>
           </div>
-          <div class="modal-footer">
-            <button class="btn btn-primary"  style="display:none;" id="search-address-begin" data-dismiss="modal">Locate Address</button>
-            <button class="btn btn-primary" style="display:none;" id="search-data-begin" data-dismiss="modal">Search Data</button>
-          </div>
         </div>
+        <!-- End: Search Modal -->
 
-        <!-- Modal: Basemaps -->
+        <!-- Start: Basemaps Modal -->
         <div class="modal hide" id="basemaps">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">×</button>
@@ -131,8 +127,9 @@
 
           </div>
         </div>
+        <!-- End: Basemaps Modal -->
 
-        <!-- Modal: Map Details -->
+        <!-- Start: Details/About Modal -->
         <div class="modal hide" id="details">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">×</button>
@@ -148,9 +145,9 @@
             <div id="details-tags"></div>
           </div>
         </div>
+        <!-- End: Details/About Modal -->
 
-
-        <!-- Modal: Map Embed -->
+        <!-- Start: Map Export Modal -->
         <div class="modal hide" id="export">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">×</button>
@@ -253,6 +250,7 @@
             
           </div>
         </div>
+        <!-- End: Map Export Modal -->
 
         <script type="text/javascript"> 
             var dojoConfig = {
