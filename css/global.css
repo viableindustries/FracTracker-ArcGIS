@@ -7,18 +7,18 @@
 45%{opacity:.2}
 100%{opacity:1}
 }#map_graphics_layer circle{-webkit-animation-duration:3s;-webkit-animation-iteration-count:infinite;-webkit-animation-name:markerPulse;-moz-animation-duration:3s;-moz-animation-iteration-count:infinite;-moz-animation-name:markerPulse}
-.icon-about{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 0;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
-.icon-search{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -18px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
-.icon-layers{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -36px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
-.icon-legend{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -36px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
-.icon-basemap{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -72px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
-.icon-measure{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -90px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
-.icon-note{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -108px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
-.icon-export{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -126px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-about{background-color:transparent;background-image:url("../images/sprite.png");background-position:0 0;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-search{background-color:transparent;background-image:url("../images/sprite.png");background-position:0 -18px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-layers{background-color:transparent;background-image:url("../images/sprite.png");background-position:0 -36px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-legend{background-color:transparent;background-image:url("../images/sprite.png");background-position:0 -36px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-basemap{background-color:transparent;background-image:url("../images/sprite.png");background-position:0 -72px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-measure{background-color:transparent;background-image:url("../images/sprite.png");background-position:0 -90px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-note{background-color:transparent;background-image:url("../images/sprite.png");background-position:0 -108px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.icon-export{background-color:transparent;background-image:url("../images/sprite.png");background-position:0 -126px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
 html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%}
 .center{text-align:center}
 .map .layerTile{position:absolute;border:none;margin:0;padding:0}
-.logo{background-color:transparent;background-image:url("../../images/sprite.png");background-position:-306px -426px;background-repeat:no-repeat;text-indent:-999999px;position:absolute;top:auto;right:20px;bottom:10px;left:auto;height:40px;width:114px;z-index:6}
+.logo{background-color:transparent;background-image:url("../images/sprite.png");background-position:-306px -426px;background-repeat:no-repeat;text-indent:-999999px;position:absolute;top:auto;right:20px;bottom:10px;left:auto;height:40px;width:114px;z-index:6}
 #progress{position:absolute;top:38%;right:25%;bottom:auto;left:25%;height:38px;line-height:38px;width:50%}
 .element-invisible{display:none}
 .draggable h3{cursor:move}
@@ -67,9 +67,9 @@ html,body,.map,.map.container,#wrapper{height:100%;margin:0;padding:0;width:100%
 #measurement .toolbox .dijitContentPane.result{color:#f2f2f2;float:left;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:16px;padding:8px 0;text-align:center;width:100%}
 #measurement-content{margin:0;min-width:220px}
 .esriMeasurement{float:left;margin-bottom:10px;width:100%}
-.areaIcon{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -144px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
-.distanceIcon{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -162px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
-.locationIcon{background-color:transparent;background-image:url("../../images/sprite.png");background-position:0 -180px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.areaIcon{background-color:transparent;background-image:url("../images/sprite.png");background-position:0 -144px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.distanceIcon{background-color:transparent;background-image:url("../images/sprite.png");background-position:0 -162px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
+.locationIcon{background-color:transparent;background-image:url("../images/sprite.png");background-position:0 -180px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px}
 .unitDropDown{margin:auto}
 .resultLabel{margin:auto}
 .result{margin:auto}

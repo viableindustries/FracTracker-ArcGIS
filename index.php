@@ -103,7 +103,7 @@
         <aside id="notes" class="toolbox-container draggable element-invisbile">
             <div class="toolbox">
                 <div class="toolbox-inner">
-                    <a href="#measurement" class="toolbox-toggle close-toolbox" data-target="#measurement">×</a>
+                    <a href="#notes" class="toolbox-toggle close-toolbox" data-target="#notes">×</a>
                     <h3>Notes</h3>
                     <div id="notes-content"></div>
                 </div>
