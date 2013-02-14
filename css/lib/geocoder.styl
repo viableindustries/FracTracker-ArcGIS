@@ -1,0 +1,43 @@
+.simpleGeocoder
+    display inline
+    display inline-block
+    
+.esriGeocoderResults ul
+  backgroundClip(padding-box)
+  background-color #ffffff
+  border 1px solid #ccc
+  border 1px solid rgba(0, 0, 0, 0.2)
+  *border-right-width 2px
+  *border-bottom-width 2px
+  borderRadius(6px)
+  boxShadow(0 5px 10px rgba(0, 0, 0, 0.2))
+  float left
+  list-style none
+  margin 2px 0 0
+  min-width 160px
+  padding 5px 0
+  z-index 1000
+
+.esriGeocoderResults ul li
+  clear both
+  color #333333
+  cursor pointer
+  display block
+  font-weight normal
+  line-height 20px
+  padding 3px 20px
+  white-space nowrap
+
+.esriGeocoderResults ul li:hover,
+.esriGeocoderResults ul li:focus,
+.esriGeocoderResults ul ul:hover > a
+  backgroundGradient(#0088cc, #0077b3, #ff0088cc, #ff0077b3)
+  color #ffffff
+  text-decoration none
+
+.esriGeocoderResults ul .active > a,
+.esriGeocoderResults ul .active > a:hover
+  backgroundGradient(#0088cc, #0077b3, #ff0088cc, #ff0077b3)
+  color #ffffff
+  outline 0
+  text-decoration none

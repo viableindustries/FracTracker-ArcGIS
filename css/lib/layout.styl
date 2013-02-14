@@ -1,0 +1,97 @@
+/**
+ * Developed Simple ArcGIS Web Application (c) 2013
+ *
+ *
+ * This application was built by the folks at Viable for
+ * use by it's clients. Any code herein is property of Developed
+ * Simple unless where otherwise noted property of ESRI.
+ *
+ * To find out how you can use this software or have your
+ * own version of this software built to fit your custom
+ * needs, contact us by visiting www.developedsimple.com.
+ *
+ */
+
+/**
+ * Basic Map Viewer Layout
+ *
+ * html, body, .map, and .map.container 
+ *   These selectors and their associated styles help make
+ *   sure that our map and it's contents take up the entire
+ *   area available within the browser window. They also ensure
+ *   that our map can scale properly when the browser is resized
+ *   or viewed on a non-desktop device.
+ *
+ */
+html
+body
+.map
+.map.container
+#wrapper
+  height 100%
+  margin 0
+  padding 0
+  width 100%
+  
+.center
+  text-align center
+
+
+/**
+ * Map tile positioning
+ *
+ * .map .layerTile
+ *   These styles ensure that our map tiles fit against each other properly
+ *   and do not separate or show the background color
+ *
+ */
+.map .layerTile
+  position absolute
+  border none
+  margin 0
+  padding 0
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+.logo
+    sprite(-306px -426px)
+    placement(auto, 20px, 10px, auto)
+    height 40px
+    width 114px
+    z-index 6
+
+
+/**
+ * Progress Bar
+ */
+#progress
+    placement(38%, 25%, auto, 25%)
+    height 38px
+    line-height 38px
+    width 50%
+ 
+.element-invisible
+  display none
+  
+/**
+ * Draggable
+ */
+.draggable h3
+    cursor move
+
+/**
+ * Esri Overrides
+ */
+.dijitOffScreen
+    position absolute
+    left -999999px
+    
+.dijitDisplayNone
+.dijitToggleButtonIconChar
+    display none
+   
