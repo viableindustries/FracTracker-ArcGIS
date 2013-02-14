@@ -25,15 +25,23 @@ define([ 'dojo/_base/declare' ], function( declare ) {
        * embed code textarea.
        */
       jQuery(_embed).focus(function() {
-        
+
         this.select();
         this.onmouseup = function () {
           this.onmouseup = null;
           return false;
         };
-        
+
       });
-      
+
+      jQuery('#fullscreen-mode').attr('href', 'http://maps.fractracker.org/v2/?appid=' + defaults.query.appid );      
+
+      if (defaults.query.embed == 1) {
+          jQuery('#fullscreen').toggle();
+      } else {
+          jQuery('#toolbox').toggle();          
+      }
+
     }
 
   });

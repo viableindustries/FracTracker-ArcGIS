@@ -51,6 +51,9 @@ define([
                 if (SKMapResponse.clickEventHandle) {
                     dojo.disconnect(SKMapResponse.clickEventHandle);
                 }
+                jQuery('.esriToggleButton .dijitButtonNode').addClass('btn btn-success');
+                jQuery('.dijitArrowButtonChar').text('').addClass('caret');
+                jQuery('.dijitMenu').addClass('dropdown-menu');
             });
 
         }

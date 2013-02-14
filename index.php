@@ -32,6 +32,18 @@
 
         <section id="map"></section>
 
+        <!-- Start:Embedded Toolbar -->
+        <aside id="fullscreen" class="toolbox-container element-invisible">
+            <div class="toolbox fullscreen-navigation">
+                <nav class="toolbox-inner">
+                    <ul>
+                        <li><a id="fullscreen-mode" href="" role="button" title="View this map using your full screen"><i class="icon icon-white icon-fullscreen"></i> <span>Fullscreen</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- End:Embedded Toolbar -->
+
         <!-- Start:Toolbar -->
         <aside id="toolbox" class="toolbox-container element-invisible">
             <div class="toolbox fullscreen-navigation">
@@ -43,7 +55,7 @@
                         <li><a href="#legend" title="Show/Hide the Legend" class="toolbox-toggle" data-target="#legend"><i class="icon icon-legend"></i> <span>Legend</span></a></li>
                         <li><a href="#basemaps" title="" data-toggle="modal" data-target="#basemaps" data-dynamic="true"><i class="icon icon-basemap"></i> <span>Base Maps</span></a></li>
                         <li><a href="#measurement" title="Show/Hide the Drawing Tools" class="toolbox-toggle" data-target="#measurement"><i class="icon icon-measure"></i> <span>Measure</span></a></li>
-                        <li><a href="#notes" title="Show/Hide the Notes" class="toolbox-toggle"><i class="icon icon-note"></i> <span>Notes</span></a></li>
+                        <li><a href="#notes" title="Show/Hide the Notes" class="toolbox-toggle" data-target="#notes"><i class="icon icon-note"></i> <span>Notes</span></a></li>
                         <li><a href="#export" data-dynamic="true" data-toggle="modal"><i class="icon icon-export"></i> <span>Export</span></a></li>
                     </ul>
                 </nav>
@@ -87,23 +99,47 @@
         </aside>
         <!-- End:Measurement Tools -->
 
+        <!-- Start:Notes -->
+        <aside id="notes" class="toolbox-container draggable element-invisbile">
+            <div class="toolbox">
+                <div class="toolbox-inner">
+                    <a href="#measurement" class="toolbox-toggle close-toolbox" data-target="#measurement">×</a>
+                    <h3>Notes</h3>
+                    <div id="notes-content"></div>
+                </div>
+            </div>
+        </aside>
+        <!-- End:Notes -->
 
         <!-- Start: Search Modal -->
         <div class="modal hide" id="search">
-          <div class="modal-header">
-            <button class="close" data-dismiss="modal">×</button>
-            <h3>Find an address</h3>
-          </div>
-          <div class="modal-body">
-            <form id="search-location" class="form-inline search" method="POST">
-              <label for="search-type">Search for </label>
-              <select id="search-type">
-                <option value="address">an address</option>
-              </select> like 
-              <div id="search-address-test"></div>
-              <p id="address-description">or find my <a data-dismiss="modal" href="#event_findMe" title="Find my current location" class="event_findMe" id="geolocationBegin">current location</a></p>
-            </form>
-          </div>
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">×</button>
+                <h4>Find an address</h4>
+            </div>
+            <div class="modal-body">
+              <form id="search-location" class="form-horizontal search" method="POST">
+                  <div class="control-group">
+                      <label class="control-label" for="search-type">Search for</label>
+                      <div class="controls">
+                          <select id="search-type">
+                            <option value="address">an address</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="control-group">
+                      <label class="control-label" for="search-address-test">like</label>
+                      <div class="controls">
+                          <div id="search-address-test"></div>
+                      </div>
+                  </div>
+                  <div class="control-group">
+                      <div class="controls">
+                          <p id="address-description">or find my <a data-dismiss="modal" href="#event_findMe" title="Find my current location" class="event_findMe" id="geolocationBegin">current location</a></p>
+                      </div>
+                  </div>
+              </form>
+            </div>
         </div>
         <!-- End: Search Modal -->
 

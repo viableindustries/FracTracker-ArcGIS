@@ -1,3 +1,6 @@
+/*jslint browser: true*/
+/*global $, jQuery, dojo, define, console, defaults, esri, map, SKMeta, SKMetaContent, SKMetaKey, theseTags, SKMapResponse*/
+
 /**
  * Developed Simple ArcGIS Web Application (c) 2013
  *
@@ -11,41 +14,77 @@
  * needs, contact us by visiting www.developedsimple.com.
  *
  */
+define([
+    'dojo/_base/declare'
+], function (
+    declare
+) {
 
-define([ 'dojo/_base/declare' ], function( declare ) {
+    "use strict";
 
-  var SKMeta = declare('shackleton.meta', null, {
+    var SKMeta,
+        SKMetaContent,
+        SKMetaKey;
 
-    constructor: function () {
-    
-      if (jQuery) {
-        
-        jQuery('#details-title, title').html(defaults.details.title);
-        jQuery('#details-description').html(defaults.details.description);
-        jQuery('#details-usage').html('<hr />' + defaults.details.licenseInfo);
-        jQuery('#details-credit').html('<hr />' + defaults.details.accessInformation);
+    SKMeta = declare('shackleton.meta', null, {
 
-        /**
-         * Break out tags into a comma separated list
-         */
-        var tags;
+        buildContent: function (thisContent) {
 
-        for (var keys in defaults.details.tags) {
-          if (defaults.details.tags[keys] != 'undefined') {
-            tags += defaults.details.tags[keys] + ',';
-          };
-        };
+            if (thisContent === null) {
+                return false;
+            }
 
-        jQuery('#details-tags').html('<hr /><p>' + tags.substring(0, tags.length-1) + '</p>');
+            for (var SKMetaKey in thisContent) {
+                if (thisContent[SKMetaKey].content !== null) {
+                    var _content = (thisContent[SKMetaKey].extra) ? thisContent[SKMetaKey].extra + thisContent[SKMetaKey].content : thisContent[SKMetaKey].content;
+                    jQuery(thisContent[SKMetaKey].selector).html(_content);
+                }
+            }
 
-      };
+        },
 
-    }
+        buildTags: function (theseTags) {
+            return '<p>' + theseTags.join(", ") + '</p>';
+        },
 
-  });
+        constructor: function () {
 
-  return {
-    SKMeta: SKMeta
-  };
+            SKMetaContent = {
+                title: {
+                    selector: '#details-title, title',
+                    content: defaults.details.title,
+                    extra: ''
+                },
+                description: {
+                    selector: '#details-description',
+                    content: defaults.details.description,
+                    extra: ''
+                },
+                usage: {
+                    selector: '#details-usage',
+                    content: defaults.details.licenseInfo,
+                    extra: '<hr />'
+                },
+                credit: {
+                    selector: '#details-credit',
+                    content: defaults.details.accessInformation,
+                    extra: '<hr />'
+                },
+                tags: {
+                    selector: '#details-tags',
+                    content: this.buildTags(defaults.details.tags),
+                    extra: '<hr />'
+                }
+            };
+
+            this.buildContent(SKMetaContent);
+
+        }
+
+    });
+
+    return {
+        SKMeta: SKMeta
+    };
 
 });

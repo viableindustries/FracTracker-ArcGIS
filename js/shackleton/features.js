@@ -35,7 +35,7 @@ define([
 
     "use strict";
 
-    var SKUserInterface  = jQuery('#progress, #toolbox, #logo'),
+    var SKUserInterface  = jQuery('#progress, #logo'),
         SKDraggable      = jQuery('.draggable'),
         SKToggleListener = jQuery('.toolbox-toggle'),
         SKToggle,
