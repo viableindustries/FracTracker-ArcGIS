@@ -1,42 +1,69 @@
-<!DOCTYPE html>  <html> <head>   <title>layers.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="init.html">                 init.js               </a>                                           <a class="source" href="basemaps.html">                 basemaps.js               </a>                                           <a class="source" href="cache.html">                 cache.js               </a>                                           <a class="source" href="dataexport.html">                 dataexport.js               </a>                                           <a class="source" href="embed.html">                 embed.js               </a>                                           <a class="source" href="features.html">                 features.js               </a>                                           <a class="source" href="geolocation.html">                 geolocation.js               </a>                                           <a class="source" href="layers.html">                 layers.js               </a>                                           <a class="source" href="legend.html">                 legend.js               </a>                                           <a class="source" href="map.html">                 map.js               </a>                                           <a class="source" href="meta.html">                 meta.js               </a>                                           <a class="source" href="print.html">                 print.js               </a>                                           <a class="source" href="scalebar.html">                 scalebar.js               </a>                                           <a class="source" href="search.html">                 search.js               </a>                                           <a class="source" href="utilities.html">                 utilities.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               layers.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Enable the user to search for specific addresses or locations on the map</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="kd">var</span> <span class="nx">visible</span> <span class="o">=</span> <span class="p">[];</span>
+<!DOCTYPE html>  <html> <head>   <title>layers.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="init.html">                 init.js               </a>                                           <a class="source" href="basemaps.html">                 basemaps.js               </a>                                           <a class="source" href="cache.html">                 cache.js               </a>                                           <a class="source" href="dataexport.html">                 dataexport.js               </a>                                           <a class="source" href="embed.html">                 embed.js               </a>                                           <a class="source" href="features.html">                 features.js               </a>                                           <a class="source" href="geolocation.html">                 geolocation.js               </a>                                           <a class="source" href="layers.html">                 layers.js               </a>                                           <a class="source" href="legend.html">                 legend.js               </a>                                           <a class="source" href="map.html">                 map.js               </a>                                           <a class="source" href="measurement.html">                 measurement.js               </a>                                           <a class="source" href="meta.html">                 meta.js               </a>                                           <a class="source" href="popups.html">                 popups.js               </a>                                           <a class="source" href="print.html">                 print.js               </a>                                           <a class="source" href="scalebar.html">                 scalebar.js               </a>                                           <a class="source" href="search.html">                 search.js               </a>                                           <a class="source" href="utilities.html">                 utilities.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               layers.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="cm">/*jslint browser: true*/</span>
+<span class="cm">/*global $, jQuery, dojo, define, console, defaults, esri, layers:true, map, SKMapResponse*/</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>Enable the user to search for specific addresses or locations on the map</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="kd">var</span> <span class="nx">visible</span> <span class="o">=</span> <span class="p">[];</span>
 
-<span class="nx">define</span><span class="p">([</span> <span class="s1">&#39;dojo/_base/declare&#39;</span><span class="p">,</span> <span class="s1">&#39;dijit/dijit&#39;</span><span class="p">,</span> <span class="s2">&quot;dijit/Menu&quot;</span><span class="p">,</span> <span class="s2">&quot;dijit/MenuItem&quot;</span><span class="p">,</span> <span class="s2">&quot;dijit/CheckedMenuItem&quot;</span><span class="p">,</span> <span class="s2">&quot;dijit/MenuSeparator&quot;</span><span class="p">,</span> <span class="s2">&quot;dijit/PopupMenuItem&quot;</span> <span class="p">],</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">declare</span><span class="p">,</span> <span class="nx">Menu</span><span class="p">,</span> <span class="nx">MenuItem</span><span class="p">,</span> <span class="nx">CheckedMenuItem</span><span class="p">,</span> <span class="nx">MenuSeparator</span><span class="p">,</span> <span class="nx">PopupMenuItem</span> <span class="p">)</span> <span class="p">{</span>
-    
-  <span class="kd">var</span> <span class="nx">SKLayers</span> <span class="o">=</span> <span class="nx">declare</span><span class="p">(</span><span class="s1">&#39;shackleton.layers&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
-    
-    <span class="nx">layersBuildList</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">layerObjectList</span> <span class="p">)</span> <span class="p">{</span>
-      
-      <span class="nx">layerObjectList</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span>
-      
-      <span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">layerObjectList</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">thisLayer</span><span class="p">,</span> <span class="nx">thisLayerIndex</span> <span class="p">)</span> <span class="p">{</span>
-        
-        <span class="k">if</span> <span class="p">(</span> <span class="nx">thisLayer</span><span class="p">.</span><span class="nx">visibility</span> <span class="p">)</span> <span class="p">{</span>
-          <span class="nx">visible</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span> <span class="nx">thisLayer</span><span class="p">.</span><span class="nx">id</span> <span class="p">);</span>
-        <span class="p">};</span>
-        
-        <span class="k">return</span> <span class="s1">&#39;&lt;label for=&quot;&#39;</span> <span class="o">+</span> <span class="nx">thisLayer</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">&#39;&quot; class=&quot;checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;layer-item&quot; data-layer=&quot;layer_index_&#39;</span> <span class="o">+</span> <span class="nx">thisLayerIndex</span> <span class="o">+</span> <span class="s1">&#39;&quot; id=&quot;&#39;</span> <span class="o">+</span> <span class="nx">thisLayer</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">thisLayer</span><span class="p">.</span><span class="nx">visibility</span> <span class="o">?</span> <span class="s1">&#39;checked=&quot;checked&quot;&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; /&gt; &#39;</span> <span class="o">+</span> <span class="nx">thisLayer</span><span class="p">.</span><span class="nx">title</span> <span class="o">+</span> <span class="s1">&#39;&lt;/label&gt;&#39;</span><span class="p">;</span>
-      
-      <span class="p">});</span>
-            
-      <span class="nx">dojo</span><span class="p">.</span><span class="nx">byId</span><span class="p">(</span><span class="s2">&quot;layers-content&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">items</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="nx">define</span><span class="p">([</span>
+    <span class="s1">&#39;dojo/_base/declare&#39;</span>
+<span class="p">],</span> <span class="kd">function</span> <span class="p">(</span>
+    <span class="nx">declare</span>
+<span class="p">)</span> <span class="p">{</span>
 
-    <span class="p">},</span>
+    <span class="kd">var</span> <span class="nx">SKLayers</span><span class="p">,</span>
+        <span class="nx">SKLayersChangeVisibility</span><span class="p">;</span>
 
-    <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">SKLayersChangeVisibility</span> <span class="o">=</span> <span class="nx">declare</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
 
-      <span class="nx">layers</span> <span class="o">=</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">operationalLayers</span><span class="p">;</span>
-      
-      <span class="k">this</span><span class="p">.</span><span class="nx">layersBuildList</span><span class="p">(</span><span class="nx">layers</span><span class="p">);</span>
+        <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">layerID</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="p">}</span>
+            <span class="kd">var</span> <span class="nx">thisLayerObject</span> <span class="o">=</span> <span class="nx">map</span><span class="p">.</span><span class="nx">getLayer</span><span class="p">(</span><span class="nx">layerID</span><span class="p">);</span>
 
-  <span class="p">});</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">thisLayerObject</span><span class="p">.</span><span class="nx">visible</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">thisLayerObject</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">thisLayerObject</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+            <span class="p">}</span>
 
-  <span class="k">return</span> <span class="p">{</span>
-    <span class="nx">SKLayers</span><span class="o">:</span> <span class="nx">SKLayers</span>
-  <span class="p">};</span>
+        <span class="p">}</span>
 
-<span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <hr />
+    <span class="p">});</span>
+
+    <span class="nx">SKLayers</span> <span class="o">=</span> <span class="nx">declare</span><span class="p">(</span><span class="s1">&#39;shackleton.layers&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
+
+        <span class="nx">layersBuildList</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">layerObjectList</span><span class="p">,</span> <span class="nx">thisLayerContainer</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="nx">layerObjectList</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span>
+
+            <span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">layerObjectList</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">thisLayer</span><span class="p">,</span> <span class="nx">thisLayerIndex</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">thisLayer</span><span class="p">.</span><span class="nx">visibility</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">visible</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">thisLayer</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="k">return</span> <span class="s1">&#39;&lt;label for=&quot;&#39;</span> <span class="o">+</span> <span class="nx">thisLayer</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">&#39;&quot; class=&quot;checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;layer-item&quot; data-layer=&quot;layer_index_&#39;</span> <span class="o">+</span> <span class="nx">thisLayerIndex</span> <span class="o">+</span> <span class="s1">&#39;&quot; id=&quot;&#39;</span> <span class="o">+</span> <span class="nx">thisLayer</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">thisLayer</span><span class="p">.</span><span class="nx">visibility</span> <span class="o">?</span> <span class="s1">&#39;checked=&quot;checked&quot;&#39;</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; value=&quot;1&quot; /&gt; &#39;</span> <span class="o">+</span> <span class="nx">thisLayer</span><span class="p">.</span><span class="nx">title</span> <span class="o">+</span> <span class="s1">&#39;&lt;/label&gt;&#39;</span><span class="p">;</span>
+
+            <span class="p">});</span>
+
+            <span class="nx">dojo</span><span class="p">.</span><span class="nx">byId</span><span class="p">(</span><span class="nx">thisLayerContainer</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">items</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+        <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>For hiding and showing layers we simply use the .hide() and .show() operations for the Layer Class
+in ArcGIS Online's Javascript API.</p>             </td>             <td class="code">               <div class="highlight"><pre>        <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">thisLayerContainer</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="nx">layers</span> <span class="o">=</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">operationalLayers</span><span class="p">;</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">layersBuildList</span><span class="p">(</span><span class="nx">layers</span><span class="p">,</span> <span class="nx">thisLayerContainer</span><span class="p">);</span>
+
+            <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;.layer-item&#39;</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="nx">SKLayersChangeVisibility</span><span class="p">(</span><span class="nx">jQuery</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">));</span>
+            <span class="p">});</span>
+
+        <span class="p">}</span>
+
+    <span class="p">});</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">SKLayers</span><span class="o">:</span> <span class="nx">SKLayers</span>
+    <span class="p">};</span>
+
+<span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <hr />
 
 <h4>External Documentation</h4>
 
@@ -44,8 +71,33 @@
 create this module:</p>
 
 <ul>
-<li><a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#legend" target=_blank">Class: Legend</a></li>
-</ul>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <hr />
+<li><a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#Layer" target=_blank">Class: Layer</a></li>
+</ul>
+
+<p>Example:</p>
+
+<p>The ID of the layer I want to take action on
+   var thisLayerID = "PA<em>HUC08</em>clip_296";</p>
+
+<p>The action I want to perform on a specific layer
+   map.getLayer(thisLayerID).hide() </p>
+
+<ul>
+<li><a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#Map/getLayer" target="_blank">getLayer(id)</a></li>
+<li><a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#Layer/show" target="_blank">show()</a></li>
+<li><a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#Layer/hide" target="_blank">hide()</a></li>
+</ul>
+
+<hr />
+
+<h4>Task List</h4>
+
+<p>Cannot "use strict" within this module, causes a "not_defined" Reference Error.
+We should look into what causes this in the future.</p>
+
+<p>"use strict";</p>
+
+<hr />
 
 <pre><code>Shackleton is a framework for building web map applications
 that are compatible with ArcGIS Online.

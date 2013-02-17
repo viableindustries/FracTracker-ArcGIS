@@ -34,7 +34,11 @@ define([ 'dojo/_base/declare', 'esri/dijit/Legend' ], function( declare, esriDij
 // create this module:
 //
 // - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#legend" target=_blank">Class: Legend</a>
-
+//
+// #### Tasks
+//
+// - Remove base map data from the legend
+//
 // * * *
 //     Shackleton is a framework for building web map applications
 //     that are compatible with ArcGIS Online.

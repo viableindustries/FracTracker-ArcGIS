@@ -1,41 +1,51 @@
-<!DOCTYPE html>  <html> <head>   <title>dataexport.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="init.html">                 init.js               </a>                                           <a class="source" href="basemaps.html">                 basemaps.js               </a>                                           <a class="source" href="cache.html">                 cache.js               </a>                                           <a class="source" href="dataexport.html">                 dataexport.js               </a>                                           <a class="source" href="embed.html">                 embed.js               </a>                                           <a class="source" href="features.html">                 features.js               </a>                                           <a class="source" href="geolocation.html">                 geolocation.js               </a>                                           <a class="source" href="layers.html">                 layers.js               </a>                                           <a class="source" href="legend.html">                 legend.js               </a>                                           <a class="source" href="map.html">                 map.js               </a>                                           <a class="source" href="meta.html">                 meta.js               </a>                                           <a class="source" href="print.html">                 print.js               </a>                                           <a class="source" href="scalebar.html">                 scalebar.js               </a>                                           <a class="source" href="search.html">                 search.js               </a>                                           <a class="source" href="utilities.html">                 utilities.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               dataexport.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Enable the user to search for specific addresses or locations on the map</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">define</span><span class="p">([</span> <span class="s1">&#39;dojo/_base/declare&#39;</span><span class="p">,</span> <span class="s1">&#39;dijit/layout/BorderContainer&#39;</span><span class="p">,</span> <span class="s1">&#39;dojox/layout/FloatingPane&#39;</span><span class="p">,</span> <span class="s1">&#39;dijit/layout/ContentPane&#39;</span><span class="p">,</span> <span class="s1">&#39;dijit/form/CheckBox&#39;</span> <span class="p">,</span> <span class="s1">&#39;dijit/form/ComboBox&#39;</span> <span class="p">],</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">declare</span><span class="p">,</span> <span class="nx">dijitLayoutBordercontainer</span><span class="p">,</span> <span class="nx">dojoxLayoutFloatingPane</span><span class="p">,</span> <span class="nx">dijitLayoutContentPane</span><span class="p">,</span> <span class="nx">dijitFormCheckBox</span><span class="p">,</span> <span class="nx">dijitFormComboBox</span> <span class="p">)</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>Listens for when the "search-address" button is clicked. Once it has been clicked
+<!DOCTYPE html>  <html> <head>   <title>dataexport.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="init.html">                 init.js               </a>                                           <a class="source" href="basemaps.html">                 basemaps.js               </a>                                           <a class="source" href="cache.html">                 cache.js               </a>                                           <a class="source" href="dataexport.html">                 dataexport.js               </a>                                           <a class="source" href="embed.html">                 embed.js               </a>                                           <a class="source" href="features.html">                 features.js               </a>                                           <a class="source" href="geolocation.html">                 geolocation.js               </a>                                           <a class="source" href="layers.html">                 layers.js               </a>                                           <a class="source" href="legend.html">                 legend.js               </a>                                           <a class="source" href="map.html">                 map.js               </a>                                           <a class="source" href="measurement.html">                 measurement.js               </a>                                           <a class="source" href="meta.html">                 meta.js               </a>                                           <a class="source" href="popups.html">                 popups.js               </a>                                           <a class="source" href="print.html">                 print.js               </a>                                           <a class="source" href="scalebar.html">                 scalebar.js               </a>                                           <a class="source" href="search.html">                 search.js               </a>                                           <a class="source" href="utilities.html">                 utilities.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               dataexport.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Enable the user to search for specific addresses or locations on the map</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">define</span><span class="p">([</span> <span class="s1">&#39;dojo/_base/declare&#39;</span><span class="p">,</span> <span class="s1">&#39;dijit/layout/BorderContainer&#39;</span><span class="p">,</span> <span class="s1">&#39;dojox/layout/FloatingPane&#39;</span><span class="p">,</span> <span class="s1">&#39;dijit/layout/ContentPane&#39;</span><span class="p">,</span> <span class="s1">&#39;dijit/form/CheckBox&#39;</span> <span class="p">,</span> <span class="s1">&#39;dijit/form/ComboBox&#39;</span> <span class="p">],</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">declare</span><span class="p">,</span> <span class="nx">dijitLayoutBordercontainer</span><span class="p">,</span> <span class="nx">dojoxLayoutFloatingPane</span><span class="p">,</span> <span class="nx">dijitLayoutContentPane</span><span class="p">,</span> <span class="nx">dijitFormCheckBox</span><span class="p">,</span> <span class="nx">dijitFormComboBox</span> <span class="p">)</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>Listens for when the "search-address" button is clicked. Once it has been clicked
 it will initialize the rest of the address search functionality.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="kd">var</span> <span class="nx">SKDataExtract</span> <span class="o">=</span> <span class="nx">declare</span><span class="p">(</span><span class="s1">&#39;shackleton.dataextract&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
     
     <span class="nx">_extract</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
         <span class="kd">var</span> <span class="nx">clipLayers</span> <span class="o">=</span> <span class="p">[];</span>
-        
-        <span class="k">if</span><span class="p">(</span> <span class="nx">dijit</span><span class="p">.</span><span class="nx">byId</span><span class="p">(</span><span class="s1">&#39;layer1&#39;</span><span class="p">).</span><span class="nx">checked</span> <span class="p">)</span> <span class="p">{</span>
-          <span class="nx">clipLayers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Incident Points&#39;</span><span class="p">);</span>
-        <span class="p">};</span>
-        
-        <span class="k">if</span><span class="p">(</span> <span class="nx">dijit</span><span class="p">.</span><span class="nx">byId</span><span class="p">(</span><span class="s1">&#39;layer2&#39;</span><span class="p">).</span><span class="nx">checked</span> <span class="p">)</span> <span class="p">{</span>
-          <span class="nx">clipLayers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Incident Lines&#39;</span><span class="p">);</span>
-        <span class="p">};</span>
-        
-        <span class="k">if</span><span class="p">(</span> <span class="nx">dijit</span><span class="p">.</span><span class="nx">byId</span><span class="p">(</span><span class="s1">&#39;layer3&#39;</span><span class="p">).</span><span class="nx">checked</span> <span class="p">)</span> <span class="p">{</span>
-          <span class="nx">clipLayers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Incident Areas&#39;</span><span class="p">);</span>
-        <span class="p">};</span>
-        
-        <span class="k">if</span><span class="p">(</span> <span class="nx">clipLayers</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">map</span><span class="p">.</span><span class="nx">graphics</span><span class="p">.</span><span class="nx">graphics</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
-          <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Select layers to extract and area of interest&#39;</span><span class="p">);</span>
-          <span class="k">return</span><span class="p">;</span>
-        <span class="p">};</span>
-        
+        </pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>if( dijit.byId('layer1').checked ) {
+  clipLayers.push('Incident Points');
+};</p>
+
+<p>if( dijit.byId('layer2').checked ) {
+  clipLayers.push('Incident Lines');
+};</p>
+
+<p>if( dijit.byId('layer3').checked ) {
+  clipLayers.push('Incident Areas');
+};</p>
+
+<p>if( clipLayers.length === 0 || map.graphics.graphics.length === 0 ) {
+  alert('Select layers to extract and area of interest');
+  return;
+};</p>             </td>             <td class="code">               <div class="highlight"><pre>        
         <span class="kd">var</span> <span class="nx">features</span> <span class="o">=</span> <span class="p">[];</span>
         <span class="nx">features</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span> <span class="nx">map</span><span class="p">.</span><span class="nx">graphics</span><span class="p">.</span><span class="nx">graphics</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span>
         
         <span class="kd">var</span> <span class="nx">featureSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">esri</span><span class="p">.</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">FeatureSet</span><span class="p">();</span>
         <span class="nx">featureSet</span><span class="p">.</span><span class="nx">features</span> <span class="o">=</span> <span class="nx">features</span><span class="p">;</span>
 
-        <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Layers_to_Clip&quot;</span><span class="o">:</span><span class="nx">clipLayers</span><span class="p">,</span>
+        <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="s2">&quot;Layers_to_Clip&quot;</span><span class="o">:</span><span class="nx">clipLayers</span><span class="p">,</span>
           <span class="s2">&quot;Area_of_Interest&quot;</span><span class="o">:</span> <span class="nx">featureSet</span><span class="p">,</span>
           <span class="s2">&quot;Feature_Format&quot;</span><span class="o">:</span> <span class="nx">dijit</span><span class="p">.</span><span class="nx">byId</span><span class="p">(</span><span class="s1">&#39;formatBox&#39;</span><span class="p">).</span><span class="nx">value</span>
         <span class="p">};</span>
-                
-        <span class="nx">thisGP</span><span class="p">.</span><span class="nx">submitJob</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">_complete</span> <span class="p">,</span> <span class="nx">_status</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">error</span> <span class="p">)</span> <span class="p">{</span>
-          <span class="nx">alert</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-        <span class="p">});</span>
+          
+        <span class="cm">/******************************/</span>
+        
+        <span class="cm">/** THE GEOPROCESSING SERVICE DOES NOT EXIST **/</span>
+        
+        <span class="cm">/*****************************/</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">thisGP</span> <span class="o">!=</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">thisGP</span><span class="p">.</span><span class="nx">submitJob</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">_complete</span> <span class="p">,</span> <span class="nx">_status</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">error</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;shackleton.dataexport&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+          <span class="p">});</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;The Geoprocessing Server needed to export data from this map does not exist.&#39;</span><span class="p">);</span>
+        <span class="p">};</span>
               
     <span class="p">},</span>
     
@@ -69,7 +79,7 @@ it will initialize the rest of the address search functionality.</p>            
     <span class="nx">_complete</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">thisJob</span><span class="p">)</span> <span class="p">{</span>
       
         <span class="k">if</span> <span class="p">(</span><span class="nx">thisJob</span><span class="p">.</span><span class="nx">jobStatus</span> <span class="o">!==</span> <span class="s2">&quot;esriJobFailed&quot;</span><span class="p">){</span>
-          <span class="nx">gp</span><span class="p">.</span><span class="nx">getResultData</span><span class="p">(</span><span class="nx">thisJob</span><span class="p">.</span><span class="nx">jobId</span><span class="p">,</span> <span class="s2">&quot;Output_Zip_File&quot;</span><span class="p">,</span> <span class="nx">downloadFile</span><span class="p">);</span>
+          <span class="nx">SKGeoProcessor</span><span class="p">.</span><span class="nx">getResultData</span><span class="p">(</span><span class="nx">thisJob</span><span class="p">.</span><span class="nx">jobId</span><span class="p">,</span> <span class="s2">&quot;Output_Zip_File&quot;</span><span class="p">,</span> <span class="nx">downloadFile</span><span class="p">);</span>
         <span class="p">};</span>
       
     <span class="p">},</span>
@@ -93,7 +103,7 @@ it will initialize the rest of the address search functionality.</p>            
     <span class="p">},</span>
 
     <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      </pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Start up the drawing tools</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="k">this</span><span class="p">.</span><span class="nx">_tools</span><span class="p">();</span>
+      </pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>Start up the drawing tools</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="k">this</span><span class="p">.</span><span class="nx">_tools</span><span class="p">();</span>
 
       <span class="kd">var</span> <span class="nx">thisGP</span><span class="p">;</span>
       
@@ -111,7 +121,7 @@ it will initialize the rest of the address search functionality.</p>            
     <span class="nx">SKDataExport</span><span class="o">:</span> <span class="nx">SKDataExport</span>
   <span class="p">};</span>
 
-<span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <hr />
+<span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <hr />
 
 <h4>External Documentation</h4>
 
@@ -121,7 +131,21 @@ create this module:</p>
 <ul>
 <li><a href="http://www.youtube.com/watch?v=HsMK9ZtYN5k" target=_blank">YouTube Tutorial: Data Extraction Services in ArcGIS Server</a></li>
 <li><a href="http://forums.arcgis.com/threads/46552-Extract-Data-Task-GP-Not-Extracting-Features-PLEASE-HELP!!!" target=_blank">Help topic regarding Data Extraction</a></li>
-</ul>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <hr />
+</ul>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <p>New idea for exporting data</p>
+
+<p>var myArray = SKMapResponse.itemInfo.itemData.operationalLayers[0].layerObject.graphics;
+for (var theseAttrs in myArray) {</p>
+
+<pre><code>var myAttrs = myArray[theseAttrs].attributes;
+
+for (var fieldValue in myAttrs) {
+     console.log(fieldValue , myAttrs[fieldValue]);
+}
+</code></pre>
+
+<p>}</p>
+
+<hr />
 
 <pre><code>Shackleton is a framework for building web map applications
 that are compatible with ArcGIS Online.
