@@ -41,6 +41,7 @@ define('SKGeolocation', [ 'dojo/_base/declare' ], function( declare ) {
       // An actual graphic based on what we've told it to display via the _symbolOptions
       // and placed according to the information we have passed through thisPoint
       thisGraphic = new esri.Graphic( thisPoint, thisSymbol );
+      console.log('GeoLocation', thisPoint);
       return map.graphics.add( thisGraphic );
     }
 

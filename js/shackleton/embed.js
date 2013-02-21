@@ -8,7 +8,7 @@ define([ 'dojo/_base/declare' ], function( declare ) {
     constructor: function() {
       
       var _embed   = '#embed-code textarea';
-      var _url     = 'http://maps.fractracker.org/?embed=1&appid=' + defaults.query.appid;
+      var _url     = 'http://maps.fractracker.org/2.0/?embed=1&appid=' + defaults.query.appid;
       var _code    = jQuery(_embed).val('<iframe width="' + (jQuery('#embed-width').val() != '' ? jQuery('#embed-width').val(): '640') + '" height="' + (jQuery('#embed-height').val() != '' ? jQuery('#embed-height').val(): '360') + '" src="' + _url + '" frameborder="0" allowfullscreen></iframe>');
 
       /**
@@ -34,7 +34,7 @@ define([ 'dojo/_base/declare' ], function( declare ) {
 
       });
 
-      jQuery('#fullscreen-mode').attr('href', 'http://maps.fractracker.org/v2/?appid=' + defaults.query.appid );      
+      jQuery('#fullscreen-mode').attr('href', 'http://maps.fractracker.org/2.0/?appid=' + defaults.query.appid );      
 
       if (defaults.query.embed == 1) {
           jQuery('#fullscreen').toggle();

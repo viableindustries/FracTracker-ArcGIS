@@ -1,51 +1,96 @@
+/*jslint browser: true*/
+/*global $, jQuery, dojo, define, declare:true, console, esri, map:true, shackleton, symbolOptions:true, SKMapResponse:true*/
+
 //
 // Enable the user to search for specific addresses or locations on the map
 //
+define([
+    'dojo/_base/declare',
+    'esri/dijit/Geocoder'
+], function (
+    declare
+) {
 
-define([ 'dojo/_base/declare', 'esri/dijit/Geocoder' ], function( declare, esriDijitGeocoder ) {
+    "use strict";
 
-   //
-   // Listens for when the "search-address" button is clicked. Once it has been clicked
-   // it will initialize the rest of the address search functionality.
-   //
-  var SKSearchAddress = declare('shackleton.search', null, {
+    //
+    // This object is defining options that we will later use to create a symbol
+    // on our map. This object contains information on the type and style (e.g., circle),
+    // the color, and outline information to place a symbol on our map.
+    //
+    var symbolOptions = {
+            "type": "esriSMS",
+            "style": "esriSMSCircle",
+            "color": [0, 86, 134, 255],
+            "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [0, 159, 217, 100],
+                "width": 10
+            }
+        },
+        SKSearchAddPoint,
+        SKSearchAddress,
+        SKSearchGeocoder,
+        SKSearchResultPoint,
+        thisSymbol,
+        thisGraphic;
 
-    _updateSearchOptions: function ( layerObjectList ) {
+    //
+    // This method enables us to add a point based on the geographic
+    // information to our map. It adds the point based on the geopgraphic
+    // cooridnates we have passed to.
+    //
+    SKSearchAddPoint = declare(null, {
 
-      layerObjectList.reverse();
+        //
+        // To pass SKGeolocationAddPoint the proper information we need to create a point,
+        // we must first create a ``new esri.geometry.Point(long, lat)`` then we can pass the
+        // value returned to ``esri.geometry.geographicToWebMercator()`` finally the value that
+        // creates gets passed to our SKGeolocationAddPoint. For an example of how this works
+        // see SKGeolocationSuccess::constructor
+        //
+        constructor: function (thisPoint) {
+            thisSymbol = new esri.symbol.SimpleMarkerSymbol(symbolOptions);
 
-      var items = dojo.map(layerObjectList, function ( thisLayer, thisLayerIndex ) {
-
-        if (thisLayer.url) {
-          jQuery("#search-type").append('<option value="' + thisLayer.url + '">' + thisLayer.title + '</option>');
+            // An actual graphic based on what we've told it to display via the _symbolOptions
+            // and placed according to the information we have passed through thisPoint
+            thisGraphic = new esri.Graphic(thisPoint, thisSymbol);
+            return map.graphics.add(thisGraphic);
         }
 
-      });
+    });
 
-      return items;
+    //
+    // Listens for when the "search-address" button is clicked. Once it has been clicked
+    // it will initialize the rest of the address search functionality.
+    //
+    SKSearchAddress = declare('shackleton.search', null, {
 
-    },
+        constructor: function () {
 
-    constructor: function() {
+            SKSearchGeocoder = new esri.dijit.Geocoder({
+                map: map,
+                autoComplete: true
+            }, "search-address-test");
 
-        var thisGeocoder = new esri.dijit.Geocoder({
-          map: map,
-          autoComplete: true
-        }, "search-address-test");
+            SKSearchGeocoder.startup();
 
-        thisGeocoder.startup();
+            dojo.connect(SKSearchGeocoder, 'onSelect', function (results) {
 
-        /** ON HOLD
-        layers = defaults.operationalLayers;
-        this._updateSearchOptions(layers);
-        **/
-    }
+                console.log('Search:onSelect', results);
 
-  });
+                // Once the user selects an address from the drop down
+                // we need to add a point to the map.
+                SKSearchResultPoint = new SKSearchAddPoint(results.feature.geometry);
+            });
+        }
 
-  return {
-    SKSearchAddress: SKSearchAddress
-  };
+    });
+
+    return {
+        SKSearchAddress: SKSearchAddress
+    };
 
 });
 

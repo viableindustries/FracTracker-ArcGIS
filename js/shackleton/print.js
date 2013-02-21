@@ -30,7 +30,7 @@ define([
                     layoutOptions: {
                         titleText: defaults.details.title,
                         authorText: "FracTracker Alliance",
-                        copyrightText: "FracTracker Alliance © 2013",
+                        copyrightText: "FracTracker Alliance Â© 2013",
                         scalebarUnit: "Miles"
                     }
                 }],
@@ -74,7 +74,6 @@ define([
 // - See if it's possible to add to the date
 // - See if it's possible to print the popup in it's state
 // - See if we can print in landscape
-// - 
 
 
 // * * *
@@ -97,5 +96,4 @@ define([
 //
 //     Copyright (c) 2013 Viable Industries, All rights reserved.
 //     Unless otherwise noted. 
-
 
