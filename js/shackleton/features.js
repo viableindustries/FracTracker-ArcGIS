@@ -33,8 +33,6 @@ define([
     shackletonSearch
 ) {
 
-    "use strict";
-
     var SKUserInterface  = jQuery('#progress, #logo'),
         SKDraggable      = jQuery('.draggable'),
         SKToggleListener = jQuery('.toolbox-toggle'),

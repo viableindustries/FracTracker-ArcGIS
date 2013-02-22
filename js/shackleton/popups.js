@@ -18,8 +18,6 @@ define([
     esriDijitPopup
 ) {
 
-    "use strict";
-
     var SKPopups;
 
     SKPopups = declare('shackleton.popups', null, {

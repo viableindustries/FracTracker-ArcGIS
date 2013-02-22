@@ -240,50 +240,6 @@
                 </div>
             </div>
             
-            <hr />
-            
-            <!-- <h5>Download map data</h5>
-            <div class="row-fluid">               
-                <div class="span12">
-                    <form>
-                        <fieldset>
-                            <h5>Step 1 - Select the areas you want to download data from</h5>
-                            <button data-dojo-type="dijit.form.Button" iconClass="polyIcon" showLabel="false" data-dismiss="modal" onClick="map.graphics.clear(); SKSelectionToolbar.activate(esri.toolbars.Draw.POLYGON);" class="btn">Polygon</button>
-                            <button data-dojo-type="dijit.form.Button" iconClass="freehandIcon" showLabel="false" data-dismiss="modal" onClick="map.graphics.clear(); SKSelectionToolbar.activate(esri.toolbars.Draw.FREEHAND_POLYGON);" class="btn">Freehand</button>
-                        </fieldset>
-
-                        <hr />
-
-                        <fieldset>
-                            <h5>Step 2 - Select the layers you want download data from</h5>
-                            <label for="layer1" class="checkbox">
-                                <input data-dojo-type="dijit.form.CheckBox" id="layer1" class="checkbox" checked="checked" type="checkbox"/> Incident Points
-                            </label>
-                            <label for="layer2" class="checkbox">
-                                <input data-dojo-type="dijit.form.CheckBox" id="layer2" class="checkbox" checked="checked" type="checkbox"/> Incident Lines
-                            </label>
-                            <label for="layer3" class="checkbox">
-                                <input data-dojo-type="dijit.form.CheckBox" id="layer3" class="checkbox" checked="checked" type="checkbox"/> Incident Area
-                            </label>
-                        </fieldset>
-                        
-                        <hr />
-                        
-                        <fieldset>
-                            <h5>Step 3 - Select format you wish to download this data in</h5>
-                            <select data-dojo-type="dijit.form.ComboBox" id="formatBox">
-                              <option>Shapefile - SHP - .shp</option>
-                              <option>File Geodatabase - GDB - .gdb</option>
-                              <option>Autodesk AutoCAD - DXF_R2007 - .dxf</option>
-                              <option>Autodesk AutoCAD - DWG_R2007 - .dwg</option>
-                              <option>Bentley Microstation Design (V8) - DGN_V8 - .dgn</option>            
-                            </select>
-                            <button data-dojo-type="dijit.form.Button" class="btn extract-data">Extract Data</button>
-                        </fieldset>
-                    </form>
-                </div>
-            </div> -->
-            
           </div>
         </div>
         <!-- End: Map Export Modal -->

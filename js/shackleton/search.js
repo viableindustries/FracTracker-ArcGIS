@@ -11,8 +11,6 @@ define([
     declare
 ) {
 
-    "use strict";
-
     //
     // This object is defining options that we will later use to create a symbol
     // on our map. This object contains information on the type and style (e.g., circle),

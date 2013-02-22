@@ -12,8 +12,6 @@ define([
     declare
 ) {
 
-    "use strict";
-
     var mapDeferred,
         thisFeatureLoader;
 

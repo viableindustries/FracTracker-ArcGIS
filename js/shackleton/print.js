@@ -11,8 +11,6 @@ define([
     declare
 ) {
 
-    "use strict";
-
     var SKPrint,
         thisPrinter;
 
