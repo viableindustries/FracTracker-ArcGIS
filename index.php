@@ -12,11 +12,11 @@
         
         <link rel="stylesheet" href="css/global.css" />
         
-        <link rel="shortcut icon" href="favicon.gif" />
-        <link rel="apple-touch-startup-image" href="images/ios/apple-touch-startup-image.png" />
-        <link rel="apple-touch-icon-precomposed" href="images/ios/apple-touch-icon-precomposed.png" />
-        <link media="(device-width: 768px) and (orientation: portrait)" rel="apple-touch-startup-image" href="images/ios/apple-touch-startup-image-portrait.png" />
-        <link media="(device-width: 768px) and (orientation: landscape)" rel="apple-touch-startup-image" href="images/ios/apple-touch-startup-image-landscape.png" />
+        <link rel="shortcut icon" href="images/icon-frac-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icon-frac-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" href="images/icon-frac-72x72.png" />
+        <link href="images/startup-iPad-Portrait.png" media="(device-width: 768px) and (orientation: portrait)" rel="apple-touch-startup-image">
+        <link href="images/startup-iPad-Landscape.png" media="(device-width: 768px) and (orientation: landscape)" rel="apple-touch-startup-image">
 
         <title>FracMapper by FracTracker Alliance</title>
         
@@ -290,18 +290,18 @@
 
         <script type="text/javascript"> 
             var dojoConfig = {
-              parseOnLoad: true,
-              packages: [
-                { name: 'esriTemplate', location: location.pathname.replace(/\/[^/]+$/, '') },
-                { name: 'shackleton',   location: location.pathname.replace(/\/[^/]+$/, '') + 'js/shackleton', main: 'app' }
-              ]
-           };
+                    parseOnLoad: true,
+                    packages: [
+                        { name: 'esriTemplate', location: location.pathname.replace(/\/[^/]+$/, '') },
+                        { name: 'shackleton',   location: location.pathname.replace(/\/[^/]+$/, '') + 'js/shackleton', main: 'app' }
+                    ]
+                };
         </script>
         <script src="//serverapi.arcgisonline.com/jsapi/arcgis/3.3/"></script>
         <script src="js/lib/jquery-1.7.2.min.js"></script>
         <script src="js/lib/jquery.draggable.min.js"></script>
         <script src="js/lib/bootstrap.min.js"></script>
-        <script src="js/init.js?<?php print date('U'); ?>"></script>
+        <script src="js/init.js"></script>
     
    </body>
 
