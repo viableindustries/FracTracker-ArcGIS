@@ -1,3 +1,4 @@
+element-invisbile{display:none}
 @import 'lib/bootstrap.min.css';
 @import 'lib/bootstrap-responsive.min.css';
 @-webkit-keyframes markerPulse{0%{opacity:1}

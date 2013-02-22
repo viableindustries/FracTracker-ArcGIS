@@ -12,10 +12,11 @@ define([
     declare
 ) {
 
-    var mapDeferred,
+    var SKMap,
+        mapDeferred,
         thisFeatureLoader;
 
-    map = declare('shackleton.map', null, {
+    SKMap = declare('shackleton.map', null, {
 
         constructor: function (defaults) {
 
@@ -47,7 +48,7 @@ define([
 
         }
     });
-
+    
     return {
         map: map
     };
