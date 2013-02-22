@@ -37,7 +37,7 @@
             <div class="toolbox fullscreen-navigation">
                 <nav class="toolbox-inner">
                     <ul>
-                        <li><a id="fullscreen-mode" href="" role="button" title="View this map using your full screen"><i class="icon icon-white icon-fullscreen"></i> <span>Fullscreen</span></a></li>
+                        <li><a id="fullscreen-mode" href="" role="button" title="View this map using your full screen" target="_blank"><i class="icon icon-white icon-fullscreen"></i> <span>Fullscreen</span></a></li>
                     </ul>
                 </nav>
             </div>
