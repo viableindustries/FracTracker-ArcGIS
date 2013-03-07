@@ -184,6 +184,7 @@ html,body,.map,.map.container,#map_container,#wrapper{height:100%;margin:0;paddi
 .esriTimeSlider .ts{padding:10px 3px 3px 3px;margin:3px}
 .esriTimeSlider .tsTicks{height:10px;margin-bottom:-5px}
 .esriTimeSlider .tsLabels{font-size:.7em;margin-top:5px}
+.esriTimeSlider table td{vertical-align:top !important}
 .dijitSliderImageHandleH{background-color:#9fbf00;border:1px solid #9fbf00;-webkit-border-radius:20px;-moz-border-radius:20px;-khtml-border-radius:20px;-o-border-radius:20px;border-radius:20px;height:20px;left:50%;top:-5px;vertical-align:top;width:20px}
 .dijitRuleMark{border-width:1px;border-style:solid;border-color:#252525;border-color:rgba(242,242,242,0.1);height:100%;position:absolute}
 .dijitRuleContainer{overflow:visible;position:relative}
