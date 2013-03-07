@@ -176,10 +176,10 @@ html,body,.map,.map.container,#map_container,#wrapper{height:100%;margin:0;paddi
 #timeslider-content{margin:0;min-width:220px}
 .esriTimeSlider{width:100%;z-index:999;position:relative}
 .esriTimeSlider .tsTmp{padding-top:7px;padding-bottom:20px}
-.esriTimeSlider .tsPlayButton{margin-top:6px}
-.esriTimeSlider .tsPauseButton{margin-top:6px}
-.esriTimeSlider .tsPrevButton{margin-top:6px}
-.esriTimeSlider .tsNextButton{margin-top:6px}
+.esriTimeSlider .tsButton.tsPlayButton{margin-top:6px}
+.esriTimeSlider .tsButton.tsPauseButton{margin-top:6px}
+.esriTimeSlider .tsButton.tsPrevButton{margin-top:6px}
+.esriTimeSlider .tsButton.tsNextButton{margin-top:6px}
 .esriTimeSlider .ts{padding:10px 3px 3px 3px;margin:3px}
 .esriTimeSlider .tsTicks{height:10px;margin-bottom:-5px}
 .esriTimeSlider .tsLabels{font-size:.7em;margin-top:5px}
