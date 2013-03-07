@@ -1,3 +1,4 @@
+
 //
 // Initialize our application and get things moving
 //
@@ -48,6 +49,7 @@ var requestRemoteData = function ( dataKey, dataType ) {
       // or a way out of this broken page.
       //
       error: function ( error ) {
+        jQuery(_UIElements).toggle();
         console.log(error);
       }
   });    

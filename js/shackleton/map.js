@@ -1,3 +1,4 @@
+
 /*jslint browser: true*/
 /*global $, jQuery, dojo, define, console, esri, map:true, shackleton, SKMapResponse:true*/
 
@@ -12,11 +13,10 @@ define([
     declare
 ) {
 
-    var SKMap,
-        mapDeferred,
+    var mapDeferred,
         thisFeatureLoader;
 
-    SKMap = declare('shackleton.map', null, {
+    map = declare('shackleton.map', null, {
 
         constructor: function (defaults) {
 
@@ -33,13 +33,13 @@ define([
                     defaults.details = response.itemInfo.item;
                     map = response.map;
 
-                    // if (map.loaded) {
-                    //     thisFeatureLoader = new shackleton.features();
-                    // } else {
-                    //     dojo.connect(map, "onLoad", function () {
-                    //         thisFeatureLoader = new shackleton.features();
-                    //     });
-                    // }
+                    if (map.loaded) {
+                        thisFeatureLoader = new shackleton.features();
+                    } else {
+                        dojo.connect(map, "onLoad", function () {
+                            thisFeatureLoader = new shackleton.features();
+                        });
+                    }
                 },
                 function (error) {
                     console.log("Map creation failed: ", dojo.toJson(error));
@@ -48,7 +48,7 @@ define([
 
         }
     });
-    
+
     return {
         map: map
     };

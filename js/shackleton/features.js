@@ -17,7 +17,8 @@ define([
     'shackleton/meta',
     'shackleton/print',
     'shackleton/scalebar',
-    'shackleton/search'
+    'shackleton/search',
+    'shackleton/timeslider'
 ], function (
     declare,
     shackletonBasemaps,
@@ -30,7 +31,8 @@ define([
     shackletonMeasurement,
     shackletonPrint,
     shackletonScalebar,
-    shackletonSearch
+    shackletonSearch,
+    shackletonTimeSlider
 ) {
 
     var SKUserInterface  = jQuery('#progress, #logo'),
@@ -42,6 +44,10 @@ define([
         SKFeatures;
 
     SKFeatures = declare('shackleton.features', null, {
+
+        updateExtent: function (thisExtent) {
+            console.log(thisExtent);
+        },
 
         //
         // If you would like to initially hide a feature, simply place it's ID in this list
@@ -66,7 +72,8 @@ define([
                     thisMeta = new shackleton.meta(),
                     thisPrint = new shackleton.print('print-initialize'),
                     thisScalebar = new shackleton.scalebar(),
-                    thisSearch = new shackleton.search();
+                    thisSearch = new shackleton.search(),
+                    thisTimeSlider = new shackleton.timeslider('timeslider-content');
             } catch (error) {
                 console.error(error);
             }
@@ -99,6 +106,8 @@ define([
                 jQuery(SKToggle).toggle();
                 return false;
             });
+
+            //dojo.connect(map, "onExtentChange", this.updateExtent);
 
         }
 

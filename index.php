@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -10,8 +11,9 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="translucent black" />
         
-        <link rel="stylesheet" href="css/global.css" />
-        
+<!--         <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/claro/claro.css">
+ -->        <link rel="stylesheet" href="css/global.css" />
+       
         <link rel="shortcut icon" href="images/icon-frac-72x72.png" />
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icon-frac-72x72.png" />
         <link rel="apple-touch-icon-precomposed" href="images/icon-frac-72x72.png" />
@@ -55,13 +57,22 @@
                         <li><a href="#legend" title="Show/Hide the Legend" class="toolbox-toggle" data-target="#legend"><i class="icon icon-legend"></i> <span>Legend</span></a></li>
                         <li><a href="#basemaps" title="" data-toggle="modal" data-target="#basemaps" data-dynamic="true"><i class="icon icon-basemap"></i> <span>Base Maps</span></a></li>
                         <li><a href="#measurement" title="Show/Hide the Drawing Tools" class="toolbox-toggle" data-target="#measurement"><i class="icon icon-measure"></i> <span>Measure</span></a></li>
-                        <?php /* <li><a href="#notes" title="Show/Hide the Notes" class="toolbox-toggle" data-target="#notes"><i class="icon icon-note"></i> <span>Notes</span></a></li> */ ?>
                         <li><a href="#export" data-dynamic="true" data-toggle="modal"><i class="icon icon-export"></i> <span>Export</span></a></li>
                     </ul>
                 </nav>
             </div>
         </aside>
         <!-- End:Toolbar -->
+
+        <!-- Start:Time Slider -->
+        <aside id="timeslider" class="toolbox-container element-invisible">
+            <div class="toolbox">
+                <div class="toolbox-inner">
+                    <div id="timeslider-content"></div>
+                </div>
+            </div>
+        </aside>
+        <!-- End:Time Slider -->
 
         <!-- Start:Legend -->
         <aside id="legend" class="toolbox-container draggable element-invisbile">
@@ -248,8 +259,8 @@
             var dojoConfig = {
                     parseOnLoad: true,
                     packages: [
-                        { name: 'esriTemplate', location: location.pathname.replace(/\/[^/]+$/, '') },
-                        { name: 'shackleton',   location: location.pathname.replace(/\/[^/]+$/, '') + 'js/shackleton', main: 'app' }
+                      { name: 'esriTemplate', location: location.pathname.replace(/\/[^/]+$/, '') },
+                      { name: 'shackleton',   location: location.pathname.replace(/\/[^/]+$/, '') + 'js/shackleton', main: 'app' }
                     ]
                 };
         </script>

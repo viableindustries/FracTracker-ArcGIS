@@ -79,10 +79,6 @@ define('SKGeolocation', [ 'dojo/_base/declare' ], function( declare ) {
   var SKGeolocationError = declare(null, {
     
     constructor: function () {
-      if ( navigator.geolocation ) {
-       navigator.geolocation.clearWatch(locationWatchIdentifier);
-      };
-
       switch (error.code) {
        case error.PERMISSION_DENIED:
          console.log("[ERROR] Core.Location: A location was not provided");

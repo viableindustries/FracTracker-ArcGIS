@@ -27,6 +27,10 @@ define('SKBasemaps', ['dojo/_base/declare', 'esri/dijit/BasemapGallery' ], funct
 
           var newBasemap = thisBasemapGallery.getSelected();
           
+          if (map.getLayer('World_Reference_Overlay_3749').visible === true) {
+              map.getLayer('World_Reference_Overlay_3749').hide();
+          }
+          
           jQuery('#basemap-changed .title').text(newBasemap.title);          
           jQuery('#basemap-changed').show().delay(3000).fadeOut();
           
