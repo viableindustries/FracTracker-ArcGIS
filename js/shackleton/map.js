@@ -28,23 +28,24 @@ define([
 
             mapDeferred.then(
                 function (response) {
-
+            
                     SKMapResponse = response;
-
+            
                     globals.details = response.itemInfo.item;
                     map = response.map;
                     
-                    dojo.forEach(SKMapResponse.itemInfo.itemData.operationalLayers, function (thisLayer, i) {
-                        
-                        var thisNewLayer = new esri.layers.FeatureLayer(thisLayer.url, {
-                            mode: esri.layers.FeatureLayer.MODE_ONDEMAND,
-                            outFields: ["*"]
-                        });
-                        
-                        map.addLayer(thisNewLayer);
-        
-                    });
-
+                    // dojo.forEach(SKMapResponse.itemInfo.itemData.operationalLayers, function (thisLayer, i) {
+                    //     
+                    //     var thisNewLayer = new esri.layers.FeatureLayer(thisLayer.url, {
+                    //         mode: esri.layers.FeatureLayer.MODE_ONDEMAND,
+                    //         outFields: ["*"]
+                    //     });
+                    //     
+                    //     map.addLayer(thisNewLayer);
+                    //     console.log(thisNewLayer.url, " added");
+                    //         
+                    // });
+            
                     if (map.loaded) {
                         thisFeatureLoader = new shackleton.features();
                     } else {
@@ -52,7 +53,7 @@ define([
                             thisFeatureLoader = new shackleton.features();
                         });
                     }
-
+            
                 },
                 function (error) {
                     console.log("Map creation failed: ", dojo.toJson(error));
