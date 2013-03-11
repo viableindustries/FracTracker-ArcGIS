@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*global $, jQuery, dojo, define, console, defaults, esri, map, SKMapResponse, thisNote:true*/
+/*global $, jQuery, dojo, define, console, globals, esri, map, SKMapResponse, thisNote:true*/
 
 //
 // Enable users to add notes to any map and store those notes locally, within their browser's storage

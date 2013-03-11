@@ -3,9 +3,9 @@
 // Initialize our application and get things moving
 //
 
-// Setup the ``defaults`` object which sets options that will be
+// Setup the ``globals`` object which sets options that will be
 // use throughout our application.
-var map, defaults = {}, SKMapResponse, SKPrintedMaps = [];
+var map, globals = {}, SKMapResponse, SKPrintedMaps = [];
 
 // Here we are going to load our primary map. We need to make sure
 // that we include it here, so that we can use it when necessary.
@@ -26,14 +26,14 @@ var requestRemoteData = function ( dataKey, dataType ) {
         var sharingContentItems = (dataType == 'application') ? response.values: response;
           
         for ( var key in sharingContentItems ) {
-          defaults[key] = sharingContentItems[key];
+          globals[key] = sharingContentItems[key];
         }
 
         if (dataType == 'application') {
-          requestRemoteData(defaults.webmap, 'webmap');
+          requestRemoteData(globals.webmap, 'webmap');
         }
-        else if (dataType == 'webmap' && defaults.webmap) {
-            var thisMap = new shackleton.map( defaults );
+        else if (dataType == 'webmap' && globals.webmap) {
+            var thisMap = new shackleton.map( globals );
         }
         else {
           return true;
@@ -53,7 +53,7 @@ var requestRemoteData = function ( dataKey, dataType ) {
       }
   });    
   
-  return defaults;
+  return globals;
 };
 
 var __init__ = function () {
@@ -78,18 +78,18 @@ var __init__ = function () {
      // appid or Application Idenitification Key, or we need
      // a straight Webmap Identification Key.
      //
-    defaults.query = esri.urlToObject(document.location.href).query;
+    globals.query = esri.urlToObject(document.location.href).query;
 
      // 
      // If a WebMap ID is available through the URL object, then
      // we should just go ahead and load the map.
      //
-    if (typeof defaults.query.webmap != 'undefined' ) {
-      defaults.webmap = defaults.query.webmap;
-      requestRemoteData(defaults.webmap, 'webmap');    
+    if (typeof globals.query.webmap != 'undefined' ) {
+      globals.webmap = globals.query.webmap;
+      requestRemoteData(globals.webmap, 'webmap');    
     } 
-    else if (typeof defaults.query.appid != 'undefined' ) {
-      requestRemoteData(defaults.query.appid, 'application');
+    else if (typeof globals.query.appid != 'undefined' ) {
+      requestRemoteData(globals.query.appid, 'application');
     }
     else {
       console.log('Please add an ID to the URL above to load an ArcGIS Online Entity');

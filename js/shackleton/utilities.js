@@ -20,14 +20,14 @@ define([ 'dojo/_base/declare' ], function( declare ) {
             var sharingContentItems = (dataType == 'application') ? response.values: response;
         
             for ( var key in sharingContentItems ) {
-              defaults[key] = sharingContentItems[key];
+              globals[key] = sharingContentItems[key];
             }
 
             if (dataType == 'application') {
-              requestRemoteData(defaults.webmap, 'webmap');
+              requestRemoteData(globals.webmap, 'webmap');
             }
-            else if (dataType == 'webmap' && defaults.webmap) {
-                var thisMap = new shackleton.map( defaults );
+            else if (dataType == 'webmap' && globals.webmap) {
+                var thisMap = new shackleton.map( globals );
             }
             else {
               return true;
@@ -47,7 +47,7 @@ define([ 'dojo/_base/declare' ], function( declare ) {
           }
       });   
 
-      return defaults;
+      return globals;
     }
   });
 

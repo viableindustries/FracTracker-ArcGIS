@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*global $, jQuery, dojo, define, console, defaults, esri, layers:true, map, SKMapResponse*/
+/*global $, jQuery, dojo, define, console, globals, esri, layers:true, map, SKMapResponse*/
 
 //
 // Enable the user to search for specific addresses or locations on the map
@@ -7,7 +7,8 @@
 var visible = [];
 
 define([
-    'dojo/_base/declare'
+    'dojo/_base/declare',
+    'esri/layers/FeatureLayer'
 ], function (
     declare
 ) {
@@ -56,7 +57,7 @@ define([
 
         constructor: function (thisLayerContainer) {
 
-            layers = defaults.operationalLayers;
+            layers = globals.operationalLayers;
 
             this.layersBuildList(layers, thisLayerContainer);
 
@@ -92,6 +93,7 @@ define([
 // - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#Map/getLayer" target="_blank">getLayer(id)</a>
 // - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#Layer/show" target="_blank">show()</a>
 // - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jsapi/#Layer/hide" target="_blank">hide()</a>
+// - <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/jssamples/fl_ondemand.html" target="_blank">Feature layer in "On Demand Mode"</a>
 //
 // * * *
 // #### Task List

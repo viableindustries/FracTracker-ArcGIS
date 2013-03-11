@@ -1,7 +1,8 @@
 /*jslint browser: true*/
-/*global $, jQuery, dojo, define, console, defaults, esri, map, SKMapResponse, SKTimeSliderContainer:true*/
+/*global $, jQuery, dojo, define, console, globals, esri, map, SKMapResponse, SKTimeSliderContainer:true*/
 
     var SKTimeSlider,
+        SKTimeSliderBuild,
         thisTimeSlider,
         thisTimeProperties = null,
         thisTimeExtent,
@@ -20,8 +21,34 @@ define([
 ], function (
     declare
 ) {
-
+    
     SKTimeSlider = declare('shackleton.timeslider', null, {
+        
+        buildTimeSlider: function (SKTimeSliderContainer) {
+            
+            jQuery('#timeslider').css('display', 'block');
+            
+            thisTimeSliderWidget = SKMapResponse.itemInfo.itemData.widgets.timeSlider.properties;
+
+            map.setTimeExtent(thisTimeProperties.timeExtent);
+
+            thisTimeSlider = new esri.dijit.TimeSlider({
+                'thumbCount': thisTimeSliderWidget.thumbCount,
+                'thumbMovingRate': thisTimeSliderWidget.thumbMovingRate
+            }, dojo.byId(SKTimeSliderContainer));
+
+            map.setTimeSlider(thisTimeSlider);
+
+            var layerTimeExtent = thisTimeProperties.timeExtent;
+            layerTimeExtent.startTime = thisTimeProperties.timeExtent.startTime;
+            thisTimeSlider.createTimeStopsByTimeInterval(layerTimeExtent, 1, thisTimeProperties.timeIntervalUnits);
+
+            thisTimeSlider.startup();
+
+            var thisTimeSliderLabels = [thisTimeProperties.timeExtent.startTime.getFullYear(), thisTimeProperties.timeExtent.endTime.getFullYear()];
+            thisTimeSlider.setLabels(thisTimeSliderLabels);
+
+        },
 
         constructor: function (SKTimeSliderContainer) {
 
@@ -34,31 +61,13 @@ define([
 
             });
             
-            if (defaults.query.timeline !== 1 && thisTimeProperties === null) {
+            if (thisTimeProperties !== null) {
+                this.buildTimeSlider(SKTimeSliderContainer);
+            }
+            else {
                 exit();
             }
 
-            jQuery('#timeslider').css('display', 'block');
-
-            thisTimeSliderWidget = SKMapResponse.itemInfo.itemData.widgets.timeSlider.properties;
-
-            map.setTimeExtent(thisTimeProperties.timeExtent);
-
-            thisTimeSlider = new esri.dijit.TimeSlider({
-                'thumbCount': thisTimeSliderWidget.thumbCount,
-                'thumbMovingRate': thisTimeSliderWidget.thumbMovingRate
-            }, dojo.byId(SKTimeSliderContainer));
-            
-            map.setTimeSlider(thisTimeSlider);
-
-            var layerTimeExtent = thisTimeProperties.timeExtent;
-            layerTimeExtent.startTime = thisTimeProperties.timeExtent.startTime;
-            thisTimeSlider.createTimeStopsByTimeInterval(layerTimeExtent, 1, thisTimeProperties.timeIntervalUnits);
-
-            thisTimeSlider.startup();
-
-            var thisTimeSliderLabels = [thisTimeProperties.timeExtent.startTime.getFullYear(), thisTimeProperties.timeExtent.endTime.getFullYear()];
-            thisTimeSlider.setLabels(thisTimeSliderLabels);
 
         }
 

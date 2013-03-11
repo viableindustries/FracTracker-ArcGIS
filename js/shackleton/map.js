@@ -8,7 +8,8 @@
 define([
     'dojo/_base/declare',
     'esri/arcgis/utils',
-    'shackleton/features'
+    'shackleton/features',
+    'esri/layers/FeatureLayer'
 ], function (
     declare
 ) {
@@ -18,9 +19,9 @@ define([
 
     map = declare('shackleton.map', null, {
 
-        constructor: function (defaults) {
+        constructor: function (globals) {
 
-            mapDeferred = new esri.arcgis.utils.createMap(defaults.webmap, 'map', {
+            mapDeferred = new esri.arcgis.utils.createMap(globals.webmap, 'map', {
                 wrapAround180: true,
                 extent: esri.geometry.geographicToWebMercator()
             });
@@ -30,8 +31,19 @@ define([
 
                     SKMapResponse = response;
 
-                    defaults.details = response.itemInfo.item;
+                    globals.details = response.itemInfo.item;
                     map = response.map;
+                    
+                    dojo.forEach(SKMapResponse.itemInfo.itemData.operationalLayers, function (thisLayer, i) {
+                        
+                        var thisNewLayer = new esri.layers.FeatureLayer(thisLayer.url, {
+                            mode: esri.layers.FeatureLayer.MODE_ONDEMAND,
+                            outFields: ["*"]
+                        });
+                        
+                        map.addLayer(thisNewLayer);
+        
+                    });
 
                     if (map.loaded) {
                         thisFeatureLoader = new shackleton.features();
@@ -40,6 +52,7 @@ define([
                             thisFeatureLoader = new shackleton.features();
                         });
                     }
+
                 },
                 function (error) {
                     console.log("Map creation failed: ", dojo.toJson(error));

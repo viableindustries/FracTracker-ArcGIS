@@ -43,6 +43,7 @@ define('SKBasemaps', ['dojo/_base/declare', 'esri/dijit/BasemapGallery' ], funct
 
 });
 
+
 // * * *
 // #### External Documentation
 // To learn more about the ArcGIS Javascript API methods used to

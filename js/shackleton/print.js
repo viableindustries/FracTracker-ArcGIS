@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*global $, jQuery, dojo, define, console, defaults, esri, map, SKMapResponse*/
+/*global $, jQuery, dojo, define, console, globals, esri, map, SKMapResponse*/
 
 //
 // Enable the user print the map they see on their screen to a PDF
@@ -26,7 +26,7 @@ define([
                     preserveScale: false,
                     layout: "A4 Landscape",
                     layoutOptions: {
-                        titleText: defaults.details.title,
+                        titleText: globals.details.title,
                         authorText: "FracTracker Alliance",
                         copyrightText: "FracTracker Alliance Â© 2013",
                         scalebarUnit: "Miles"

@@ -43,10 +43,11 @@ define([
         SKToggle,
         SKSelectionToolbar,
         SKGeoProcessor,
-        SKFeatures;
+        SKFeatures,
+        theseModules;
 
     SKFeatures = declare('shackleton.features', null, {
-
+        
         updateExtent: function (thisExtent) {
             console.log(thisExtent);
         },

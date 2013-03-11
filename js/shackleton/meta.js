@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*global $, jQuery, dojo, define, console, defaults, esri, map, SKMeta, SKMetaContent, SKMetaKey, theseTags, SKMapResponse*/
+/*global $, jQuery, dojo, define, console, globals, esri, map, SKMeta, SKMetaContent, SKMetaKey, theseTags, SKMapResponse*/
 
 /**
  * Developed Simple ArcGIS Web Application (c) 2013
@@ -52,27 +52,27 @@ define([
             SKMetaContent = {
                 title: {
                     selector: '#details-title, title',
-                    content: defaults.details.title,
+                    content: globals.details.title,
                     extra: ''
                 },
                 description: {
                     selector: '#details-description',
-                    content: defaults.details.description,
+                    content: globals.details.description,
                     extra: ''
                 },
                 usage: {
                     selector: '#details-usage',
-                    content: defaults.details.licenseInfo,
+                    content: globals.details.licenseInfo,
                     extra: '<hr />'
                 },
                 credit: {
                     selector: '#details-credit',
-                    content: defaults.details.accessInformation,
+                    content: globals.details.accessInformation,
                     extra: '<hr />'
                 },
                 tags: {
                     selector: '#details-tags',
-                    content: this.buildTags(defaults.details.tags),
+                    content: this.buildTags(globals.details.tags),
                     extra: '<hr />'
                 }
             };
