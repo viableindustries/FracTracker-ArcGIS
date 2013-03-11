@@ -28,7 +28,7 @@ define([
 
         constructor: function () {
             thisNote = '';
-            console.log('shackleton.notes load complete');
+            //console.log('shackleton.notes load complete');
         }
 
     });

@@ -14,7 +14,6 @@ dojo.require('shackleton.map');
 var requestRemoteData = function ( dataKey, dataType ) {
   
   var thisURL = esri.arcgis.utils.arcgisUrl + "/" + dataKey + "/data";
-  console.log(thisURL);
   
   requestHandle = esri.request({
       url: thisURL,

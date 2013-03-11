@@ -29,20 +29,16 @@ define([
             dojo.forEach(SKMapResponse.itemInfo.itemData.operationalLayers, function (thisLayer, i) {
 
                 if (map.getLayer(thisLayer.id).timeInfo) {
-                    console.debug('This layer is time sensistive', thisLayer, "at index", i);
                     thisTimeProperties = map.getLayer(thisLayer.id).timeInfo;
                 }
 
             });
-
-            if (thisTimeProperties === null) {
-                console.log('do not start time slider');
+            
+            if (defaults.query.timeline !== 1 && thisTimeProperties === null) {
                 exit();
             }
 
             jQuery('#timeslider').css('display', 'block');
-
-            console.log('start the time slider');
 
             thisTimeSliderWidget = SKMapResponse.itemInfo.itemData.widgets.timeSlider.properties;
 
