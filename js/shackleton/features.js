@@ -15,6 +15,7 @@ define([
     'shackleton/legend',
     'shackleton/measurement',
     'shackleton/meta',
+    'shackleton/notes',
     'shackleton/print',
     'shackleton/scalebar',
     'shackleton/search',
@@ -30,6 +31,7 @@ define([
     shackletonMeta,
     shackletonMeasurement,
     shackletonPrint,
+    shackletonNotes,
     shackletonScalebar,
     shackletonSearch,
     shackletonTimeSlider
@@ -70,6 +72,7 @@ define([
                     thisLayers = new shackleton.layers('layers-content'),
                     thisMeasurement = new shackleton.measurement('measurement-content'),
                     thisMeta = new shackleton.meta(),
+                    thisNotes = new shackleton.notes(),
                     thisPrint = new shackleton.print('print-initialize'),
                     thisScalebar = new shackleton.scalebar(),
                     thisSearch = new shackleton.search(),

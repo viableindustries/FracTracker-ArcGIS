@@ -19,7 +19,7 @@
 .esriTimeSlider .tsButton.tsPauseButton{background-color:transparent;background-image:url("../images/sprite.png?1362689112");background-position:0 -216px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px;margin-right:18px}
 .esriTimeSlider .tsButton.tsPrevButton{background-color:transparent;background-image:url("../images/sprite.png?1362689112");background-position:0 -234px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px;margin-left:18px}
 .esriTimeSlider .tsButton.tsNextButton{background-color:transparent;background-image:url("../images/sprite.png?1362689112");background-position:0 -252px;background-repeat:no-repeat;text-indent:-999999px;display:inline;display:inline-block;height:18px;line-height:20px;margin:0;vertical-align:top;width:18px;margin-left:18px}
-html,body,.map,.map.container,#map_container,#wrapper{height:100%;margin:0;padding:0;width:100%}
+html,body,.map,.map.container,#map_container,#wrapper{height:100%;margin:0;overflow:hidden;padding:0;width:100%}
 .center{text-align:center}
 .map .layerTile{position:absolute;border:none;margin:0;padding:0}
 .logo{background-color:transparent;background-image:url("../images/sprite.png?1362689112");background-position:-306px -426px;background-repeat:no-repeat;text-indent:-999999px;position:absolute;top:auto;right:20px;bottom:10px;left:auto;height:40px;width:114px;z-index:6}
