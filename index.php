@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" manifest="fracmapper.appcache">
+<html lang="en">
 
     <head>
         <meta charset="UTF-8" />
