@@ -11,8 +11,7 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="translucent black" />
         <meta name="cache-control" content="no-store" />
         
-<!--         <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/claro/claro.css">
- -->        <link rel="stylesheet" href="css/global.css" />
+        <link rel="stylesheet" href="css/global.css" />
        
         <link rel="shortcut icon" href="images/icon-frac-72x72.png" />
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icon-frac-72x72.png" />

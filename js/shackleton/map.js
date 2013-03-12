@@ -8,8 +8,7 @@
 define([
     'dojo/_base/declare',
     'esri/arcgis/utils',
-    'shackleton/features',
-    'esri/layers/FeatureLayer'
+    'shackleton/features'
 ], function (
     declare
 ) {
@@ -34,18 +33,6 @@ define([
                     globals.details = response.itemInfo.item;
                     map = response.map;
                     
-                    // dojo.forEach(SKMapResponse.itemInfo.itemData.operationalLayers, function (thisLayer, i) {
-                    //     
-                    //     var thisNewLayer = new esri.layers.FeatureLayer(thisLayer.url, {
-                    //         mode: esri.layers.FeatureLayer.MODE_ONDEMAND,
-                    //         outFields: ["*"]
-                    //     });
-                    //     
-                    //     map.addLayer(thisNewLayer);
-                    //     console.log(thisNewLayer.url, " added");
-                    //         
-                    // });
-            
                     if (map.loaded) {
                         thisFeatureLoader = new shackleton.features();
                     } else {
