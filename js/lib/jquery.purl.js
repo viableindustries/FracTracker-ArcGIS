@@ -267,4 +267,4 @@
 		window.purl = purl;
 	}
 
-});
+})(jQuery);
