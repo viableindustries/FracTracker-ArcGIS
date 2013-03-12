@@ -68,16 +68,28 @@ define([
                 var thisBasemaps = new shackleton.basemaps(),
                     thisDataExport = new shackleton.dataexport(),
                     thisEmbed = new shackleton.embed(),
-                    thisGeolocation = new shackleton.geolocation(),
                     thisLegend = new shackleton.legend(),
                     thisLayers = new shackleton.layers('layers-content'),
                     thisMeasurement = new shackleton.measurement('measurement-content'),
                     thisMeta = new shackleton.meta(),
                     thisNotes = new shackleton.notes(),
-                    thisPrint = new shackleton.print('print-initialize'),
+                    thisPrint = new shackleton.print('print-initialize')
                     thisScalebar = new shackleton.scalebar(),
-                    thisSearch = new shackleton.search(),
-                    thisTimeSlider = new shackleton.timeslider('timeslider-content');
+                    thisSearch = new shackleton.search();
+                                        
+                    // Determine which layers are time sensitive layers
+                    dojo.forEach(SKMapResponse.itemInfo.itemData.operationalLayers, function (thisLayer, i) {
+            
+                        if (map.getLayer(thisLayer.id).timeInfo) {
+                            thisTimeProperties = map.getLayer(thisLayer.id).timeInfo;
+                        }
+            
+                    });
+            
+                    if (thisTimeProperties !== null) {
+                        thisTimeSlider = new shackleton.timeslider('timeslider-content', thisTimeProperties);
+                    }
+
             } catch (error) {
                 console.error(error);
             }
@@ -110,8 +122,6 @@ define([
                 jQuery(SKToggle).toggle();
                 return false;
             });
-
-            //dojo.connect(map, "onExtentChange", this.updateExtent);
 
         }
 

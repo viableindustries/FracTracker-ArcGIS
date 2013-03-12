@@ -50,17 +50,8 @@ define([
 
         },
 
-        constructor: function (SKTimeSliderContainer) {
+        constructor: function (SKTimeSliderContainer, thisTimeProperties) {
 
-            // Determine which layers are time sensitive layers
-            dojo.forEach(SKMapResponse.itemInfo.itemData.operationalLayers, function (thisLayer, i) {
-
-                if (map.getLayer(thisLayer.id).timeInfo) {
-                    thisTimeProperties = map.getLayer(thisLayer.id).timeInfo;
-                }
-
-            });
-            
             if (thisTimeProperties !== null) {
                 this.buildTimeSlider(SKTimeSliderContainer);
             }
