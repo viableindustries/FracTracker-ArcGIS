@@ -76,6 +76,12 @@ define([
                     thisPrint = new shackleton.print('print-initialize')
                     thisScalebar = new shackleton.scalebar(),
                     thisSearch = new shackleton.search();
+                    
+                    
+                    var isTimeline = url('path');
+                    
+                    
+                    console.log(isTimeline.indexOf("timeline") !== -1);
                                         
                     // // Determine which layers are time sensitive layers
                     // dojo.forEach(SKMapResponse.itemInfo.itemData.operationalLayers, function (thisLayer, i) {
