@@ -2,7 +2,6 @@ CACHE MANIFEST
 # 2013-03-12:2.0.1.4
 
 CACHE:
-./index.html
 ./images/glyphicons-halflings-white.png
 ./images/glyphicons-halflings.png
 ./images/icon-frac-72x72.png
