@@ -77,18 +77,18 @@ define([
                     thisScalebar = new shackleton.scalebar(),
                     thisSearch = new shackleton.search();
                                         
-                    // Determine which layers are time sensitive layers
-                    dojo.forEach(SKMapResponse.itemInfo.itemData.operationalLayers, function (thisLayer, i) {
-            
-                        if (map.getLayer(thisLayer.id).timeInfo) {
-                            thisTimeProperties = map.getLayer(thisLayer.id).timeInfo;
-                        }
-            
-                    });
-            
-                    if (thisTimeProperties !== null) {
-                        thisTimeSlider = new shackleton.timeslider('timeslider-content', thisTimeProperties);
-                    }
+                    // // Determine which layers are time sensitive layers
+                    // dojo.forEach(SKMapResponse.itemInfo.itemData.operationalLayers, function (thisLayer, i) {
+                    //             
+                    //     if (map.getLayer(thisLayer.id).timeInfo) {
+                    //         thisTimeProperties = map.getLayer(thisLayer.id).timeInfo;
+                    //     }
+                    //             
+                    // });
+                    //             
+                    // if (thisTimeProperties !== null) {
+                    //     thisTimeSlider = new shackleton.timeslider('timeslider-content', thisTimeProperties);
+                    // }
 
             } catch (error) {
                 console.error(error);
