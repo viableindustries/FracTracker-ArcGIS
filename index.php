@@ -266,6 +266,7 @@
         <script src="//serverapi.arcgisonline.com/jsapi/arcgis/3.3/"></script>
         <script src="js/lib/jquery-1.7.2.min.js"></script>
         <script src="js/lib/jquery.draggable.min.js"></script>
+        <script src="js/lib/jquery.url.js"></script>
         <script src="js/lib/bootstrap.min.js"></script>
         <script src="js/init.js"></script>
     
