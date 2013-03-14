@@ -16,6 +16,9 @@ define([
     var SKLayers,
         SKLayersChangeVisibility;
 
+    // For hiding and showing layers we simply use the .hide() and .show() operations for the Layer Class
+    // in ArcGIS Online's Javascript API.
+
     SKLayersChangeVisibility = declare(null, {
 
         constructor: function (layerID) {
@@ -43,7 +46,7 @@ define([
                 if (thisLayer.visibility) {
                     visible.push(thisLayer.id);
                 }
-
+                                
                 return '<label for="' + thisLayer.id + '" class="checkbox"><input type="checkbox" class="layer-item" data-layer="layer_index_' + thisLayerIndex + '" id="' + thisLayer.id + '"' + (thisLayer.visibility ? 'checked="checked"' : '') + ' value="1" /> ' + thisLayer.title + '</label>';
 
             });
@@ -51,9 +54,6 @@ define([
             dojo.byId(thisLayerContainer).innerHTML = items.join('');
 
         },
-
-    // For hiding and showing layers we simply use the .hide() and .show() operations for the Layer Class
-    // in ArcGIS Online's Javascript API.
 
         constructor: function (thisLayerContainer) {
 
