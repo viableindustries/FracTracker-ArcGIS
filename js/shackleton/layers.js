@@ -46,7 +46,7 @@ define([
                 if (thisLayer.visibility) {
                     visible.push(thisLayer.id);
                 }
-                                
+
                 return '<label for="' + thisLayer.id + '" class="checkbox"><input type="checkbox" class="layer-item" data-layer="layer_index_' + thisLayerIndex + '" id="' + thisLayer.id + '"' + (thisLayer.visibility ? 'checked="checked"' : '') + ' value="1" /> ' + thisLayer.title + '</label>';
 
             });

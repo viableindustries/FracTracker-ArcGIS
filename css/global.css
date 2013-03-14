@@ -78,6 +78,8 @@ html,body,.map,.map.container,#map_container,#wrapper{height:100%;margin:0;overf
 .unitDropDown{margin:auto}
 .resultLabel{margin:auto}
 .result{margin:auto}
+#notes{position:absolute;top:20px;right:auto;bottom:auto;left:791px;min-width:220px;z-index:1036}
+#notes-editor{margin:0;min-width:220px}
 .esriPopup{position:absolute;z-index:40;box-shadow:0 0 .75em #777;-moz-box-shadow:0 0 .75em #777;-webkit-box-shadow:0 0 .75em #777;-o-box-shadow:0 0 .75em #777;font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;font-size:12px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px}
 .esriPopup .esriPopupWrapper{box-shadow:0 0 .75em #777;-moz-box-shadow:0 0 .75em #777;-webkit-box-shadow:0 0 .75em #777;-o-box-shadow:0 0 .75em #777;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px}
 .esriPopup .hidden{display:none}

@@ -56,6 +56,7 @@
                         <li><a href="#legend" title="Show/Hide the Legend" class="toolbox-toggle" data-target="#legend"><i class="icon icon-legend"></i> <span>Legend</span></a></li>
                         <li><a href="#basemaps" title="" data-toggle="modal" data-target="#basemaps" data-dynamic="true"><i class="icon icon-basemap"></i> <span>Base Maps</span></a></li>
                         <li><a href="#measurement" title="Show/Hide the Drawing Tools" class="toolbox-toggle" data-target="#measurement"><i class="icon icon-measure"></i> <span>Measure</span></a></li>
+                        <li><a href="#notes" title="Show/Hide the Notes Editor" class="toolbox-toggle" data-target="#notes"><i class="icon icon-note"></i> <span>Notes</span></a></li>
                         <li><a href="#export" data-dynamic="true" data-toggle="modal"><i class="icon icon-export"></i> <span>Export</span></a></li>
                     </ul>
                 </nav>
@@ -115,7 +116,7 @@
                 <div class="toolbox-inner">
                     <a href="#notes" class="toolbox-toggle close-toolbox" data-target="#notes">×</a>
                     <h3>Notes</h3>
-                    <div id="notes-content"></div>
+                    <div id="notes-editor"></div>
                 </div>
             </div>
         </aside>

@@ -1,45 +1,56 @@
+/*jslint browser: true*/
+/*global $, jQuery, dojo, define, console, esri, map, SKMapResponse*/
+
 //
 // Enable the user to switch to the Base Map of their choice
 // 
 
 // Make sure that we have ``declare`` and the ``BasemapGallery``
-define('SKBasemaps', ['dojo/_base/declare', 'esri/dijit/BasemapGallery' ], function(declare, esriDijitBasemap ) {
+define([
+    'dojo/_base/declare',
+    'esri/dijit/BasemapGallery'
+], function (
+    declare
+) {
 
-  var SKBasemaps = declare('shackleton.basemaps', null, {
+    var SKBasemaps,
+        thisBasemapGallery;
 
-    constructor: function () {
+    SKBasemaps = declare('shackleton.basemaps', null, {
 
-      //
-      // Instantiate our Basemap Gallery and make sure that
-      // we are using the basic set of ArcGIS Basemaps.
-      //
-      var thisBasemapGallery = new esri.dijit.BasemapGallery({
-        showArcGISBasemaps: true,
-        map: map
-        // Add the Basemaps to the Basemaps modal
-      }, 'basemaps-gallery');
+        constructor: function () {
+
+            //
+            // Instantiate our Basemap Gallery and make sure that
+            // we are using the basic set of ArcGIS Basemaps.
+            //
+            thisBasemapGallery = new esri.dijit.BasemapGallery({
+                showArcGISBasemaps: true,
+                map: map
+            }, 'basemaps-gallery');
 
 
-      // Startup the Basemap Gallery as soon as possible
-      thisBasemapGallery.startup();
-      
-      dojo.connect( thisBasemapGallery, "onSelectionChange", function() {
+            // Startup the Basemap Gallery as soon as possible
+            thisBasemapGallery.startup();
 
-          var newBasemap = thisBasemapGallery.getSelected();
-          
-          if (map.getLayer('World_Reference_Overlay_3749').visible === true) {
-              map.getLayer('World_Reference_Overlay_3749').hide();
-          }
-          
-          jQuery('#basemap-changed .title').text(newBasemap.title);          
-          jQuery('#basemap-changed').show().delay(3000).fadeOut();
-          
-      });
-    }
+            dojo.connect( thisBasemapGallery, "onSelectionChange", function() {
 
+                var newBasemap = thisBasemapGallery.getSelected();
+
+                if (map.getLayer('World_Reference_Overlay_3749').visible === true) {
+                    map.getLayer('World_Reference_Overlay_3749').hide();
+                }
+
+                jQuery('#basemap-changed .title').text(newBasemap.title);          
+                jQuery('#basemap-changed').show().delay(3000).fadeOut();
+
+            });
+        }
   });
 
-  return SKBasemaps;
+  return {
+      SKBasemaps: SKBasemaps
+  };
 
 });
 

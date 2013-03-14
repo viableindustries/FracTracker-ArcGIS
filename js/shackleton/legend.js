@@ -36,8 +36,6 @@ define([ 'dojo/_base/declare', 'esri/dijit/Legend' ], function( declare, esriDij
           map: map,
           layerInfos:legendLayers
         }, 'legend-content');
-        
-        console.log(legendLayers);
                 
         thisLegend.startup();
         

@@ -65,38 +65,33 @@ define([
             //   For a list of more functionality available through to this web map
             //   application on ArcGIS.com.
             //
-            try {
-                var thisBasemaps = new shackleton.basemaps(),
-                    thisDataExport = new shackleton.dataexport(),
-                    thisEmbed = new shackleton.embed(),
-                    thisLegend = new shackleton.legend(),
-                    thisLayers = new shackleton.layers('layers-content'),
-                    thisMeasurement = new shackleton.measurement('measurement-content'),
-                    thisMeta = new shackleton.meta(),
-                    thisNotes = new shackleton.notes(),
-                    thisPrint = new shackleton.print('print-initialize')
-                    thisScalebar = new shackleton.scalebar(),
-                    thisSearch = new shackleton.search();
+            var thisBasemaps = new shackleton.basemaps(),
+                thisDataExport = new shackleton.dataexport(),
+                thisEmbed = new shackleton.embed(),
+                thisLegend = new shackleton.legend(),
+                thisLayers = new shackleton.layers('layers-content'),
+                thisMeasurement = new shackleton.measurement('measurement-content'),
+                thisMeta = new shackleton.meta(),
+                thisNotes = new shackleton.notes('notes-editor'),
+                thisPrint = new shackleton.print('print-initialize')
+                thisScalebar = new shackleton.scalebar(),
+                thisSearch = new shackleton.search();
                                         
-                    if (isTimeline.indexOf("timeline") !== -1) {
-                        // Determine which layers are time sensitive layers
-                        dojo.forEach(SKMapResponse.itemInfo.itemData.operationalLayers, function (thisLayer, i) {
-                                
-                            if (map.getLayer(thisLayer.id).timeInfo) {
-                                thisTimeProperties = map.getLayer(thisLayer.id).timeInfo;
-                            }
-                                
-                        });
-                                
-                        if (thisTimeProperties !== null) {
-                            thisTimeSlider = new shackleton.timeslider('timeslider-content', thisTimeProperties);
-                        }
+            if (isTimeline.indexOf("timeline") !== -1) {
+                // Determine which layers are time sensitive layers
+                dojo.forEach(SKMapResponse.itemInfo.itemData.operationalLayers, function (thisLayer, i) {
+                        
+                    if (map.getLayer(thisLayer.id).timeInfo) {
+                        thisTimeProperties = map.getLayer(thisLayer.id).timeInfo;
                     }
-                                        
-            } catch (error) {
-                console.error(error);
+                        
+                });
+                        
+                if (thisTimeProperties !== null) {
+                    thisTimeSlider = new shackleton.timeslider('timeslider-content', thisTimeProperties);
+                }
             }
-
+                                        
             //
             // Make sure that the map resizes properly when the map is loaded on
             // various devices (e.g., desktop, tablet, smartphone) or when the
