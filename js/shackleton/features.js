@@ -75,6 +75,7 @@ define([
                 thisNotes = new shackleton.notes('notes-editor'),
                 thisPrint = new shackleton.print('print-initialize')
                 thisScalebar = new shackleton.scalebar(),
+                thisGeolocation = new shackleton.geolocation(),
                 thisSearch = new shackleton.search();
                                         
             if (isTimeline.indexOf("timeline") !== -1) {
