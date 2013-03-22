@@ -11,6 +11,10 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="translucent black" />
         <meta name="cache-control" content="no-store" />
         
+        <!--[if lt IE 9]>
+          <script src="js/lib/html5.js"></script>
+        <![endif]-->
+
         <link rel="stylesheet" href="css/global.css" />
        
         <link rel="shortcut icon" href="images/icon-frac-72x72.png" />
