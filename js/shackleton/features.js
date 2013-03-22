@@ -72,7 +72,7 @@ define([
                 thisLayers = new shackleton.layers('layers-content'),
                 thisMeasurement = new shackleton.measurement('measurement-content'),
                 thisMeta = new shackleton.meta(),
-                thisNotes = new shackleton.notes('notes-editor'),
+                // thisNotes = new shackleton.notes('notes-editor'),
                 thisPrint = new shackleton.print('print-initialize')
                 thisScalebar = new shackleton.scalebar(),
                 thisGeolocation = new shackleton.geolocation(),
