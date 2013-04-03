@@ -14,8 +14,6 @@ define([ 'dojo/_base/declare', 'esri/dijit/Legend' ], function( declare, esriDij
       
     layersBuildList: function (layerObjectList) {
         
-        layerObjectList.reverse();
-
         var items = dojo.map(layerObjectList, function (thisLayer, thisLayerIndex) {
 
             legendLayers.push({layer: map.getLayer(thisLayer.id), title: thisLayer.title});

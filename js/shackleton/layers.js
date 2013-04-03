@@ -39,8 +39,6 @@ define([
 
         layersBuildList: function (layerObjectList, thisLayerContainer) {
 
-            layerObjectList.reverse();
-
             var items = dojo.map(layerObjectList, function (thisLayer, thisLayerIndex) {
 
                 if (thisLayer.visibility) {
