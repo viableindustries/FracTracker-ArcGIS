@@ -33,7 +33,7 @@ define([
                     }
                 }],
                 url: "http://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
-            }, dojo.byId(SKPrintContainer));
+            }, SKPrintContainer);
 
             thisPrinter._printText = 'Create a PDF';
 
