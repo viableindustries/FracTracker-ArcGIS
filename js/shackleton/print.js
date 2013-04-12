@@ -23,6 +23,9 @@ define([
                 templates: [{
                     label: "Layout",
                     format: "PDF",
+                    exportOptions: {
+                        dpi: 96
+                    },
                     preserveScale: false,
                     layout: "A4 Landscape",
                     layoutOptions: {
