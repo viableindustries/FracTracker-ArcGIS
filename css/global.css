@@ -22,7 +22,7 @@
 html,body,.map,.map.container,#map_container,#wrapper{height:100%;margin:0;overflow:hidden;padding:0;width:100%}
 .center{text-align:center}
 .map .layerTile{position:absolute;border:none;margin:0;padding:0}
-.logo{background-color:transparent;background-image:url("../images/sprite.png?1362689112");background-position:-276px -426px;background-repeat:no-repeat;text-indent:-999999px;position:absolute;top:auto;right:20px;bottom:10px;left:auto;height:40px;width:138px;z-index:6}
+.logo{background-color:transparent;background-image:url("../images/sprite.png?1362689112");background-position:-276px -426px;background-repeat:no-repeat;text-indent:-999999px;position:absolute;top:auto;right:20px;bottom:10px;left:auto;height:40px;width:148px;z-index:6}
 #progress{position:absolute;top:38%;right:25%;bottom:auto;left:25%;height:38px;line-height:38px;width:50%}
 .element-invisible{display:none}
 .draggable h3{cursor:move}
