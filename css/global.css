@@ -41,7 +41,7 @@ html,body,.map,.map.container,#map_container,#wrapper{height:100%;margin:0;overf
 .toolbox a i,.toolbox a span{display:inline;display:inline-block}
 .toolbox a span{padding:0 0 0 8px}
 .toolbox .close-toolbox{float:right;padding:7px 14px}
-.esriControlsBR{position:absolute;top:auto;right:138px;bottom:15px;left:auto;z-index:1036}
+.esriControlsBR{position:absolute;top:auto;right:158px;bottom:15px;left:auto;z-index:1036}
 .esriControlsBR span{font-size:11px;color:#101010;color:rgba(16,16,16,0.3)}
 .esriAttributionDelim{display:none}
 .esriBasemapGalleryNode{float:left;margin:5px 10px;text-align:center;width:150px}
