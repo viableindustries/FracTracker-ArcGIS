@@ -1,16 +1,15 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=7, IE=9">
+    <meta http-equiv="X-UA-Compatible" content="IE=7, IE=9, IE=10">
     <!--The viewport meta tag is used to improve the presentation and behavior
     of the samples on iOS devices-->
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
     <title>Local Storage Demo</title>
 
-    <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/claro/claro.css">
-    <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css">
+    <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/css/esri.css">
     <style>
       html, body { height: 100%; width: 100%; margin: 0; padding: 0; overflow:hidden; }
       #leftPane{
@@ -36,7 +35,7 @@
     </style>
 
     <script>var dojoConfig = { parseOnLoad: true };</script>
-    <script src="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/"></script>
+    <script src="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/"></script>
     <script>
       dojo.require("esri.map");
       dojo.require("esri.dijit.editing.Editor-all");
@@ -62,6 +61,7 @@
           addLayer(dojo.fromJson(window.localStorage.getItem("storedCollection")));
         } else {
           var mapserverUrl = "http://sampleserver5.arcgisonline.com/ArcGIS/rest/services/Notes/FeatureServer/0";
+		  var mapserverUrl = 'http://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/notes_template/FeatureServer/0';
           var deferred = getLayerResource(mapserverUrl);
 
           deferred.then(function(response) {

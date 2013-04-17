@@ -16,6 +16,8 @@
         <![endif]-->
 
         <link rel="stylesheet" href="css/global.css" />
+	    <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/dojo/dijit/themes/claro/claro.css">
+        <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css" />
        
         <link rel="shortcut icon" href="images/icon-frac-72x72.png" />
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icon-frac-72x72.png" />
@@ -60,7 +62,7 @@
                         <li><a href="#legend" title="Show/Hide the Legend" class="toolbox-toggle" data-target="#legend"><i class="icon icon-legend"></i> <span>Legend</span></a></li>
                         <li><a href="#basemaps" title="" data-toggle="modal" data-target="#basemaps" data-dynamic="true"><i class="icon icon-basemap"></i> <span>Base Maps</span></a></li>
                         <li><a href="#measurement" title="Show/Hide the Drawing Tools" class="toolbox-toggle" data-target="#measurement"><i class="icon icon-measure"></i> <span>Measure</span></a></li>
-                        <!-- <li><a href="#notes" title="Show/Hide the Notes Editor" class="toolbox-toggle" data-target="#notes"><i class="icon icon-note"></i> <span>Notes</span></a></li> -->
+                        <li><a href="#notes" title="Show/Hide the Notes Editor" class="toolbox-toggle" data-target="#notes"><i class="icon icon-note"></i> <span>Notes</span></a></li>
                         <li><a href="#export" data-dynamic="true" data-toggle="modal"><i class="icon icon-export"></i> <span>Export</span></a></li>
                     </ul>
                 </nav>
@@ -120,7 +122,7 @@
                 <div class="toolbox-inner">
                     <a href="#notes" class="toolbox-toggle close-toolbox" data-target="#notes">×</a>
                     <h3>Notes</h3>
-                    <div id="notes-editor"></div>
+                    <div id="editorDiv"></div>
                 </div>
             </div>
         </aside>

@@ -1,151 +1,112 @@
 /*jslint browser: true*/
 /*global $, jQuery, dojo, define, console, globals, esri, map, SKMapResponse, thisNote:true*/
 
+var featureLayer;
+
 //
 // Enable users to add notes to any map and store those notes locally, within their browser's storage
 //
-
-var notesCollection = {}, noteLayers = [];
-
 define([
-    'dojo/_base/declare',
-    'esri/dijit/editing/Editor-all',
-    'dojo/DeferredList',
-    'dijit/form/Button'
+   'dojo/_base/declare',
+    "esri/dijit/editing/Editor-all",
+    "dijit/layout/ContentPane",
+    "dijit/layout/BorderContainer",
+    "dojo/DeferredList",
+    "dijit/form/Button"
 ], function (
     declare
 ) {
-
-    var SKNotes,
-        thisNote;
 
    //
    // Listens for when the "search-address" button is clicked. Once it has been clicked
    // it will initialize the rest of the address search functionality.
    //
-    SKNotes = declare('shackleton.notes', null, {
+   return declare('shackleton.notes', null, {
 
-        getLayerResource: function (thisURL) {
+		getLayerResource: function (url) {
+	        var deferred = esri.request({
+	          url: url,
+	          content: {
+	            f: 'json'
+	          },
+	          callbackParamName: "callback"
+	        });
+	        return deferred;
+		},
+		
+		addFeatureLayer: function (featureCollection) {
+	        var fields = dojo.map(featureCollection.layerDefinition.fields, function(field) {
+	          return field.name;
+	        });
+	        var featureLayer = new esri.layers.FeatureLayer(featureCollection, {
+	          outFields: fields
+	        });
 
-            var deferred = esri.request({
-                url: thisURL,
-                content: {
-                    f: 'json'
-                },
-                callbackParamName: "callback"
-            });
+	        var selectionSymbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 20, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255, 255, 0, 0.5]), 10), new dojo.Color([255, 255, 0, 0.9]));
 
-            return deferred;
+	        featureLayer.setSelectionSymbol(selectionSymbol);
+	        map.addLayers([featureLayer]);
+		},
+
+        initEditor: function (results) {
+	        var featureLayerInfos = dojo.map(results, function(result) {
+	          return {
+	            'featureLayer': result.layer
+	          };
+	        });
+	        featureLayer = results[0].layer;
+	        var settings = {
+	          map: map,
+	          layerInfos: featureLayerInfos
+	        };
+
+	        var params = {
+	          settings: settings
+	        };
+	        var editorWidget = new esri.dijit.editing.Editor(params, 'editorDiv');
+	        editorWidget.startup();
+	        map.infoWindow.resize(290, 220);
         },
 
-        addLayer: function (thisCollection) {
-
-            var fields = dojo.map(thisCollection.layerDefinition.fields, function (field) {
-                return field.name;
-            });
-
-            var featureLayer = new esri.layers.FeatureLayer(thisCollection, {
-                outFields: fields
-            });
-
-            var selectionSymbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 20, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255, 255, 0, 0.5]), 10), new dojo.Color([255, 255, 0, 0.9]));
-
-            featureLayer.setSelectionSymbol(selectionSymbol);
-            map.addLayers([featureLayer]);
-
+        saveCollection: function () {
+	        //save the edited features to local storage
+	        console.log('Edits saved to storage');
+	        console.log(featureLayer.toJson());
+	        window.localStorage.setItem("storedCollection", dojo.toJson(featureLayer.toJson()));
         },
 
-        layersBuildList: function (layerObjectList) {
+        constructor: function () {
+	        dojo.connect(map, "onLayersAddResult", this.initEditor);
 
-            layerObjectList.reverse();
+	        if (window.localStorage.getItem("storedCollection")) {
+	          console.log('Feature Collection read from storage');
+	          this.addFeatureLayer(dojo.fromJson(window.localStorage.getItem("storedCollection")));
+	        } else {
+			  var mapserverUrl = 'http://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/notes_template/FeatureServer/0';
+	          var deferred = this.getLayerResource(mapserverUrl);
 
-            var items = dojo.map(layerObjectList, function (thisLayer, thisLayerIndex) {
+	          deferred.then(function(response) {
+	            var featureCollection = {};
+	            featureCollection.layerDefinition = response;
 
-                noteLayers.push({layer: map.getLayer(thisLayer.id), title: thisLayer.title});
+	            var fields = dojo.map(featureCollection.layerDefinition.fields, function(field) {
+	              return dojo.mixin({
+	                editable: true,
+	                domain: null
+	              }, field);
+	            });
 
-            });
-        },
-        
-        grrr: function () {
-            console.log('grrr');
-        },
+	            featureCollection.layerDefinition.fields = fields;
 
-        buildNoteEditor: function (SKNotesContainer) {
-
-            console.log('build editor');
-
-            // layers = globals.operationalLayers;
-            // this.layersBuildList(layers);
-            // 
-            // var settings = {
-            //     map: map,
-            //     layerInfos: noteLayers
-            // };
-            // 
-            // var params = {
-            //     settings: settings
-            // };
-            // 
-            // var editorWidget = new esri.dijit.editing.Editor(params, SKNotesContainer);
-            // editorWidget.startup();
-            // map.infoWindow.resize(290, 220);
-
-        },
-
-        // saveNote: function () {
-        //     //save the edited features to local storage
-        //     console.log('Edits saved to storage');
-        //     console.log(featureLayer.toJson());
-        //     window.localStorage.setItem("myFracMapperNotes", dojo.toJson(featureLayer.toJson()));
-        // },
-
-        // The feature service we are loading that contains the information necessary to collect
-        // notes in the users browser storage:
-        //
-        // http://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/Note_Templates/FeatureServer/0
-
-        constructor: function (SKNotesContainer) {
-
-            console.log('Begin notes');
-
-            var notesFeatureURL = 'http://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/Note_Templates/FeatureServer/0';
-            var deferredNotes = this.getLayerResource(notesFeatureURL);
-
-            this.grrr();
-
-            this.buildNoteEditor(SKNotesContainer);
-
-            console.log(notesFeatureURL, deferredNotes);
-
-            deferredNotes.then(function (response) {
-                notesCollection.layerDefinition = response;
-
-                console.log('deferred', notesCollection.layerDefinition);
-
-                var noteFields = dojo.map(notesCollection.layerDefinition.fields, function (thisField) {
-                    return dojo.mixin({
-                        editable: true,
-                        domain: null
-                    }, thisField);
-                });
-
-                console.log('fields', noteFields);
-                
-                notesCollection.layerDefinition.fields = noteFields;
-
-                window.localStorage.setItem("myFracMapperNotes", dojo.toJson(notesCollection));
-                console.log("Notes added to storage");
-                console.log(notesCollection);
-                this.addLayer(notesCollection);
-            });
-
+	            window.localStorage.setItem("storedCollection", dojo.toJson(featureCollection));
+	            console.log("Feature Collection added to storage");
+	            console.log(featureCollection);
+	            this.addFeatureLayer(featureCollection);
+	          });
+	        }
         }
 
     });
-
-    return {
-        SKNotes: SKNotes
-    };
 
 });
 
