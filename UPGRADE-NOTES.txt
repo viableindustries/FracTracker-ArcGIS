@@ -1,0 +1,16 @@
+How to upgrade to a newer version of the API
+
+Custom changes to layout.js:
+
+1. Automatically insert the title of the Map into the Details area
+
+Change this:
+
+            //set the detail info
+            detailCp.set('content', configOptions.description);
+
+To this:
+
+            //set the detail info
+		    description_content = '<h2>' + configOptions.title + '</h2>' + configOptions.description;
+            detailCp.set('content', description_content);
