@@ -372,9 +372,13 @@ nav a:link,
 	position:absolute;
 	top:auto;
 	right:20px;
-	bottom:15px;
+	bottom:45px;
 	left:auto;
 	z-index:1036;
+}
+
+.scalebar_bottom-left {
+	bottom: 45px;
 }
 
 .esriAttributionList .esriAttributionItem .esriControlsBR span {
