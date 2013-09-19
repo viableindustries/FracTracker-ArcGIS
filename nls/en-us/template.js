@@ -19,8 +19,10 @@
     layouts:{
       label1: 'Landscape (PDF)',
       label2: 'Portrait (PDF)',
-      label3: 'Landscape (Image)',
-      label4: 'Portrait (Image)'
+      label3: 'Landscape (HI-RES PDF)',
+      label4: 'Portrait (HI-RES PDF)',
+      label5: 'Landscape (Image)',
+      label6: 'Portrait (Image)'
     },
     title: "Print Map",
     label: "Print"

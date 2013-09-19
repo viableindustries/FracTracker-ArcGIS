@@ -599,6 +599,12 @@ nav a:link,
     width: 100% !important;
 }
 
+#dijit_layout_BorderContainer_0,
+#mainWindow #dijit_layout_BorderContainer_0 {
+    height: 100% !important;
+    width: 100% !important;
+}
+
 #mainWindow {
 	background-color: rgb(252,252,252);
 	height: 100% !important;
