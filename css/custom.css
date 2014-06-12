@@ -497,6 +497,8 @@ nav a:link,
     padding: 5px 5px 0;
     text-align: right;
     width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
     .esriPopup .titlePane .title,
@@ -565,7 +567,16 @@ nav a:link,
 
 /** Popup content **/
 .esriPopup .contentPane {
+    background-color: rgb(255,255,255);
     border: 0;
+    float: left;
+    width: 100%;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.esriPopup .sizer {
+	float: left;
 }
 
 /** Popup Footer **/
@@ -575,8 +586,11 @@ nav a:link,
     border-radius: 0;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
-    margin: 0 12px;
-    padding: 12px 0 14px;
+    margin: 0;
+    padding: 12px 12px 14px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
 }
 
 
