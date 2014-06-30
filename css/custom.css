@@ -27,8 +27,6 @@ div,
 
 .esriAttribution {
     font-size: 11px;
-    position: relative;
-    right: 156px;
 }
 
 html.notembed, body.notembed, map,.map.container,#map_container
@@ -378,7 +376,7 @@ nav a:link,
 .esriControlsBR {
 	position:absolute;
 	top:auto;
-	right:20px;
+	right:170px;
 	bottom:45px;
 	left:auto;
 	z-index:1036;
